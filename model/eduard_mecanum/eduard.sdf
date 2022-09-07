@@ -53,7 +53,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-eduard.dae</uri>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -61,8 +61,8 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.0865</radius>
-              <length>0.081</length>
+              <radius>0.05</radius>
+              <length>0.055</length>
             </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -111,7 +111,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-eduard.dae</uri>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -119,8 +119,8 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.0865</radius>
-              <length>0.081</length>
+              <radius>0.05</radius>
+              <length>0.055</length>
             </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -169,7 +169,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-eduard.dae</uri>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -177,8 +177,8 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.0865</radius>
-              <length>0.081</length>
+              <radius>0.05</radius>
+              <length>0.055</length>
             </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -227,7 +227,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-eduard.dae</uri>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -235,8 +235,8 @@
           <pose>0 0 0 0 0 0</pose>
           <geometry>
             <cylinder>
-              <radius>0.0865</radius>
-              <length>0.081</length>
+              <radius>0.05</radius>
+              <length>0.055</length>
             </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -302,6 +302,24 @@
       </joint>
 
       <!-- plugins to control robot behavior -->
- 
+      <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
+       <ros>
+         <!-- Add a namespace -->
+         <!-- <namespace>/demo</namespace> -->
+         <!-- Remap the default topic -->
+         <!-- <remapping>cmd_vel:=custom_cmd_vel</remapping> -->
+         <!-- <remapping>odom:=custom_odom</remapping> -->
+       </ros>
+       <update_rate>100</update_rate>
+       <publish_rate>10</publish_rate>
+       <!-- output -->
+       <publish_odom>true</publish_odom>
+       <publish_odom_tf>true</publish_odom_tf>
+       <odometry_frame>odom</odometry_frame>
+       <robot_base_frame>chassis</robot_base_frame>
+       <covariance_x>0.0001</covariance_x>
+       <covariance_y>0.0001</covariance_y>
+       <covariance_yaw>0.01</covariance_yaw>
+     </plugin>
     </model>
 </sdf>
