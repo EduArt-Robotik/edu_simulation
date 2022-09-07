@@ -269,7 +269,7 @@
 
       <!-- Joints. -->
       <joint type="revolute" name="axis_front_left">
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0 0 0 3.141592654 0 0</pose>
         <child>wheel_front_left</child>
         <parent>chassis</parent>
         <axis>
@@ -285,7 +285,7 @@
         </axis>
       </joint>    
       <joint type="revolute" name="axis_rear_left">
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0 0 0 3.141592654 0 0</pose>
         <child>wheel_rear_left</child>
         <parent>chassis</parent>
         <axis>
@@ -299,6 +299,51 @@
         <axis>
           <xyz>0 0 1</xyz>
         </axis>
-      </joint>                      
+      </joint>
+
+      <!-- plugins to control robot behavior -->
+      <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
+        <!-- <ros> -->
+          <!-- Set namespace -->
+          <!-- <namespace>/demo</namespace> -->
+
+          <!-- Remap default topics -->
+          <!-- <remapping>cmd_vel:=cmd_demo</remapping> -->
+          <!-- <remapping>odom:=odom_demo</remapping> -->
+        <!-- </ros> -->
+
+        <!-- Update rate -->
+        <update_rate>20</update_rate>
+
+        <!-- Number of wheel pairs -->
+        <num_wheel_pairs>2</num_wheel_pairs>
+
+        <!-- wheels0 -->
+        <left_joint>axis_front_left</left_joint>
+        <right_joint>axis_front_right</right_joint>
+
+        <!-- wheels1-->
+        <left_joint>axis_rear_left</left_joint>
+        <right_joint>axis_rear_right</right_joint>
+
+        <!-- kinematics -->
+        <wheel_separation>0.326</wheel_separation>
+        <wheel_separation>0.326</wheel_separation>
+
+        <wheel_diameter>0.173</wheel_diameter>
+        <wheel_diameter>0.173</wheel_diameter>
+
+        <!-- limits -->
+        <max_wheel_torque>20</max_wheel_torque>
+        <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+        <!-- output -->
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_frame</robot_base_frame>
+      </plugin>    
     </model>
 </sdf>
