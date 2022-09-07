@@ -169,7 +169,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -227,7 +227,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
