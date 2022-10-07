@@ -22,13 +22,13 @@ def generate_launch_description():
     # read sdf contents because to spawn an entity in 
     # gazebo we need to provide entire sdf as string on  command line
 
-    xml = open(robot_sdf, 'r').read()
+    # xml = open(robot_sdf, 'r').read()
 
     # double quotes need to be with escape sequence
-    xml = xml.replace('"', '\\"')
+    # xml = xml.replace('"', '\\"')
 
     # this is argument format for spwan_entity service 
-    spwan_args = '{name: \"eduard\", xml: \"'  +  xml + '\" }'
+    # spwan_args = '{name: \"eduard\", xml: \"'  +  xml + '\" }'
     
     # create and return launch description object
     return LaunchDescription([
