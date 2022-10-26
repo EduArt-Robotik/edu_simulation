@@ -22,14 +22,14 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://TER2/mesh/TER2.stl</uri>
+              <uri>model://TER2/mesh/TER2.dae</uri>
             </mesh>
           </geometry>
         </visual>
         <collision name="collision">
           <geometry>
             <mesh>
-              <uri>model://TER2/mesh/TER2.stl</uri>
+              <uri>model://TER2/mesh/TER2.dae</uri>
             </mesh>
           </geometry>
         </collision>
