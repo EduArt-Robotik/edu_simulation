@@ -6,7 +6,6 @@
       <!-- ter1  change collision mass ineritia ...-->
       <link name="course">
         <pose>0 0 0 0 0 0</pose>
-        
         <inertial>
           <pose>0 0 0 0 0 0</pose>
           <mass>5.0</mass>
@@ -34,8 +33,5 @@
           </geometry>
         </collision>
       </link>
-
-      
-          
     </model>
 </sdf>
