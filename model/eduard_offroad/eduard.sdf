@@ -2,13 +2,13 @@
 <sdf version='1.5'>
   <model name="eduard-offroad">
     <static>false</static>
-    <pose>0 0 0.5 0 0 0</pose>
+    <pose>0 0 0 0 0 0</pose>
       <!-- chassis -->
       <link name="chassis">
         <pose>0 0 0 0 0 0</pose>
         <inertial>
-          <pose>0 0 0 0 0 0</pose>
-          <mass>10.0</mass>
+          <pose>0 0 0.0 0 0 0</pose>
+          <mass>5.0</mass>
           <inertia>
             <ixx>9.885e-1</ixx>
             <iyy>2.099e0</iyy>
@@ -266,6 +266,85 @@
           </surface>          
         </collision>        
       </link> 
+
+      <!-- Add the laser range finder -->
+      <link name="laser_link">
+        <inertial>
+          <!-- Mass of the laser range finder in kg -->
+          <mass>0.1</mass>
+        </inertial>
+        <!-- Position is towards the front of the robot -->
+        <!-- Laser finder is mounted on top -->
+        <pose>0.10 0 0.139 0 0 -0.4</pose>
+         
+        <!-- Add a mesh to make it more visually appealing -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://eduard_offroad/mesh/rplidar-a2.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+         
+        <!-- Collision properties of the base of the laser range finder-->
+        <collision name="collision-base">
+          <pose>0 0 -0.0145 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.041</size>
+            </box>
+          </geometry>
+        </collision>
+         
+        <!-- Collision properties of the top of the laser range finder-->
+        <collision name="collision-top">
+          <pose>0 0 0.0205 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.021</radius>
+              <length>0.029</length>
+            </cylinder>
+          </geometry>
+        </collision>
+         
+<!-- Describes the type and properties of the sensor -->
+	<sensor name="laser" type="ray">
+	  <pose>0.01 0 0.0175 0 -0 0</pose>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>2000</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.141592654</min_angle>
+                <max_angle>3.141592654</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.15</min>
+              <max>12.0</max>
+              <resolution>0.05</resolution>
+            </range>
+          </ray>
+          <always_on>1</always_on>
+          <update_rate>10</update_rate>
+          <visualize>true</visualize>
+
+          <plugin name='laser' filename='libgazebo_ros_ray_sensor.so'>
+            <ros>
+              <namespace>/demo</namespace>
+              <argument>--ros-args --remap ~/out:=scan</argument>
+            </ros>
+            <output_type>sensor_msgs/LaserScan</output_type>
+          </plugin>
+	      </sensor>
+      </link>
+
+       <!-- Connect laser range finder to the robot's body -->
+       <joint type="fixed" name="laser_joint">
+         <child>laser_link</child>
+         <parent>chassis</parent>
+       </joint> 
+
 
       <!-- Joints. -->
       <joint type="revolute" name="axis_front_left">
