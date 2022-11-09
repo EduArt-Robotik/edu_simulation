@@ -1,9 +1,0 @@
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/uninstall.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/edu_simulation_uninstall.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/test.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/edit_cache.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/rebuild_cache.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/list_install_components.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/install.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/install/local.dir
-/home/daniel/ros2_ws/src/edu_simulation/build/edu_simulation/CMakeFiles/install/strip.dir
