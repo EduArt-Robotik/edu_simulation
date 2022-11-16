@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+  <model name="pebble3">
+    <static>false</static>
+    <pose>0 0 1 0 0 0</pose>
+      <!-- ter1  change collision mass ineritia ...-->
+      <link name="course">
+        <pose>0 0 0 0 0 0</pose>
+        
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>9.885e-1</ixx>
+            <iyy>2.099e0</iyy>
+            <izz>1.317e0</izz>
+            <ixy>-7.521e-4</ixy>
+            <ixz>1.126e-3</ixz>
+            <iyz>6.915e-3</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+</sdf>
