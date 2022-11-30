@@ -1,0 +1,1989 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+  <model name="gravel_ramp2">
+    <static>false</static>
+    <pose>0 0 0.6 0 0.26 0</pose>
+      <!-- ter1  change collision mass ineritia ...-->
+      
+
+      <!-- ##################################################################################################### -->
+      <!-- ROW1 ################################################################################################ -->
+      <!-- ##################################################################################################### -->
+
+
+      <link name="pebble00">
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble01">
+        <pose>0 0.08 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    
+      <link name="pebble02">
+        <pose>0 0.16 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble03">
+        <pose>0 0.24 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble04">
+        <pose>0 0.32 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble05">
+        <pose>0 0.4 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble06">
+        <pose>0 0.48 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    
+      <link name="pebble07">
+        <pose>0 0.56 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble08">
+        <pose>0 0.64 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble09">
+        <pose>0 0.72 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble0a">
+        <pose>0 0.8 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble0b">
+        <pose>0 0.88 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble0c">
+        <pose>0 0.96 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+
+      <!-- ##################################################################################################### -->
+      <!-- ROW2 ################################################################################################ -->
+      <!-- ##################################################################################################### -->
+
+
+      <link name="pebble10">
+        <pose>0.08 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble11">
+        <pose>0.08 0.08 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble12">
+        <pose>0.08 0.16 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble13">
+        <pose>0.08 0.24 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble14">
+        <pose>0.08 0.32 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble15">
+        <pose>0.08 0.4 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble16">
+        <pose>0.08 0.48 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    
+      <link name="pebble17">
+        <pose>0.08 0.56 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble18">
+        <pose>0.08 0.64 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble19">
+        <pose>0.08 0.72 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble1a">
+        <pose>0.08 0.8 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble1b">
+        <pose>0.08 0.88 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble1c">
+        <pose>0.08 0.96 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+
+      <!-- ##################################################################################################### -->
+      <!-- ROW3 ################################################################################################ -->
+      <!-- ##################################################################################################### -->
+
+
+      <link name="pebble20">
+        <pose>0.16 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble21">
+        <pose>0.16 0.08 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble22">
+        <pose>0.16 0.16 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble23">
+        <pose>0.16 0.24 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble24">
+        <pose>0.16 0.32 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble25">
+        <pose>0.16 0.4 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble26">
+        <pose>0.16 0.48 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    
+      <link name="pebble27">
+        <pose>0.16 0.56 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble28">
+        <pose>0.16 0.64 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble29">
+        <pose>0.16 0.72 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble2a">
+        <pose>0.16 0.8 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble2b">
+        <pose>0.16 0.88 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble2c">
+        <pose>0.16 0.96 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+
+      <!-- ##################################################################################################### -->
+      <!-- ROW4 ################################################################################################ -->
+      <!-- ##################################################################################################### -->
+
+
+      <link name="pebble30">
+        <pose>0.24 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble31">
+        <pose>0.24 0.08 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble32">
+        <pose>0.24 0.16 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble33">
+        <pose>0.24 0.24 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble34">
+        <pose>0.24 0.32 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble35">
+        <pose>0.24 0.4 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble36">
+        <pose>0.24 0.48 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    
+      <link name="pebble37">
+        <pose>0.24 0.56 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble38">
+        <pose>0.24 0.64 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble39">
+        <pose>0.24 0.72 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble3a">
+        <pose>0.24 0.8 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble3b">
+        <pose>0.24 0.88 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble3c">
+        <pose>0.24 0.96 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+
+      <!-- ##################################################################################################### -->
+      <!-- ROW5 ################################################################################################ -->
+      <!-- ##################################################################################################### -->
+
+
+      <link name="pebble40">
+        <pose>0.32 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble41">
+        <pose>0.32 0.08 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble42">
+        <pose>0.32 0.16 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble43">
+        <pose>0.32 0.24 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble44">
+        <pose>0.32 0.32 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble45">
+        <pose>0.32 0.4 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble46">
+        <pose>0.32 0.48 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+    
+      <link name="pebble47">
+        <pose>0.32 0.56 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble48">
+        <pose>0.32 0.64 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble1/mesh/Pebble1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="pebble49">
+        <pose>0.32 0.72 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble4a">
+        <pose>0.32 0.8 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble2/mesh/Pebble2.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble4b">
+        <pose>0.32 0.88 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble4/mesh/Pebble4.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="pebble4c">
+        <pose>0.32 0.96 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <iyy>0.0001</iyy>
+            <izz>0.0001</izz>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyz>0.0001</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://Pebble3/mesh/Pebble3.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+      </link>
+      
+    </model>
+</sdf>
