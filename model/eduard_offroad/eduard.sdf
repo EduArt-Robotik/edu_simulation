@@ -10,12 +10,12 @@
           <pose>0 0 0.0 0 0 0</pose>
           <mass>5.0</mass>
           <inertia>
-            <ixx>9.885e-1</ixx>
-            <iyy>2.099e0</iyy>
-            <izz>1.317e0</izz>
-            <ixy>-7.521e-4</ixy>
-            <ixz>1.126e-3</ixz>
-            <iyz>6.915e-3</iyz>
+            <ixx>0.0523333</ixx>
+            <iyy>0.132333</iyy>
+            <izz>0.160667</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
           </inertia>
         </inertial>
         <visual name="visual">
@@ -267,6 +267,28 @@
         </collision>        
       </link> 
 
+      <link name="imu_link">
+        <gravity>true</gravity>
+        <sensor name="imu_sensor" type="imu">
+          <always_on>true</always_on>
+          <update_rate>100</update_rate>
+          <visualize>true</visualize>
+          <topic>__default_topic__</topic>
+          <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <topicName>imu</topicName>
+            <bodyName>imu_link</bodyName>
+            <updateRateHZ>10.0</updateRateHZ>
+            <gaussianNoise>0.0</gaussianNoise>
+            <xyzOffset>0 0 0</xyzOffset>
+            <rpyOffset>0 0 0</rpyOffset>
+            <frameName>imu_link</frameName>
+            <initialOrientationAsReference>false</initialOrientationAsReference>
+          </plugin>
+          <pose>0 0 0 0 0 0</pose>
+        </sensor>
+      </link>
+
+
       <!-- Add the laser range finder -->
       <link name="laser_link">
         <inertial>
@@ -275,7 +297,7 @@
         </inertial>
         <!-- Position is towards the front of the robot -->
         <!-- Laser finder is mounted on top -->
-        <pose>0.10 0 0.139 0 0 -0.4</pose>
+        <pose>0.10 0 0.139 0 0 0</pose>
          
         <!-- Add a mesh to make it more visually appealing -->
         <visual name="visual">
@@ -345,6 +367,10 @@
          <parent>chassis</parent>
        </joint> 
 
+       <joint type="fixed" name="imu_joint">
+         <child>imu_link</child>
+         <parent>chassis</parent>
+       </joint> 
 
       <!-- Joints. -->
       <joint type="revolute" name="axis_front_left">
@@ -379,6 +405,8 @@
           <xyz>0 0 1</xyz>
         </axis>
       </joint>
+
+
 
       <!-- plugins to control robot behavior -->
       <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
