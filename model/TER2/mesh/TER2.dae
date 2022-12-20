@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 3.3.1 commit date:2022-10-04, commit time:18:35, hash:b292cfe5a936</authoring_tool>
     </contributor>
-    <created>2022-10-26T18:01:59</created>
-    <modified>2022-10-26T18:01:59</modified>
+    <created>2022-12-20T11:11:07</created>
+    <modified>2022-12-20T11:11:07</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -2495,17 +2495,17 @@
         <matrix sid="transform">-0.5597104 0.7879469 0 -3.047274 -0.5597104 -0.7879469 0 -0.6149778 0 0 2.522486 0.066675 0 0 0 1</matrix>
         <instance_geometry url="#Würfel_005-mesh" name="Querbalken 2 a"/>
       </node>
-      <node id="Querbalken_1_d_001" name="Querbalken 1 d.001" type="NODE">
+      <node id="Querbalken_1_a" name="Querbalken 1 a" type="NODE">
         <matrix sid="transform">-0.5597104 0.7879469 0 3.04727 -0.5597104 -0.7879469 0 0.614978 0 0 2.522486 0.066675 0 0 0 1</matrix>
-        <instance_geometry url="#Würfel_007-mesh" name="Querbalken 1 d.001"/>
+        <instance_geometry url="#Würfel_007-mesh" name="Querbalken 1 a"/>
       </node>
       <node id="Querbalken_1_d" name="Querbalken 1 d" type="NODE">
         <matrix sid="transform">-0.5300965 -0.7725722 0.6713399 -0.572725 0.568459 -0.77541 -0.01418448 0.614978 0.1496784 0.2087873 2.431468 0.546 0 0 0 1</matrix>
         <instance_geometry url="#Würfel_055-mesh" name="Querbalken 1 d"/>
       </node>
-      <node id="Querbalken_1_c_001" name="Querbalken 1 c.001" type="NODE">
+      <node id="Querbalken_1_b" name="Querbalken 1 b" type="NODE">
         <matrix sid="transform">-0.5597104 -0.7879469 0 1.83727 0.5597104 -0.7879469 0 0.614978 0 0 2.522486 0.066675 0 0 0 1</matrix>
-        <instance_geometry url="#Würfel_009-mesh" name="Querbalken 1 c.001"/>
+        <instance_geometry url="#Würfel_009-mesh" name="Querbalken 1 b"/>
       </node>
       <node id="Querbalken_1_c" name="Querbalken 1 c" type="NODE">
         <matrix sid="transform">-0.5302739 0.7728208 0.6684453 0.597275 -0.5686492 -0.7751435 0.0110805 0.604978 0.1483216 -0.2088571 2.432282 0.2295 0 0 0 1</matrix>
