@@ -34,6 +34,7 @@ and are given below in inch with the format: length x width x hight.
 
 Development steps:
 1. TER0_1: The base panel for one track section was created with the dimension: 96 x 48 x 5/8 (= 0.625) (see Robocub Assembly Guide page 15: A).
+![TER0_1](TER0_1.png)
 2. TER0_2: The base panel was duplicated and added at the correct position to create a base panel for the whole track.
 3. TER0_3: Two ramps were created and moved to the correct position. The dimension for the ramp are the same as the base panel except in hight.
 	For a 15° ramp, a cube with the hight of 26 inch is needed. In the *edit mode* of blender, the ramp was created by using the *edge slide tool*.
