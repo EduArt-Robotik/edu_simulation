@@ -27,13 +27,33 @@ The models can be exported in many different files, but for simulation purposes 
 This folder contains old versions of the TER0 route and shows all steps of the development of the base track.
 The basic track was labeled as TER0, since all other tracks of the TER category (i.e. TER1, TER2 and TER3) can be built from it by adding the different track surfaces.
 The following list explains all steps that were done to create the TER0 base track.
-All TER tracks are built mainly with cubes, which is one of the default object types in blender. In addition, every single part of the track was modified to be solid.
+All TER tracks are built mainly with cubes, which is one of the default object types in blender and changed in dimensions. In addition, every single part of the track was modified to be solid.
 To achieve this, every part was modified in the physics properties section to have a passive rigid body type physic, which prevents the robot from falling throught the track.
-The dimension for every part of the tracks were taken from the [Robocub Assembly Guide](https://rrl.robocup.org/wp-content/uploads/2022/05/RoboCup2022_AssemblyGuide_Final.pdf)
+The dimension for every part of the tracks were taken from the [Robocub Assembly Guide](https://rrl.robocup.org/wp-content/uploads/2022/05/RoboCup2022_AssemblyGuide_Final.pdf) 
+and are given below in inch with the format: length x width x hight.
 
 Development steps:
-1. TER0_1: The base panel was created with the dimension
-2. TER0_2:
+1. TER0_1: The base panel for one track section was created with the dimension: 96 x 48 x 5/8 (= 0.625) (see Robocub Assembly Guide page 15: A).
+2. TER0_2: The base panel was duplicated and added at the correct position to create a base panel for the whole track.
+3. TER0_3: Two ramps were created and moved to the correct position. The dimension for the ramp are the same as the base panel except in hight.
+	For a 15° ramp, a cube with the hight of 26 inch is needed. In the *edit mode* of blender, the ramp was created by using the *edge slide tool*.
+4. TER0_4: Two long beams were created with the dimension: 96 x 2 x 4 (see Robocub Assembly Guide page 15: B).
+5. TER0_5: Two short beams were created with the dimension: 45 x 2 x 4 (see Robocub Assembly Guide page 15: C)
+	Together with the two long beams from the previous step, all four beams were moved to the correct position to create a basin.
+6. TER0_6: The four beams were duplicated and positioned to the other parts of the track.
+7. TER0_7a: The two ends of the surrounding wall were created with the dimensions: 1/2 (= 0.5) x 48 x 24 (see Robocub Assembly Guide page 15: N).
+8. TER0_7b: Three long section of the wall were created with the dimension: 1/2 (= 0.5) x 96 x 24 (see Robocub Assembly Guide page 15: M).
+	In addition, one short section of the wall was created with the dimensions of the previous step.
+8. TER0_7c: The four high section of the wall were created with the dimension: 1/2 (= 0.5) x 48 x 48 (see Robocub Assembly Guide page 15: O).
+9. TER0_7d: The last two sections of the wall were created with the dimension: 1/2 (= 0.5) x 48 x 24 (see Robocub Assembly Guide page 15: N).
+	The last missing section of the wall is the entry point of the robot, so there is no wall section needed.
+10. TER0_8: Five supporting beams were created and positioned in the corners of wall of the track with the dimension: 4 x 4 x 12 (see Robocub Assembly Guide page 15: R).
+	In the simulation, these supporting beams provide no funcional use, but were added nevertheless, so that the simulation model better matches the real track.
+11. TER0_9a: For the operator booth, a fifth base panel was added with the same dimension as the other four from step 1. 
+	Furthermore two supporting beams were created with the dimension: 4 x 2 x 96 (see Robocub Assembly Guide page 8: B).
+12. TER0_9b: Three wall panels were created with the dimension: 48 x 1/2 (= 0.5) x 96 (see Robocub Assembly Guide page 8: A).
+13. TER0_9c: One short supporting beam was created with the dimension: 2 x 47 x 4 (see Robocub Assembly Guide page 8: D) as well as the operator table
+	with the dimension: 47 x 24 x 4 (see Robocub Assembly Guide page 8: C, E, F).
 
 #### pebble1
 
