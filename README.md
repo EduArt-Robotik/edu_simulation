@@ -35,12 +35,21 @@ and are given below in inch with the format: length x width x hight.
 Development steps:
 1. TER0_1: The base panel for one track section was created with the dimension: 96 x 48 x 5/8 (= 0.625) (see Robocub Assembly Guide page 15: A).
 ![TER0_1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_1.png)
+
 2. TER0_2: The base panel was duplicated and added at the correct position to create a base panel for the whole track.
+![TER0_2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_2.png)
+
 3. TER0_3: Two ramps were created and moved to the correct position. The dimension for the ramp are the same as the base panel except in hight.
+![TER0_3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_3.png)
 	For a 15° ramp, a cube with the hight of 26 inch is needed. In the *edit mode* of blender, the ramp was created by using the *edge slide tool*.
+
 4. TER0_4: Two long beams were created with the dimension: 96 x 2 x 4 (see Robocub Assembly Guide page 15: B).
+![TER0_4](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_4.png)
+
 5. TER0_5: Two short beams were created with the dimension: 45 x 2 x 4 (see Robocub Assembly Guide page 15: C)
 	Together with the two long beams from the previous step, all four beams were moved to the correct position to create a basin.
+![TER0_5](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_5.png)
+
 6. TER0_6: The four beams were duplicated and positioned to the other parts of the track.
 7. TER0_7a: The two ends of the surrounding wall were created with the dimensions: 1/2 (= 0.5) x 48 x 24 (see Robocub Assembly Guide page 15: N).
 8. TER0_7b: Three long section of the wall were created with the dimension: 1/2 (= 0.5) x 96 x 24 (see Robocub Assembly Guide page 15: M).
