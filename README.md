@@ -108,7 +108,9 @@ This folder contains the basic TER0 track, but the two ramps are filled to creat
 ![TER0_ramp](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_ramp/blender/TER0_ramp.png)
 
 ### TER0_texture
-This folder contains the TER0 track with real textures. **This track does not yet work in the Gazebo simulator, trying to use this track will result in Gazebo crashing**.
+This folder contains the TER0 track with somehwhat realistic textures. The textures were downloaded from [AmbientCG](https://ambientcg.com/), which contains textures for rendering 
+and operates under the *Creative Commons CC0 1.0 Universal License* [see here](https://docs.ambientcg.com/books/website-licensing/page/license-information). <br>
+**This track does not yet work in the Gazebo simulator, trying to use this track will result in Gazebo crashing**.
 ![TER0_texture](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_texture/blender/TER0_texture.png)
 
 ### TER1
