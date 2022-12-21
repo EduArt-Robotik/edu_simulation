@@ -1,5 +1,4 @@
 # edu_simulation
-
 Contains Gazebo simulation models for all EduArt's robots.
 
 ## folder structure
@@ -90,11 +89,34 @@ Development steps:
 
 #### pebble4
 
+#### TER0_basin
+This folder contains the basic TER0 track.
+![TER0_basin](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_basin/blender/TER0_basin.png)
+
+###ä TER0_plain
+This folder contains the basic TER0 track, but the two ramps were removed to create a flat track.
+![TER0_plain](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_plain/blender/TER0_plain.png)
+
+#### TER0_ramp
+This folder contains the basic TER0 track, but the two ramps are filled to create a simplified version of the TER1 track.
+![TER0_ramp](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_ramp/blender/TER0_ramp.png)
+
+#### TER0_texture
+This folder contains the TER0 track with real textures.
+![TER0_texture](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_texture/blender/TER0_texture.png)
+
 #### TER1
+This folder contains the TER1 track. To create the TER1 simulation model, the TER0 basin track was filled with gravel in blender.
+In the Gazebo simulator, the TER1 track is one entity, which means, that the pebble stones do not have real physics, but are "glued" to the track model.
+![TER1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER1/blender/TER1.png)
 
 #### TER2
+This folder contains the TER2 track.
+![TER2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER2/blender/TER2.png)
 
 #### TER3
+This folder contains the TER3 track.
+![TER3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER3/blender/TER3.png)
 
 ### world
 
