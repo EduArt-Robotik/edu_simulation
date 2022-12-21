@@ -54,7 +54,7 @@ Development steps:
 ![TER0_6](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_6.png)
 
 7. TER0_7a: The two ends of the surrounding wall were created with the dimensions: 1/2 (= 0.5) x 48 x 24 (see Robocub Assembly Guide page 15: N).
-![TER0_7a(https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_7a.png)
+![TER0_7a](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_7a.png)
 
 8. TER0_7b: Three long section of the wall were created with the dimension: 1/2 (= 0.5) x 96 x 24 (see Robocub Assembly Guide page 15: M).
 	In addition, one short section of the wall was created with the dimensions of the previous step.
