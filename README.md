@@ -23,7 +23,7 @@ The models can be exported in many different files, but for simulation purposes 
 ### older_versions
 This folder contains old versions of the TER0 route and shows all steps of the development of the base track.
 The basic track was labeled as TER0, since all other tracks of the TER category (i.e. TER1, TER2 and TER3) can be built from it by adding the different track surfaces.
-The following list explains all steps that were done to create the TER0 base track.
+The following list explains all steps that were done to create the TER0 base track. <br>
 All TER tracks are built mainly with cubes, which is one of the default object types in blender and changed in dimensions. In addition, every single part of the track was modified to be solid.
 To achieve this, every part was modified in the physics properties section to have a passive rigid body type physic, which prevents the robot from falling throught the track.
 The dimension for every part of the tracks were taken from the [Robocub Assembly Guide](https://rrl.robocup.org/wp-content/uploads/2022/05/RoboCup2022_AssemblyGuide_Final.pdf) 
@@ -80,12 +80,20 @@ Development steps:
 ![TER0_5](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_9c.png)
 
 ### pebble1
+This folder contains a first random pebble stone.
+![Pebble1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble1/blender/Pebble1.png)
 
 ### pebble2
+This folder contains a second random pebble stone.
+![Pebble2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble2/blender/Pebble2.png)
 
 ### pebble3
+This folder contains a third random pebble stone.
+![Pebble3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble3/blender/Pebble3.png)
 
 ### pebble4
+This folder contains a fourth random pebble stone.
+![Pebble4](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble4/blender/Pebble4.png)
 
 ### TER0_basin
 This folder contains the basic TER0 track.
@@ -100,7 +108,7 @@ This folder contains the basic TER0 track, but the two ramps are filled to creat
 ![TER0_ramp](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_ramp/blender/TER0_ramp.png)
 
 ### TER0_texture
-This folder contains the TER0 track with real textures.
+This folder contains the TER0 track with real textures. ** This track does not work in the Gazebo simulator, trying to use this track will result in Gazebo crashing**.
 ![TER0_texture](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_texture/blender/TER0_texture.png)
 
 ### TER1
