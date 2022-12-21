@@ -40,8 +40,8 @@ Development steps:
 ![TER0_2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_2.png)
 
 3. TER0_3: Two ramps were created and moved to the correct position. The dimension for the ramp are the same as the base panel except in hight.
-![TER0_3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_3.png)
 	For a 15° ramp, a cube with the hight of 26 inch is needed. In the *edit mode* of blender, the ramp was created by using the *edge slide tool*.
+![TER0_3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_3.png)
 
 4. TER0_4: Two long beams were created with the dimension: 96 x 2 x 4 (see Robocub Assembly Guide page 15: B).
 ![TER0_4](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_4.png)
@@ -51,19 +51,36 @@ Development steps:
 ![TER0_5](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_5.png)
 
 6. TER0_6: The four beams were duplicated and positioned to the other parts of the track.
+![TER0_6](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_6.png)
+
 7. TER0_7a: The two ends of the surrounding wall were created with the dimensions: 1/2 (= 0.5) x 48 x 24 (see Robocub Assembly Guide page 15: N).
+![TER0_7a(https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_7a.png)
+
 8. TER0_7b: Three long section of the wall were created with the dimension: 1/2 (= 0.5) x 96 x 24 (see Robocub Assembly Guide page 15: M).
 	In addition, one short section of the wall was created with the dimensions of the previous step.
+![TER0_7b](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_7b.png)
+
 8. TER0_7c: The four high section of the wall were created with the dimension: 1/2 (= 0.5) x 48 x 48 (see Robocub Assembly Guide page 15: O).
+![TER0_7c](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_7c.png)
+
 9. TER0_7d: The last two sections of the wall were created with the dimension: 1/2 (= 0.5) x 48 x 24 (see Robocub Assembly Guide page 15: N).
 	The last missing section of the wall is the entry point of the robot, so there is no wall section needed.
+![TER0_7d](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_7d.png)
+
 10. TER0_8: Five supporting beams were created and positioned in the corners of wall of the track with the dimension: 4 x 4 x 12 (see Robocub Assembly Guide page 15: R).
 	In the simulation, these supporting beams provide no funcional use, but were added nevertheless, so that the simulation model better matches the real track.
+![TER0_8](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_8.png)
+
 11. TER0_9a: For the operator booth, a fifth base panel was added with the same dimension as the other four from step 1. 
 	Furthermore two supporting beams were created with the dimension: 4 x 2 x 96 (see Robocub Assembly Guide page 8: B).
+![TER0_9a](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_9a.png)
+
 12. TER0_9b: Three wall panels were created with the dimension: 48 x 1/2 (= 0.5) x 96 (see Robocub Assembly Guide page 8: A).
-13. TER0_9c: One short supporting beam was created with the dimension: 2 x 47 x 4 (see Robocub Assembly Guide page 8: D) as well as the operator table
+![TER0_9b](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_9b.png)
+
+13. TER0_9c: One short supporting beam was created with the dimension: 2 x 48 x 4 (see Robocub Assembly Guide page 8: D) as well as the operator table
 	with the dimension: 47 x 24 x 4 (see Robocub Assembly Guide page 8: C, E, F).
+![TER0_5](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_9c.png)
 
 #### pebble1
 
