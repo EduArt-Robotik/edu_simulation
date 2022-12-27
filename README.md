@@ -87,59 +87,59 @@ Development steps:
 This folder contains a first random single pebble stone, which can be used to manually create gravel or add to existing gravel.
 This pebble stone was used to create a fully functional gravel model for the Gazebo simulator with somewhat real gravel physics. 
 To create the gravel model, the four pebble stones were arranged in a random order as a grid. For more information see [Gravel](README.md#gravel).
-![Pebble1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble1/Blender/Pebble1.png)
+![Pebble1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble1/blender/Pebble1.png)
 
 ### Pebble2
 This folder contains a second random single pebble stone, which can be used to manually create gravel or add to existing gravel.
 This pebble stone was used to create a fully functional gravel model for the Gazebo simulator with somewhat real gravel physics. 
 To create the gravel model, the four pebble stones were arranged in a random order as a grid. For more information see [Gravel](README.md#Gravel).
-![Pebble2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble2/Blender/Pebble2.png)
+![Pebble2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble2/blender/Pebble2.png)
 
 ### Pebble3
 This folder contains a third random single pebble stone, which can be used to manually create gravel or add to existing gravel.
 This pebble stone was used to create a fully functional gravel model for the Gazebo simulator with somewhat real gravel physics. 
 To create the gravel model, the four pebble stones were arranged in a random order as a grid. For more information see [Gravel](README.md#Gravel).
-![Pebble3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble3/Blender/Pebble3.png)
+![Pebble3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble3/blender/Pebble3.png)
 
 ### Pebble4
 This folder contains a fourth random single pebble stone, which can be used to manually create gravel or add to existing gravel.
 This pebble stone was used to create a fully functional gravel model for the Gazebo simulator with somewhat real gravel physics. 
 To create the gravel model, the four pebble stones were arranged in a random order as a grid. For more information see [Gravel](README.md#Gravel).
-![Pebble4](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble4/Blender/Pebble4.png)
+![Pebble4](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble4/blender/Pebble4.png)
 
 ### TER0_basin
 This folder contains the basic TER0 track without sand or gravel. 
 The ramp is effectively a basin that can be manually filled with individual pebbles (see [pebble1](README.md#pebble1)) or a gravel grid (see [Gravel](README.md#Gravel)).
-![TER0_basin](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_basin/Blender/TER0_basin.png)
+![TER0_basin](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_basin/blender/TER0_basin.png)
 
 ### TER0_plain
 This folder contains the basic TER0 track, but the two ramps were removed to create a flat track.
-![TER0_plain](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_plain/Blender/TER0_plain.png)
+![TER0_plain](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_plain/blender/TER0_plain.png)
 
 ### TER0_ramp
 This folder contains the TER0 track, but the two ramps are filled with a solid material to create a simplified version of the TER1 track with no gravel or sand built into the model.
 This version of the TER0 track was used 
-![TER0_ramp](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_ramp/Blender/TER0_ramp.png)
+![TER0_ramp](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_ramp/blender/TER0_ramp.png)
 
 ### TER0_texture
 This folder contains the TER0 track with somehwhat realistic textures. The textures were downloaded from [AmbientCG](https://ambientcg.com/), which contains textures for rendering 
 and operates under the *Creative Commons CC0 1.0 Universal License* (see: [license information](https://docs.ambientcg.com/books/website-licensing/page/license-information) ). <br>
 **This track does not yet work in the Gazebo simulator, trying to use this track will result in Gazebo crashing**.
-![TER0_texture](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_texture/Blender/TER0_texture.png)
+![TER0_texture](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_texture/blender/TER0_texture.png)
 
 ### TER1
 This folder contains the TER1 track. To create the TER1 track model, the TER0 basin track was filled with gravel in the Blender software.
 In the Gazebo simulator, the TER1 track is one entity, which means, that the pebble stones do not have real physics, but are "glued" to the track model and can not be moved etc...
 This massively reduces the computing power and significantly increases the performance of the simulation.
-![TER1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER1/Blender/TER1.png)
+![TER1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER1/blender/TER1.png)
 
 ### TER2
 This folder contains the TER2 track. To create the TER2 track model, the TER0 basin track was filled with two diagonal wooden beams per section according to the [Robocub Assembly Guide](https://rrl.robocup.org/wp-content/uploads/2022/05/RoboCup2022_AssemblyGuide_Final.pdf) page 16.
-![TER2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER2/Blender/TER2.png)
+![TER2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER2/blender/TER2.png)
 
 ### TER3
 This folder contains the TER3 track. To create the TER3 track model, the TER0 basin track was filled with eight smaller ramps per section according to the [Robocub Assembly Guide](https://rrl.robocup.org/wp-content/uploads/2022/05/RoboCup2022_AssemblyGuide_Final.pdf) page 18.
-![TER3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER3/Blender/TER3.png)
+![TER3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER3/blender/TER3.png)
 
 ## World
 
