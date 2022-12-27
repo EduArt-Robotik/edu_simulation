@@ -82,7 +82,7 @@ Development steps:
 ### pebble1
 This folder contains a first random single pebble stone, which can be used to manually create gravel or add to existing gravel.
 This pebble stone is used to create a fully functional gravel model with somewhat real gravel physics.
-See [here](README.md/edu_simulation/models/gravel_plain)
+See [here](README.md#gravel_plain)
 ![Pebble1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble1/blender/Pebble1.png)
 
 ### pebble2
