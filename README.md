@@ -86,7 +86,7 @@ Development steps:
 ### Pebble1
 This folder contains a first random single pebble stone, which can be used to manually create gravel or add to existing gravel.
 This pebble stone was used to create a fully functional gravel model for the Gazebo simulator with somewhat real gravel physics. 
-To create the gravel model, the four pebble stones were arranged in a random order as a grid. For more information see [Gravel](README.md#Gravel).
+To create the gravel model, the four pebble stones were arranged in a random order as a grid. For more information see [Gravel](README.md#gravel).
 ![Pebble1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble1/Blender/Pebble1.png)
 
 ### Pebble2
