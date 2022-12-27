@@ -152,7 +152,7 @@ For this reason, the TER1 track was created as one solid track with the gravel b
 For the simulation of the robot software algorithm the following computer setup was used:
 - Ubuntu 22.04 (running on virtual machine via OracleVM)
 - Intel i7-12700F (12 cores with up to 4,9 GHz -> 6 cores were assigned to the vm)
-- 32 GB DDR4 RAM (16,384 GB were assigned to the vm)
+- DDR4 RAM (32 GB -> 16 GB were assigned to the vm)
 - MSI Geforce RTX 3060 Ti (the vm was configured to run the VMSVGA graphics controller with 3D Acceleration enabled)
 
 It is likely that the performance of the Gazebo simulator can be improved by running it on a native Ubuntu operating system instead of a virtual machine.
