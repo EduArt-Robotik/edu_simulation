@@ -80,23 +80,25 @@ Development steps:
 ![TER0_5](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Older_versions/TER0_9c.png)
 
 ### pebble1
-This folder contains a first random pebble stone.
+This folder contains a first random single pebble stone, which can be used to manually create gravel or add to existing gravel.
+This pebble stone is used to create a fully functional gravel model with somewhat real gravel physics.
+See [here](README.md/edu_simulation/models/gravel_plain)
 ![Pebble1](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble1/blender/Pebble1.png)
 
 ### pebble2
-This folder contains a second random pebble stone.
+This folder contains a second random single pebble stone.
 ![Pebble2](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble2/blender/Pebble2.png)
 
 ### pebble3
-This folder contains a third random pebble stone.
+This folder contains a third random single pebble stone.
 ![Pebble3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble3/blender/Pebble3.png)
 
 ### pebble4
-This folder contains a fourth random pebble stone.
+This folder contains a fourth random single pebble stone.
 ![Pebble4](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Pebble4/blender/Pebble4.png)
 
 ### TER0_basin
-This folder contains the basic TER0 track.
+This folder contains the basic TER0 track without sand or gravel.
 ![TER0_basin](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER0_basin/blender/TER0_basin.png)
 
 ### TER0_plain
