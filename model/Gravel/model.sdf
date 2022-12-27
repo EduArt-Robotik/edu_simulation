@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.5'>
-  <model name="gravel_plain">
+  <model name="gravel">
     <static>false</static>
     <pose>0 0 0.35 0 0 0</pose>
       <!-- ter1  change collision mass ineritia ...-->

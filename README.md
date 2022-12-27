@@ -23,6 +23,7 @@ This folder contains a gravel model, in which pebble stones were arranged in a r
 The gravel model consists of 65 individual pebble stones, which are arranged in 5 rows with 13 pebbles per row as a grid. 
 This gravel model is an exception to the other models in the model folder, as it is not exported directly from Blender, but is a combination of different Blender models merged together in the .sdf file.
 The advantage is that the gravel now has somewhat realistic physical behavior, so each individual pebble can be moved or rotated independently of the others by the robot.
+[Gravel](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Gravel/gravel.png)
 
 ### Older_versions
 This folder contains old versions of the TER0 track and shows all steps of the development of the base track.
