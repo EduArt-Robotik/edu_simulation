@@ -24,6 +24,11 @@ The gravel model consists of 65 individual pebble stones, which are arranged in 
 This gravel model is an exception to the other models in the model folder, as it is not exported directly from Blender, but is a combination of different Blender models merged together in the .sdf file.
 The advantage is that the gravel now has somewhat realistic physical behavior, so each individual pebble can be moved or rotated independently of the others by the robot.
 ![Gravel](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Gravel/gravel.png)
+The models used for this gravel grid are:
+- [Pebble1](README.md#Pebble1)
+- [Pebble2](README.md#Pebble2)
+- [Pebble3](README.md#Pebble3)
+- [Pebble4](README.md#Pebble4)
 
 ### Older_versions
 This folder contains old versions of the TER0 track and shows all steps of the development of the base track.
@@ -145,18 +150,25 @@ This folder contains the TER3 track. To create the TER3 track model, the TER0 ba
 ## World
 
 ## Problems
+
+### Performance of the Gazebo Simulator
 Although in reality the TER1 section can be filled with sand and / or gravel, in the scope of this work no simulation was performed with sand, neither with fixed sand (without real physical behavior) nor with moveable sand (with real physical behavior).
-The reasons for this lie in the **performance limitations of the Gazebo simulator**, since based on experience it already reaches its limits when calculating the physical behavior of the robot on the track filled with only around about one hundred pebbles.
+The reasons for this lie in the performance limitations of the Gazebo simulator, since based on experience it already reaches its limits when calculating the physical behavior of the robot on the track filled with only around about one hundred pebbles.
 For this reason, the TER1 track was created as one solid track with the gravel beeing added during the creation of the model in the Blender software and exported without real physical behavior.
 
 For the simulation of the robot software algorithm the following computer setup was used:
 - Ubuntu 22.04 (running on virtual machine via OracleVM)
 - Intel i7-12700F (12 cores with up to 4,9 GHz -> 6 cores were assigned to the vm)
 - DDR4 RAM (32 GB -> 16 GB were assigned to the vm)
-- MSI Geforce RTX 3060 Ti (the vm was configured to run the VMSVGA graphics controller with 3D Acceleration enabled)
+- RTX 3060 Ti (the vm was configured to run the VMSVGA graphics controller with 3D Acceleration enabled)
 
 It is likely that the performance of the Gazebo simulator can be improved by running it on a native Ubuntu operating system instead of a virtual machine.
 However, other simulator software should be considered for further work on this project.
+
+### Texture error in the Gazebo Simulator
+The textures added in the Blender software cause the [TER0_texture](README.md#TER0_texture) track to not work correctly in the Gazebo simuator causing it to crash upon inserting the track model into the world. 
+During testing, the same track model without the textures added worked fine and as expected like all other track models exported from the Blender software and imported into the Gazebo simulator.
+However the error causing the Gazebo software to crash could not be determined. Since the textures do not provide any functional benefit to the simulation per se, but only a visual improvement, the bug fix was placed lower in the prioritization of tasks.
 
 ## Team
 Projektarbeit im Masterstudiengang Elektronische- und Mechatronische Systeme (MSY) an der Technischen Hochschule Nürnberg Georg-Simon-Ohm.
