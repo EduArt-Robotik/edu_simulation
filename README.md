@@ -26,7 +26,7 @@ The advantage is that the gravel now has somewhat realistic physical behavior, s
 The models used for this gravel grid are [Pebble1](README.md#Pebble1), [Pebble2](README.md#Pebble2), [Pebble3](README.md#Pebble3) and [Pebble4](README.md#Pebble4).
 ![Gravel](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/Gravel/gravel.png)
 
-### Older_versions
+### Older_versions: creation process
 This folder contains old versions of the TER0 track and shows all steps of the development of the base track.
 The basic track was labeled as TER0, since all other tracks of the TER category (i.e. TER1, TER2 and TER3) can be built from it by adding the different track surfaces.
 The following list explains all steps that were done to create the TER0 base track. <br>
