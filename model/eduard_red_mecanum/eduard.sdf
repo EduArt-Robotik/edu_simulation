@@ -1,0 +1,325 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+  <model name="eduard-red-mecanum">
+    <static>false</static>
+    <pose>0 0 0 0 0 0</pose>
+      <!-- chassis -->
+      <link name="chassis">
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>5.0</mass>
+          <inertia>
+            <ixx>9.885e-1</ixx>
+            <iyy>2.099e0</iyy>
+            <izz>1.317e0</izz>
+            <ixy>-7.521e-4</ixy>
+            <ixz>1.126e-3</ixz>
+            <iyz>6.915e-3</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://eduard_offroad/mesh/eduard-chassis.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <pose>0 0 0.06 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.38 0.22 0.12</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+
+      <!-- wheel front left -->
+      <link name="wheel_front_left">
+        <pose>0.125 0.18 0.02 1.570796327 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.3</mass>
+          <inertia>
+            <ixx>3.0e-5</ixx>
+            <iyy>3.0e-5</iyy>
+            <izz>5.0e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.055</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <friction>
+              <torsional>
+                <coefficient>0.9</coefficient>
+                <surface_radius>0.0865</surface_radius>
+                <use_patch_radius>false</use_patch_radius>
+                <ode>
+                  <slip>0.02</slip>
+                </ode>
+              </torsional>
+              <!-- <ode>
+                <mu>0.45</mu>
+                <mu2>0.45</mu2>
+                <fdir1>1 1 1</fdir1>
+                <slip1>0.02</slip1>
+                <slip2>0.02</slip2>
+              </ode> -->
+            </friction>
+            <contact>
+              <ode>
+                <min_depth>0.005</min_depth>
+              </ode>
+            </contact>
+          </surface>          
+        </collision>        
+      </link>
+
+      <!-- wheel front right -->
+      <link name="wheel_front_right">
+        <pose>0.125 -0.18 0.02 -1.570796327 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.3</mass>
+          <inertia>
+            <ixx>3.0e-5</ixx>
+            <iyy>3.0e-5</iyy>
+            <izz>5.0e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.055</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <friction>
+              <torsional>
+                <coefficient>0.9</coefficient>
+                <surface_radius>0.0865</surface_radius>
+                <use_patch_radius>false</use_patch_radius>
+                <ode>
+                  <slip>0.02</slip>
+                </ode>
+              </torsional>
+              <!-- <ode>
+                <mu>0.45</mu>
+                <mu2>0.45</mu2>
+                <fdir1>1 1 1</fdir1>
+                <slip1>0.02</slip1>
+                <slip2>0.02</slip2>
+              </ode> -->
+            </friction>
+            <contact>
+              <ode>
+                <min_depth>0.005</min_depth>
+              </ode>
+            </contact>
+          </surface>         
+        </collision>        
+      </link>
+
+      <!-- wheel rear left -->
+      <link name="wheel_rear_left">
+        <pose>-0.125 0.18 0.02 1.570796327 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.3</mass>
+          <inertia>
+            <ixx>3.0e-5</ixx>
+            <iyy>3.0e-5</iyy>
+            <izz>5.0e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.055</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <friction>
+              <torsional>
+                <coefficient>0.9</coefficient>
+                <surface_radius>0.0865</surface_radius>
+                <use_patch_radius>false</use_patch_radius>
+                <ode>
+                  <slip>0.02</slip>
+                </ode>
+              </torsional>
+              <!-- <ode>
+                <mu>0.45</mu>
+                <mu2>0.45</mu2>
+                <fdir1>1 1 1</fdir1>
+                <slip1>0.02</slip1>
+                <slip2>0.02</slip2>
+              </ode> -->
+            </friction>
+            <contact>
+              <ode>
+                <min_depth>0.005</min_depth>
+              </ode>
+            </contact>
+          </surface>           
+        </collision>        
+      </link>
+
+      <!-- wheel rear right -->
+      <link name="wheel_rear_right">
+        <pose>-0.125 -0.18 0.02 -1.570796327 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.3</mass>
+          <inertia>
+            <ixx>3.0e-5</ixx>
+            <iyy>3.0e-5</iyy>
+            <izz>5.0e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.055</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <friction>
+              <torsional>
+                <coefficient>0.9</coefficient>
+                <surface_radius>0.0865</surface_radius>
+                <use_patch_radius>false</use_patch_radius>
+                <ode>
+                  <slip>0.02</slip>
+                </ode>
+              </torsional>
+              <!-- <ode>
+                <mu>0.45</mu>
+                <mu2>0.45</mu2>
+                <fdir1>1 1 1</fdir1>
+                <slip1>0.02</slip1>
+                <slip2>0.02</slip2>
+              </ode> -->
+            </friction>
+            <contact>
+              <ode>
+                <min_depth>0.005</min_depth>
+              </ode>
+            </contact>
+          </surface>          
+        </collision>        
+      </link> 
+
+      <!-- Joints. -->
+      <joint type="revolute" name="axis_front_left">
+        <pose>0 0 0 0 0 0</pose>
+        <child>wheel_front_left</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+      </joint>
+      <joint type="revolute" name="axis_front_right">
+        <pose>0 0 0 0 0 0</pose>
+        <child>wheel_front_right</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+      </joint>    
+      <joint type="revolute" name="axis_rear_left">
+        <pose>0 0 0 0 0 0</pose>
+        <child>wheel_rear_left</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+      </joint>    
+      <joint type="revolute" name="axis_rear_right">
+        <pose>0 0 0 0 0 0</pose>
+        <child>wheel_rear_right</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+      </joint>
+
+      <!-- plugins to control robot behavior -->
+      <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
+       <ros>
+         <!-- Add a namespace -->
+         <namespace>/eduard/red</namespace>
+         <!-- Remap the default topic -->
+         <!-- <remapping>cmd_vel:=custom_cmd_vel</remapping> -->
+         <!-- <remapping>odom:=custom_odom</remapping> -->
+       </ros>
+       <update_rate>100</update_rate>
+       <publish_rate>10</publish_rate>
+       <!-- output -->
+       <publish_odom>true</publish_odom>
+       <publish_odom_tf>true</publish_odom_tf>
+       <odometry_frame>odom</odometry_frame>
+       <robot_base_frame>chassis</robot_base_frame>
+       <covariance_x>0.0001</covariance_x>
+       <covariance_y>0.0001</covariance_y>
+       <covariance_yaw>0.01</covariance_yaw>
+     </plugin>
+    </model>
+</sdf>
