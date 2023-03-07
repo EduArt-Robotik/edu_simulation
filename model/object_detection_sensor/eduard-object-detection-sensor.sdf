@@ -22,11 +22,20 @@
         </geometry>
       </collision>
       <sensor name="object-sensor" type="logical_camera">
-    <!-- plugins to control robot behavior -->
-      <!-- <plugin name="object_detection_sensor" filename="libgazebo_ros_camera.so"/> -->
-    <plugin name="eduard_object_detection_sensor" filename="libeduard-object-detection-sensor-plugin.so">
-
-    </plugin>
+        <logical_camera>
+          <near>0.1</near>
+          <far>3.0</far>
+          <aspect_ratio>1</aspect_ratio>
+          <horizontal_fov>1.4</horizontal_fov>
+        </logical_camera>
+        <plugin name="eduard_object_detection_sensor" filename="libeduard-object-detection-sensor-plugin.so">
+          <ros>
+            <!-- Namespace of the node -->
+            <namespace>/my_ns</namespace>
+          </ros>
+          <filter_string>blue</filter_string>
+          <frame_id>object_sensor</frame_id>
+        </plugin>
       </sensor>
     </link>
 

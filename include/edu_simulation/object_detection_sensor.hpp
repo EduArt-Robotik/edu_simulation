@@ -6,6 +6,7 @@
 #pragma once
 
 #include "gazebo/sensors/LogicalCameraSensor.hh"
+
 #include <gazebo/common/CommonTypes.hh>
 #include <gazebo/common/Plugin.hh>
 
@@ -34,6 +35,8 @@ private:
 
   std::shared_ptr<gazebo::sensors::LogicalCameraSensor> _logical_camera;
   gazebo::event::ConnectionPtr _on_update_connection;
+  std::string _filter_string;
+  std::string _frame_id;
 
   std::shared_ptr<rclcpp::Node> _ros_node;
   std::shared_ptr<rclcpp::Publisher<geometry_msgs::msg::PoseStamped>> _pub_object_pose;
