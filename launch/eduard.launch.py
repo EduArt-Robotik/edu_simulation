@@ -39,12 +39,5 @@ def generate_launch_description():
         SetEnvironmentVariable(name='GAZEBO_PLUGIN_PATH', value=plugin_path),
         # start gazebo, notice we are using libgazebo_ros_factory.so instead of libgazebo_ros_init.so
         # That is because only libgazebo_ros_factory.so contains the service call to /spawn_entity
-        ExecuteProcess(
-            cmd=['gazebo', '--verbose', world ],#'-s', 'libgazebo_ros_factory.so'],
-            output='screen'),
-
-        # tell gazebo to spwan your robot in the world by calling service
-        # ExecuteProcess(
-        #     cmd=['ros2', 'service', 'call', '/spawn_entity', 'gazebo_msgs/SpawnEntity', spwan_args],
-        #     output='screen'),
+        ExecuteProcess(cmd=['gazebo', '--verbose', world ], output='screen'),
     ])

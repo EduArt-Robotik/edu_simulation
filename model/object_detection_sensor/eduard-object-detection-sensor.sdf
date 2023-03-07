@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <sdf version='1.5'>
   <model name="eduard-object-detection-sensor">
-    <static>false</static>
+    <static>true</static>
     <pose>0 0 0 0 0 0</pose>
     <!-- chassis -->
     <link name="chassis">
@@ -21,11 +21,15 @@
           </box>
         </geometry>
       </collision>
-    </link>
-
+      <sensor name="object-sensor" type="logical_camera">
     <!-- plugins to control robot behavior -->
+      <!-- <plugin name="object_detection_sensor" filename="libgazebo_ros_camera.so"/> -->
     <plugin name="eduard_object_detection_sensor" filename="libeduard-object-detection-sensor-plugin.so">
 
     </plugin>
+      </sensor>
+    </link>
+
+
   </model>
 </sdf>

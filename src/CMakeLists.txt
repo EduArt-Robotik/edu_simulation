@@ -10,4 +10,6 @@ PUBLIC
 ament_target_dependencies(eduard-object-detection-sensor-plugin
   "gazebo_dev"
   "rclcpp"
+  "gazebo_ros"
+  "geometry_msgs"
 )
