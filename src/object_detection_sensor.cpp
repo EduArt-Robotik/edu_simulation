@@ -57,12 +57,6 @@ void ObjectDetectionSensor::Load(gazebo::sensors::SensorPtr _sensor, sdf::Elemen
 
 void ObjectDetectionSensor::OnUpdate()
 {
-  std::cout << "found objects = " << _logical_camera->Image().model_size() << std::endl;
-
-  for (std::size_t i = 0; i < _logical_camera->Image().model_size(); ++i) {
-    std::cout << "object " << i << ": " << _logical_camera->Image().model(i).name() << std::endl;
-  }
-
   const auto& objects = _logical_camera->Image();
 
   for (std::size_t i = 0; i < objects.model_size(); ++i) {
@@ -73,7 +67,7 @@ void ObjectDetectionSensor::OnUpdate()
       const ignition::math::Quaterniond orientation_model(model_pose.orientation().w(), model_pose.orientation().x(), model_pose.orientation().y(), model_pose.orientation().z());
 
       msg.header.stamp = _ros_node->get_clock()->now();
-      msg.header.frame_id = _ros_node->get_name();
+      msg.header.frame_id = _frame_id;
 
       const auto relative_position = position_model - _logical_camera->Pose().Pos();
       const auto relative_orientation = orientation_model * _logical_camera->Pose().Rot().Inverse();

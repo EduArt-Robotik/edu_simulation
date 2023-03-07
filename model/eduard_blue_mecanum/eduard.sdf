@@ -303,23 +303,181 @@
 
       <!-- plugins to control robot behavior -->
       <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
-       <ros>
-         <!-- Add a namespace -->
-         <namespace>/eduard/blue</namespace>
-         <!-- Remap the default topic -->
-         <!-- <remapping>cmd_vel:=custom_cmd_vel</remapping> -->
-         <!-- <remapping>odom:=custom_odom</remapping> -->
-       </ros>
-       <update_rate>100</update_rate>
-       <publish_rate>10</publish_rate>
-       <!-- output -->
-       <publish_odom>true</publish_odom>
-       <publish_odom_tf>true</publish_odom_tf>
-       <odometry_frame>odom</odometry_frame>
-       <robot_base_frame>chassis</robot_base_frame>
-       <covariance_x>0.0001</covariance_x>
-       <covariance_y>0.0001</covariance_y>
-       <covariance_yaw>0.01</covariance_yaw>
-     </plugin>
-    </model>
+        <ros>
+          <!-- Add a namespace -->
+          <namespace>/eduard/blue</namespace>
+          <!-- Remap the default topic -->
+          <!-- <remapping>cmd_vel:=custom_cmd_vel</remapping> -->
+          <!-- <remapping>odom:=custom_odom</remapping> -->
+        </ros>
+        <update_rate>100</update_rate>
+        <publish_rate>10</publish_rate>
+        <!-- output -->
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>chassis</robot_base_frame>
+        <covariance_x>0.0001</covariance_x>
+        <covariance_y>0.0001</covariance_y>
+        <covariance_yaw>0.01</covariance_yaw>
+      </plugin>
+
+      <!-- Object Sensors -->
+      <!-- Front -->
+      <link name="object_sensor_front">
+        <pose>0.17 0.0 0.05 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+        <sensor name="object-sensor" type="logical_camera">
+          <logical_camera>
+            <near>0.1</near>
+            <far>3.0</far>
+            <aspect_ratio>1</aspect_ratio>
+            <horizontal_fov>1.4</horizontal_fov>
+          </logical_camera>
+          <plugin name="eduard_object_detection_sensor_front" filename="libeduard-object-detection-sensor-plugin.so">
+            <ros>
+              <!-- Namespace of the node -->
+              <namespace>eduard/blue</namespace>
+            </ros>
+            <filter_string>red</filter_string>
+            <frame_id>eduard_blue_object_sensor_front</frame_id>
+          </plugin>
+        </sensor>       
+      </link>
+      <joint type="fixed" name="object_sensor_front_to_chassis">
+        <child>object_sensor_front</child>
+        <parent>chassis</parent>
+      </joint>
+
+      <!-- Left -->
+      <link name="object_sensor_left">
+        <pose>0.0 0.092 0.05 0 0 1.57</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+        <sensor name="object-sensor" type="logical_camera">
+          <logical_camera>
+            <near>0.1</near>
+            <far>3.0</far>
+            <aspect_ratio>1</aspect_ratio>
+            <horizontal_fov>1.4</horizontal_fov>
+          </logical_camera>
+          <plugin name="eduard_object_detection_sensor_left" filename="libeduard-object-detection-sensor-plugin.so">
+            <ros>
+              <!-- Namespace of the node -->
+              <namespace>eduard/blue</namespace>
+            </ros>
+            <filter_string>red</filter_string>
+            <frame_id>eduard_blue_object_sensor_left</frame_id>
+          </plugin>
+        </sensor>       
+      </link>
+      <joint type="fixed" name="object_sensor_left_to_chassis">
+        <child>object_sensor_left</child>
+        <parent>chassis</parent>
+      </joint>
+
+      <!-- Right -->
+      <link name="object_sensor_right">
+        <pose>0.0 -0.092 0.05 0 0 -1.57</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+        <sensor name="object-sensor" type="logical_camera">
+          <logical_camera>
+            <near>0.1</near>
+            <far>3.0</far>
+            <aspect_ratio>1</aspect_ratio>
+            <horizontal_fov>1.4</horizontal_fov>
+          </logical_camera>
+          <plugin name="eduard_object_detection_sensor_right" filename="libeduard-object-detection-sensor-plugin.so">
+            <ros>
+              <!-- Namespace of the node -->
+              <namespace>eduard/blue</namespace>
+            </ros>
+            <filter_string>red</filter_string>
+            <frame_id>eduard_blue_object_sensor_right</frame_id>
+          </plugin>
+        </sensor>       
+      </link>
+      <joint type="fixed" name="object_sensor_right_to_chassis">
+        <child>object_sensor_right</child>
+        <parent>chassis</parent>
+      </joint>
+
+      <!-- Rear -->
+      <link name="object_sensor_rear">
+        <pose>-0.17 0.0 0.05 0 0 3.141592654</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.02 0.11 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+        <sensor name="object-sensor" type="logical_camera">
+          <logical_camera>
+            <near>0.1</near>
+            <far>3.0</far>
+            <aspect_ratio>1</aspect_ratio>
+            <horizontal_fov>1.4</horizontal_fov>
+          </logical_camera>
+          <plugin name="eduard_object_detection_sensor_rear" filename="libeduard-object-detection-sensor-plugin.so">
+            <ros>
+              <!-- Namespace of the node -->
+              <namespace>eduard/blue</namespace>
+            </ros>
+            <filter_string>red</filter_string>
+            <frame_id>eduard_blue_object_sensor_rear</frame_id>
+          </plugin>
+        </sensor>       
+      </link>
+      <joint type="fixed" name="object_sensor_rear_to_chassis">
+        <child>object_sensor_rear</child>
+        <parent>chassis</parent>
+      </joint>
+
+  </model>
 </sdf>
