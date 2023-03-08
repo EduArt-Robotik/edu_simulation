@@ -354,7 +354,7 @@
               <namespace>eduard/green</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_green_object_sensor_front</frame_id>
+            <frame_id>eduard/green/object_sensor/front</frame_id>
           </plugin>
         </sensor>       
       </link>
@@ -393,7 +393,7 @@
               <namespace>eduard/green</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_green_object_sensor_left</frame_id>
+            <frame_id>eduard/green/object_sensor/left</frame_id>
           </plugin>
         </sensor>       
       </link>
@@ -432,7 +432,7 @@
               <namespace>eduard/green</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_green_object_sensor_right</frame_id>
+            <frame_id>eduard/green/object_sensor/right</frame_id>
           </plugin>
         </sensor>       
       </link>
@@ -471,7 +471,7 @@
               <namespace>eduard/green</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_green_object_sensor_rear</frame_id>
+            <frame_id>eduard/green/object_sensor/rear</frame_id>
           </plugin>
         </sensor>       
       </link>

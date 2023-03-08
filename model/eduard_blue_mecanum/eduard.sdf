@@ -353,7 +353,7 @@
               <namespace>eduard/blue</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_blue_object_sensor_front</frame_id>
+            <frame_id>eduard/blue/object_sensor/front</frame_id>
           </plugin>
         </sensor>       
       </link>
@@ -392,7 +392,7 @@
               <namespace>eduard/blue</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_blue_object_sensor_left</frame_id>
+            <frame_id>eduard/blue/object_sensor/left</frame_id>
           </plugin>
         </sensor>       
       </link>
@@ -431,7 +431,7 @@
               <namespace>eduard/blue</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_blue_object_sensor_right</frame_id>
+            <frame_id>eduard/blue/object_sensor/right</frame_id>
           </plugin>
         </sensor>       
       </link>
@@ -470,7 +470,7 @@
               <namespace>eduard/blue</namespace>
             </ros>
             <filter_string>red</filter_string>
-            <frame_id>eduard_blue_object_sensor_rear</frame_id>
+            <frame_id>eduard/blue/object_sensor/rear</frame_id>
           </plugin>
         </sensor>       
       </link>
