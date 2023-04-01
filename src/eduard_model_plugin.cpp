@@ -14,7 +14,7 @@ EduardModelPlugin::EduardModelPlugin()
   if (rclcpp::ok() == false) {
     rclcpp::init(0, 0);
   }
-  _ros_executer = std::make_shared<rclcpp::executors::StaticSingleThreadedExecutor>();
+  _ros_executer = std::make_shared<gazebo_ros::Executor>();
 }
 
 void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf)
@@ -29,6 +29,7 @@ void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr s
 
   auto bot = std::make_shared<EduardGazeboBot>(parent, model_element, ns);
   _robot_ros_node = bot;
+  _ros_executer->add_node(bot);
   _model = parent;
 
   std::cout << "sdf pointer = " << sdf << std::endl;
@@ -45,7 +46,7 @@ void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr s
 
 void EduardModelPlugin::OnUpdate()
 {
-  _ros_executer->spin_node_once(_robot_ros_node);
+
 }
 
 } // end namespace simulation

@@ -20,7 +20,7 @@ void GazeboMotorController::processSetValue(const robot::Rpm &rpm)
 
 void GazeboMotorController::initialize(const robot::MotorController::Parameter &parameter)
 {
-
+  (void)parameter;
 }
 
 } // end namespace simulation

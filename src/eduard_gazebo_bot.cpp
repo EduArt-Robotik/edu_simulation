@@ -25,7 +25,6 @@ EduardGazeboBot::~EduardGazeboBot()
 
 void EduardGazeboBot::OnUpdate()
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
   Eigen::VectorXf radps_measured(_motor_controllers.size());
 
   for (std::size_t i = 0; i < _motor_controllers.size(); ++i) {
@@ -33,9 +32,9 @@ void EduardGazeboBot::OnUpdate()
   }
 
   const Eigen::Vector3f velocity_measured = _inverse_kinematic_matrix * radps_measured;
-  _parent->SetLinearVel(
-    ignition::math::Vector3d(velocity_measured.x(), velocity_measured.y(), velocity_measured.z())
-  );
+
+  _parent->SetLinearVel(ignition::math::Vector3d(velocity_measured.x(), velocity_measured.y(), 0.0));
+  _parent->SetAngularVel(ignition::math::Vector3d(0.0, 0.0, velocity_measured.z()));
 }
 
 } // end namespace simulation

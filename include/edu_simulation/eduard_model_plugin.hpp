@@ -7,6 +7,7 @@
 
 #include <gazebo/gazebo.hh>
 #include <rclcpp/rclcpp.hpp>
+#include <gazebo_ros/executor.hpp>
 
 // #include <
 
@@ -26,7 +27,7 @@ private:
   gazebo::physics::ModelPtr _model;
   gazebo::event::ConnectionPtr _update_connection;
   gazebo::event::ConnectionPtr _update_bot_connection;  
-  std::shared_ptr<rclcpp::Executor> _ros_executer;
+  std::shared_ptr<gazebo_ros::Executor> _ros_executer;
   std::shared_ptr<rclcpp::Node> _robot_ros_node;
 };
 
