@@ -35,9 +35,9 @@
         </collision>
       </link>
 
-      <!-- wheel front left -->
-      <link name="wheel_front_left">
-        <pose>0.125 0.18 0.02 1.570796327 0 0</pose>
+      <!-- wheel rear right -->
+      <link name="motor_a">
+        <pose>-0.125 -0.18 0.02 -1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
           <mass>0.3</mass>
@@ -91,10 +91,10 @@
             </contact>
           </surface>          
         </collision>        
-      </link>
+      </link> 
 
       <!-- wheel front right -->
-      <link name="wheel_front_right">
+      <link name="motor_b">
         <pose>0.125 -0.18 0.02 -1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
@@ -152,7 +152,7 @@
       </link>
 
       <!-- wheel rear left -->
-      <link name="wheel_rear_left">
+      <link name="motor_c">
         <pose>-0.125 0.18 0.02 1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
@@ -209,9 +209,9 @@
         </collision>        
       </link>
 
-      <!-- wheel rear right -->
-      <link name="wheel_rear_right">
-        <pose>-0.125 -0.18 0.02 -1.570796327 0 0</pose>
+      <!-- wheel front left -->
+      <link name="motor_d">
+        <pose>0.125 0.18 0.02 1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
           <mass>0.3</mass>
@@ -265,12 +265,18 @@
             </contact>
           </surface>          
         </collision>        
-      </link> 
+      </link>
+
+
+
+
+
+
 
       <!-- Joints. -->
       <joint type="revolute" name="axis_front_left">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_front_left</child>
+        <child>motor_d</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -278,7 +284,7 @@
       </joint>
       <joint type="revolute" name="axis_front_right">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_front_right</child>
+        <child>motor_b</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -286,7 +292,7 @@
       </joint>    
       <joint type="revolute" name="axis_rear_left">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_rear_left</child>
+        <child>motor_c</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -294,7 +300,7 @@
       </joint>    
       <joint type="revolute" name="axis_rear_right">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_rear_right</child>
+        <child>motor_a</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -302,27 +308,8 @@
       </joint>
 
       <!-- plugins to control robot behavior -->
-      <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
-       <ros>
-         <!-- Add a namespace -->
-         <namespace>/eduard/red</namespace>
-         <!-- Remap the default topic -->
-         <!-- <remapping>cmd_vel:=custom_cmd_vel</remapping> -->
-         <!-- <remapping>odom:=custom_odom</remapping> -->
-       </ros>
-       <update_rate>100</update_rate>
-       <publish_rate>10</publish_rate>
-       <!-- output -->
-       <publish_odom>true</publish_odom>
-       <publish_odom_tf>true</publish_odom_tf>
-       <odometry_frame>odom</odometry_frame>
-       <robot_base_frame>chassis</robot_base_frame>
-       <covariance_x>0.0001</covariance_x>
-       <covariance_y>0.0001</covariance_y>
-       <covariance_yaw>0.01</covariance_yaw>
-     </plugin>
      <plugin name="eduard_robot" filename="libeduard-model-plugin.so">
-
+       <robot_namespace>/eduard/red</robot_namespace>
      </plugin>
     </model>
 </sdf>

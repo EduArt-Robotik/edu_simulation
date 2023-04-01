@@ -25,7 +25,9 @@ private:
 
   gazebo::physics::ModelPtr _model;
   gazebo::event::ConnectionPtr _update_connection;
+  gazebo::event::ConnectionPtr _update_bot_connection;  
   std::shared_ptr<rclcpp::Executor> _ros_executer;
+  std::shared_ptr<rclcpp::Node> _robot_ros_node;
 };
 
 } // end namespace simulation

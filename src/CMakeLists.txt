@@ -22,6 +22,9 @@ add_library(eduard-model-plugin SHARED
   eduard_hardware_component_factory.cpp
   eduard_gazebo_bot.cpp
   gazebo_hardware_adapter.cpp
+  gazebo_lighting.cpp
+  gazebo_imu_sensor.cpp
+  gazebo_range_sensor.cpp
 )
 target_compile_features(eduard-model-plugin PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 target_include_directories(eduard-model-plugin

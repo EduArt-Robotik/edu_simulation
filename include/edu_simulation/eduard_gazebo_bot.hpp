@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include <eduard/eduard.hpp>
+#include <edu_robot/eduard/eduard.hpp>
 
 #include <gazebo/gazebo.hh>
 
@@ -15,10 +15,13 @@ namespace simulation {
 class EduardGazeboBot : public robot::eduard::Eduard
 {
 public:
-  EduardGazeboBot(sdf::ElementPtr sdf = nullptr);
+  EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, const std::string& ns);
   ~EduardGazeboBot() override;
 
-  Eigen::MatrixXf getKinematicMatrix(const eduart::robot::Mode mode) const override;
+  void OnUpdate();
+
+private:
+  gazebo::physics::ModelPtr _parent;
 };
 
 } // end namespace simulation

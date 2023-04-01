@@ -9,26 +9,43 @@ namespace simulation {
 
 EduardModelPlugin::EduardModelPlugin()
 {
-  _ros_executer = std::make_shared<rclcpp::executors::SingleThreadedExecutor>();
+  std::cout << __PRETTY_FUNCTION__ << std::endl;
+
+  if (rclcpp::ok() == false) {
+    rclcpp::init(0, 0);
+  }
+  _ros_executer = std::make_shared<rclcpp::executors::StaticSingleThreadedExecutor>();
 }
 
-void EduardModelPlugin::Load(gazebo::physics::ModelPtr _parent, sdf::ElementPtr sdf)
+void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf)
 {
   std::cout << __PRETTY_FUNCTION__ << std::endl;
-  _update_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
-    std::bind(&EduardModelPlugin::OnUpdate, this)
-  );
-
   auto model_element = sdf->GetParent();
-  EduardGazeboBot bot(model_element);
+  std::string ns;
+
+  if (sdf->HasElement("robot_namespace")) {
+    ns = sdf->GetElement("robot_namespace")->GetValue()->GetAsString();
+  }
+
+  auto bot = std::make_shared<EduardGazeboBot>(parent, model_element, ns);
+  _robot_ros_node = bot;
+  _model = parent;
+
   std::cout << "sdf pointer = " << sdf << std::endl;
   std::cout << "element name: " << sdf->GetName() << std::endl;
   std::cout << "parent : " << sdf->GetParent()->GetName() << std::endl;
+
+  _update_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
+    std::bind(&EduardModelPlugin::OnUpdate, this)
+  );
+  _update_bot_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
+    std::bind(&EduardGazeboBot::OnUpdate, bot)
+  );
 }
 
 void EduardModelPlugin::OnUpdate()
 {
-
+  _ros_executer->spin_node_once(_robot_ros_node);
 }
 
 } // end namespace simulation
