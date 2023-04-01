@@ -5,20 +5,17 @@
  */
 #pragma once
 
-#include <eduard/eduard.hpp>
+#include <edu_robot/hardware_component_factory.hpp>
 
 #include <gazebo/gazebo.hh>
 
 namespace eduart {
 namespace simulation {
 
-class EduardGazeboBot : public robot::eduard::Eduard
+class EduardHardwareComponentFactory : public robot::HardwareComponentFactory
 {
 public:
-  EduardGazeboBot(sdf::ElementPtr sdf = nullptr);
-  ~EduardGazeboBot() override;
-
-  Eigen::MatrixXf getKinematicMatrix(const eduart::robot::Mode mode) const override;
+  EduardHardwareComponentFactory(sdf::ElementPtr sdf);
 };
 
 } // end namespace simulation

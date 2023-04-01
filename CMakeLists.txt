@@ -25,7 +25,7 @@ add_subdirectory(src)
 ament_package()
 
 install(TARGETS
-    eduard-object-detection-sensor-plugin
+    eduard-object-detection-sensor-plugin eduard-model-plugin
   LIBRARY DESTINATION share/${PROJECT_NAME}/lib
 )
 

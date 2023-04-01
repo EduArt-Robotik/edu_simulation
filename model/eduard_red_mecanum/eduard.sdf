@@ -321,5 +321,8 @@
        <covariance_y>0.0001</covariance_y>
        <covariance_yaw>0.01</covariance_yaw>
      </plugin>
+     <plugin name="eduard_robot" filename="libeduard-model-plugin.so">
+
+     </plugin>
     </model>
 </sdf>
