@@ -13,7 +13,7 @@ EduardGazeboBot::EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementP
     )
   , _parent(parent)
 {
-  EduardHardwareComponentFactory factory(sdf);
+  EduardHardwareComponentFactory factory(parent, sdf, *this);
 
   initialize(factory);
 }

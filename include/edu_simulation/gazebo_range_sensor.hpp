@@ -8,16 +8,24 @@
 #include <edu_robot/range_sensor.hpp>
 #include <edu_robot/hardware_component_interface.hpp>
 
+#include <gazebo/plugins/RayPlugin.hh>
+
 namespace eduart {
 namespace simulation {
 
 class GazeboRangeSensor : public robot::RangeSensor::SensorInterface
 {
 public:
-  GazeboRangeSensor();
+  GazeboRangeSensor(gazebo::sensors::SensorPtr sensor, rclcpp::Node& ros_node);
   ~GazeboRangeSensor() override;
 
-  void initialize(const robot::RangeSensor::Parameter& parameter) override;  
+  void initialize(const robot::RangeSensor::Parameter& parameter) override;
+
+private:
+  void getMeasurement();
+
+  gazebo::sensors::RaySensorPtr _sensor;
+  std::shared_ptr<rclcpp::TimerBase> _timer_get_measurement;
 };
 
 } // end namespace simulation

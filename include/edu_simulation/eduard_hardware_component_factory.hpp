@@ -15,7 +15,7 @@ namespace simulation {
 class EduardHardwareComponentFactory : public robot::HardwareComponentFactory
 {
 public:
-  EduardHardwareComponentFactory(sdf::ElementPtr sdf);
+  EduardHardwareComponentFactory(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, rclcpp::Node& ros_node);
 };
 
 } // end namespace simulation
