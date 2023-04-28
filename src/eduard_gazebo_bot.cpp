@@ -32,8 +32,10 @@ void EduardGazeboBot::OnUpdate()
   }
 
   const Eigen::Vector3f velocity_measured = _inverse_kinematic_matrix * radps_measured;
+  const Eigen::Rotation2Df rot(_parent->WorldPose().Yaw());
+  const Eigen::Vector2f linear_velocity = rot * Eigen::Vector2f(velocity_measured.x(), velocity_measured.y());
 
-  _parent->SetLinearVel(ignition::math::Vector3d(velocity_measured.x(), velocity_measured.y(), 0.0));
+  _parent->SetLinearVel(ignition::math::Vector3d(linear_velocity.x(), linear_velocity.y(), 0.0));
   _parent->SetAngularVel(ignition::math::Vector3d(0.0, 0.0, velocity_measured.z()));
 }
 
