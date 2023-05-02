@@ -53,7 +53,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
+              <uri>model://eduard_red_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -111,7 +111,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
+              <uri>model://eduard_red_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -169,7 +169,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
+              <uri>model://eduard_red_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -227,7 +227,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
+              <uri>model://eduard_red_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -382,6 +382,14 @@
               <stddev>0.0025</stddev>
             </noise>
           </ray>
+        </sensor>
+      </link>
+
+      <!-- IMU Sensor -->
+      <link name="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <sensor name="imu" type="imu">
+
         </sensor>
       </link>
 

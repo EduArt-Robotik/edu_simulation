@@ -33,8 +33,9 @@ void GazeboRangeSensor::initialize(const robot::RangeSensor::Parameter &paramete
 
 void GazeboRangeSensor::getMeasurement()
 {
-  auto world = gazebo::physics::get_world();
-  const gazebo::common::Time cur_time = world->SimTime();
+  // \todo check sim time as measurement time
+  // auto world = gazebo::physics::get_world();
+  // const gazebo::common::Time cur_time = world->SimTime();
 
   // Find ray with minimal distance.
   const std::size_t num_ranges = _sensor->LaserShape()->GetSampleCount() * _sensor->LaserShape()->GetVerticalSampleCount();
