@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.5'>
-  <model name="eduard-mecanum">
+  <model name="eduard-blue-mecanum">
     <static>false</static>
     <pose>0 0 0 0 0 0</pose>
       <!-- chassis -->
@@ -29,15 +29,15 @@
           <pose>0 0 0.06 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.38 0.22 0.12</size>
+              <size>0.34 0.22 0.12</size>
             </box>
           </geometry>
         </collision>
       </link>
 
-      <!-- wheel front left -->
-      <link name="wheel_front_left">
-        <pose>0.125 0.18 0.02 1.570796327 0 0</pose>
+      <!-- wheel rear right -->
+      <link name="motor_a">
+        <pose>-0.125 -0.18 0.02 -1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
           <mass>0.3</mass>
@@ -53,7 +53,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
+              <uri>model://eduard_blue_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -91,10 +91,10 @@
             </contact>
           </surface>          
         </collision>        
-      </link>
+      </link> 
 
       <!-- wheel front right -->
-      <link name="wheel_front_right">
+      <link name="motor_b">
         <pose>0.125 -0.18 0.02 -1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
@@ -111,7 +111,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
+              <uri>model://eduard_blue_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -152,7 +152,7 @@
       </link>
 
       <!-- wheel rear left -->
-      <link name="wheel_rear_left">
+      <link name="motor_c">
         <pose>-0.125 0.18 0.02 1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
@@ -169,7 +169,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
+              <uri>model://eduard_blue_mecanum/mesh/mecanum-wheel-right-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -209,9 +209,9 @@
         </collision>        
       </link>
 
-      <!-- wheel rear right -->
-      <link name="wheel_rear_right">
-        <pose>-0.125 -0.18 0.02 -1.570796327 0 0</pose>
+      <!-- wheel front left -->
+      <link name="motor_d">
+        <pose>0.125 0.18 0.02 1.570796327 0 0</pose>
         <inertial>
           <pose>0 0 0 0 0 0</pose>
           <mass>0.3</mass>
@@ -227,7 +227,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://eduard_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
+              <uri>model://eduard_blue_mecanum/mesh/mecanum-wheel-left-eduard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -265,12 +265,139 @@
             </contact>
           </surface>          
         </collision>        
-      </link> 
+      </link>
+
+      <!-- Range Sensors -->
+      <!-- Front Left-->
+      <link name="range_front_left">
+        <pose>0.17 0.063 0.045 0 0 0</pose>
+        <sensor name="range/front/left" type="ray">
+          <visualize>true</visualize>        
+          <ray>
+            <scan>
+              <horizontal>
+                <min_angle>-0.08726646</min_angle>
+                <max_angle> 0.08726646</max_angle>
+                <samples>4</samples>
+              </horizontal>
+              <vertical>
+                <min_angle>-0.04363323</min_angle>
+                <max_angle> 0.04363323</max_angle>
+                <samples>2</samples>                
+              </vertical>
+            </scan>
+            <range>
+              <min>0.01</min>
+              <max>2.0</max>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <stddev>0.0025</stddev>
+            </noise>
+          </ray>
+        </sensor>
+      </link>
+      <!-- Front Right-->
+      <link name="range_front_right">
+        <pose>0.17 -0.063 0.045 0 0 0</pose>
+        <sensor name="range/front/right" type="ray">
+          <visualize>true</visualize>        
+          <ray>
+            <scan>
+              <horizontal>
+                <min_angle>-0.08726646</min_angle>
+                <max_angle> 0.08726646</max_angle>
+                <samples>4</samples>
+              </horizontal>
+              <vertical>
+                <min_angle>-0.04363323</min_angle>
+                <max_angle> 0.04363323</max_angle>
+                <samples>2</samples>                
+              </vertical>
+            </scan>
+            <range>
+              <min>0.01</min>
+              <max>2.0</max>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <stddev>0.0025</stddev>
+            </noise>
+          </ray>
+        </sensor>
+      </link>
+      <!-- Rear Left -->
+      <link name="range_rear_left">
+        <pose>-0.17 0.063 0.05 0 0 3.141592654</pose>
+        <sensor name="range/rear/left" type="ray">
+          <visualize>true</visualize>        
+          <ray>
+            <scan>
+              <horizontal>
+                <min_angle>-0.08726646</min_angle>
+                <max_angle> 0.08726646</max_angle>
+                <samples>4</samples>
+              </horizontal>
+              <vertical>
+                <min_angle>-0.04363323</min_angle>
+                <max_angle> 0.04363323</max_angle>
+                <samples>2</samples>                
+              </vertical>
+            </scan>
+            <range>
+              <min>0.01</min>
+              <max>2.0</max>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <stddev>0.0025</stddev>
+            </noise>
+          </ray>
+        </sensor>
+      </link>
+      <!-- Rear Right-->
+      <link name="range_rear_right">
+        <pose>-0.17 -0.063 0.05 0 0 3.141592654</pose>
+        <sensor name="range/rear/right" type="ray">
+          <visualize>true</visualize>        
+          <ray>
+            <scan>
+              <horizontal>
+                <min_angle>-0.08726646</min_angle>
+                <max_angle> 0.08726646</max_angle>
+                <samples>4</samples>
+              </horizontal>
+              <vertical>
+                <min_angle>-0.04363323</min_angle>
+                <max_angle> 0.04363323</max_angle>
+                <samples>2</samples>                
+              </vertical>
+            </scan>
+            <range>
+              <min>0.01</min>
+              <max>2.0</max>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <stddev>0.0025</stddev>
+            </noise>
+          </ray>
+        </sensor>
+      </link>
+
+      <!-- IMU Sensor -->
+      <link name="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <sensor name="imu" type="imu">
+
+        </sensor>
+      </link>
+
 
       <!-- Joints. -->
       <joint type="revolute" name="axis_front_left">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_front_left</child>
+        <child>motor_d</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -278,7 +405,7 @@
       </joint>
       <joint type="revolute" name="axis_front_right">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_front_right</child>
+        <child>motor_b</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -286,7 +413,7 @@
       </joint>    
       <joint type="revolute" name="axis_rear_left">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_rear_left</child>
+        <child>motor_c</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -294,32 +421,32 @@
       </joint>    
       <joint type="revolute" name="axis_rear_right">
         <pose>0 0 0 0 0 0</pose>
-        <child>wheel_rear_right</child>
+        <child>motor_a</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
         </axis>
       </joint>
-
+      <joint type="fixed" name="mount_range_front_left">
+        <child>range_front_left</child>
+        <parent>chassis</parent>
+      </joint>
+      <joint type="fixed" name="mount_range_front_right">
+        <child>range_front_right</child>
+        <parent>chassis</parent>
+      </joint>
+      <joint type="fixed" name="mount_range_rear_left">
+        <child>range_rear_left</child>
+        <parent>chassis</parent>
+      </joint>
+      <joint type="fixed" name="mount_range_rear_right">
+        <child>range_rear_right</child>
+        <parent>chassis</parent>
+      </joint>
+            
       <!-- plugins to control robot behavior -->
-      <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
-       <ros>
-         <!-- Add a namespace -->
-         <!-- <namespace>/demo</namespace> -->
-         <!-- Remap the default topic -->
-         <!-- <remapping>cmd_vel:=custom_cmd_vel</remapping> -->
-         <!-- <remapping>odom:=custom_odom</remapping> -->
-       </ros>
-       <update_rate>100</update_rate>
-       <publish_rate>10</publish_rate>
-       <!-- output -->
-       <publish_odom>true</publish_odom>
-       <publish_odom_tf>true</publish_odom_tf>
-       <odometry_frame>odom</odometry_frame>
-       <robot_base_frame>chassis</robot_base_frame>
-       <covariance_x>0.0001</covariance_x>
-       <covariance_y>0.0001</covariance_y>
-       <covariance_yaw>0.01</covariance_yaw>
+     <plugin name="eduard_robot" filename="libeduard-model-plugin.so">
+       <robot_namespace>/eduard/red</robot_namespace>
      </plugin>
     </model>
 </sdf>
