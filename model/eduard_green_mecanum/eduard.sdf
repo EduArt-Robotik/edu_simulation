@@ -19,9 +19,10 @@
           </inertia>
         </inertial>
         <visual name="visual">
+          <pose>0 0 0 0 0 1.570796327</pose>        
           <geometry>
             <mesh>
-              <uri>model://eduard_offroad/mesh/eduard-chassis.dae</uri>
+              <uri>model://eduard_green_mecanum/mesh/eduard-green-chassis.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -446,7 +447,7 @@
             
       <!-- plugins to control robot behavior -->
      <plugin name="eduard_robot" filename="libeduard-model-plugin.so">
-       <robot_namespace>/eduard/red</robot_namespace>
+       <robot_namespace>/eduard/green</robot_namespace>
      </plugin>
     </model>
 </sdf>

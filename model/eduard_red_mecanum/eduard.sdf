@@ -19,9 +19,10 @@
           </inertia>
         </inertial>
         <visual name="visual">
+          <pose>0 0 0 0 0 1.570796327</pose>        
           <geometry>
             <mesh>
-              <uri>model://eduard_offroad/mesh/eduard-chassis.dae</uri>
+              <uri>model://eduard_red_mecanum/mesh/eduard-red-chassis.dae</uri>
             </mesh>
           </geometry>
         </visual>

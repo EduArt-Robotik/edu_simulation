@@ -5,7 +5,7 @@ namespace simulation {
 
 GazeboHardwareAdapter::GazeboHardwareAdapter(sdf::ElementPtr sdf)
 {
-
+  (void)sdf;
 }
 
 GazeboHardwareAdapter::~GazeboHardwareAdapter()
@@ -15,12 +15,12 @@ GazeboHardwareAdapter::~GazeboHardwareAdapter()
   
 void GazeboHardwareAdapter::enable()
 {
-
+  // \todo a implementation would be nice here
 }
 
 void GazeboHardwareAdapter::disable()
 {
-
+  // \todo a implementation would be nice here
 }
   
 robot::RobotStatusReport GazeboHardwareAdapter::getStatusReport()

@@ -1,4 +1,4 @@
-FROM ros:humble-ros-base-focal
+FROM ros:humble-ros-base-jammy
 
 # using bash
 SHELL ["/bin/bash", "-c"]
@@ -40,10 +40,10 @@ COPY ./edu_simulation /home/$USER/eduart_ws/src/edu_simulation
 
 WORKDIR /home/$USER/eduart_ws
 
-RUN export RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
-    && source /opt/ros/$ROS_DISTRO/setup.bash \
-    && colcon build --symlink-install --executor sequential --event-handlers console_direct+ --cmake-args -DCMAKE_BUILD_TYPE=Release
+# RUN export RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
+#     && source /opt/ros/$ROS_DISTRO/setup.bash \
+#     && colcon build --symlink-install --executor sequential --event-handlers console_direct+ --cmake-args -DCMAKE_BUILD_TYPE=Release
 
-CMD export RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
-    && source /home/$USER/eduart_ws/install/setup.bash \
-    && ros2 launch edu_simulation eduard.launch.py
+# CMD export RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
+#     && source /home/$USER/eduart_ws/install/setup.bash \
+#     && ros2 launch edu_simulation eduard.launch.py

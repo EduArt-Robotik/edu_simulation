@@ -19,7 +19,6 @@ EduardModelPlugin::EduardModelPlugin()
 
 void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf)
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
   auto model_element = sdf->GetParent();
   std::string ns;
 
@@ -31,10 +30,6 @@ void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr s
   _robot_ros_node = bot;
   _ros_executer->add_node(bot);
   _model = parent;
-
-  std::cout << "sdf pointer = " << sdf << std::endl;
-  std::cout << "element name: " << sdf->GetName() << std::endl;
-  std::cout << "parent : " << sdf->GetParent()->GetName() << std::endl;
 
   _update_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
     std::bind(&EduardModelPlugin::OnUpdate, this)
