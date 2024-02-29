@@ -272,6 +272,18 @@
       <!-- Front Left-->
       <link name="range_front_left">
         <pose>0.17 0.063 0.045 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>3.0e-6</ixx>
+            <iyy>3.0e-6</iyy>
+            <izz>5.0e-6</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>             
         <sensor name="range/front/left" type="ray">
           <visualize>true</visualize>        
           <ray>
@@ -301,6 +313,18 @@
       <!-- Front Right-->
       <link name="range_front_right">
         <pose>0.17 -0.063 0.045 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>3.0e-6</ixx>
+            <iyy>3.0e-6</iyy>
+            <izz>5.0e-6</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>             
         <sensor name="range/front/right" type="ray">
           <visualize>true</visualize>        
           <ray>
@@ -330,8 +354,20 @@
       <!-- Rear Left -->
       <link name="range_rear_left">
         <pose>-0.17 0.063 0.05 0 0 3.141592654</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>3.0e-6</ixx>
+            <iyy>3.0e-6</iyy>
+            <izz>5.0e-6</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>             
         <sensor name="range/rear/left" type="ray">
-          <visualize>true</visualize>        
+          <visualize>true</visualize>
           <ray>
             <scan>
               <horizontal>
@@ -359,6 +395,18 @@
       <!-- Rear Right-->
       <link name="range_rear_right">
         <pose>-0.17 -0.063 0.05 0 0 3.141592654</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>3.0e-6</ixx>
+            <iyy>3.0e-6</iyy>
+            <izz>5.0e-6</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>             
         <sensor name="range/rear/right" type="ray">
           <visualize>true</visualize>        
           <ray>
@@ -389,8 +437,27 @@
       <!-- IMU Sensor -->
       <link name="imu">
         <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>3.0e-6</ixx>
+            <iyy>3.0e-6</iyy>
+            <izz>5.0e-6</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>        
         <sensor name="imu" type="imu">
-
+          <!-- <imu>
+            <orientation_reference_frame>
+              <localization>GRAV_DOWN</localization>
+              <grav_dir_x parent_frame=chassis>
+                0 0 1
+              </grav_dir_x>
+            </orientation_reference_frame>
+          </imu> -->
         </sensor>
       </link>
 
@@ -442,6 +509,10 @@
       </joint>
       <joint type="fixed" name="mount_range_rear_right">
         <child>range_rear_right</child>
+        <parent>chassis</parent>
+      </joint>
+      <joint type="fixed" name="mount_imu">
+        <child>imu</child>
         <parent>chassis</parent>
       </joint>
             

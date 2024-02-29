@@ -6,6 +6,7 @@
 #pragma once
 
 #include <edu_robot/motor_controller.hpp>
+#include <edu_robot/algorithm/low_pass_filter.hpp>
 
 namespace eduart {
 namespace simulation {
@@ -18,6 +19,10 @@ public:
 
   void processSetValue(const std::vector<robot::Rpm>& rpm) override;
   void initialize(const robot::Motor::Parameter& parameter) override;
+
+private:
+  robot::algorithm::LowPassFiler<float> _low_pass_filter;
+  std::vector<robot::Rpm> _measured_rpm; 
 };
 
 } // end namespace simulation
