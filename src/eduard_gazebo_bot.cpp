@@ -28,7 +28,7 @@ void EduardGazeboBot::OnUpdate()
   Eigen::VectorXf radps_measured(_motor_controllers.size());
 
   for (std::size_t i = 0; i < _motor_controllers.size(); ++i) {
-    radps_measured(i) = _motor_controllers[i]->getMeasuredRpm().radps();
+    radps_measured(i) = _motor_controllers[i]->getMeasuredRpm()[0].radps(); // \todo make index access safety.
   }
 
   const Eigen::Vector3f velocity_measured = _inverse_kinematic_matrix * radps_measured;

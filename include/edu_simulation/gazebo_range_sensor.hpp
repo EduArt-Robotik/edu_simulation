@@ -5,21 +5,20 @@
  */
 #pragma once
 
-#include <edu_robot/range_sensor.hpp>
-#include <edu_robot/hardware_component_interface.hpp>
+#include <edu_robot/sensor_range.hpp>
 
 #include <gazebo/plugins/RayPlugin.hh>
 
 namespace eduart {
 namespace simulation {
 
-class GazeboRangeSensor : public robot::RangeSensor::SensorInterface
+class GazeboRangeSensor : public robot::SensorRange::SensorInterface
 {
 public:
   GazeboRangeSensor(gazebo::sensors::SensorPtr sensor, rclcpp::Node& ros_node);
   ~GazeboRangeSensor() override;
 
-  void initialize(const robot::RangeSensor::Parameter& parameter) override;
+  void initialize(const robot::SensorRange::Parameter& parameter) override;
 
 private:
   void getMeasurement();

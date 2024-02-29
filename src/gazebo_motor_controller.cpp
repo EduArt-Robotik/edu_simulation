@@ -3,7 +3,8 @@
 namespace eduart {
 namespace simulation {
 
-GazeboMotorController::GazeboMotorController()
+GazeboMotorController::GazeboMotorController(const std::string& name)
+  : robot::MotorController::HardwareInterface(name, 1)
 {
 
 }
@@ -13,12 +14,12 @@ GazeboMotorController::~GazeboMotorController()
 
 }
 
-void GazeboMotorController::processSetValue(const robot::Rpm &rpm)
+void GazeboMotorController::processSetValue(const std::vector<robot::Rpm>& rpm)
 {
-  _callback_process_measurement(rpm);  
+  _callback_process_measurement(rpm, true);
 }
 
-void GazeboMotorController::initialize(const robot::MotorController::Parameter &parameter)
+void GazeboMotorController::initialize(const robot::Motor::Parameter &parameter)
 {
   (void)parameter;
 }

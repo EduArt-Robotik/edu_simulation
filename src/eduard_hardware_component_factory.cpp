@@ -28,10 +28,9 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
 
     // Motor Controller
     if (link_name.find("motor") != std::string::npos) {
-      auto motor_controller_hardware = std::make_shared<GazeboMotorController>();
+      auto motor_controller_hardware = std::make_shared<GazeboMotorController>(link_name);
 
-      _motor_controller_hardware[link_name] = motor_controller_hardware;
-      _motor_sensor_hardware[link_name] = motor_controller_hardware;
+      _motor_controller_hardware.push_back(motor_controller_hardware);
     }
     // Range Sensor
     else if (link_name.find("range") != std::string::npos) {
@@ -49,7 +48,7 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
       }
 
       std::cout << "add range sensor hardware: " << sensor_name << std::endl;
-      _range_sensor_hardware[sensor_name] = std::make_shared<GazeboRangeSensor>(sensor, ros_node);
+      _hardware[sensor_name] = std::make_shared<GazeboRangeSensor>(sensor, ros_node);
     }
     // IMU Sensor
     else if (link_name.find("imu") != std::string::npos) {
@@ -67,18 +66,15 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
       }
 
       std::cout << "add imu sensor hardware: " << sensor_name << std::endl;
-      _imu_sensor_hardware[sensor_name] = std::make_shared<GazeboImuSensor>(sensor, ros_node);
+      _hardware[sensor_name] = std::make_shared<GazeboImuSensor>(sensor, ros_node);
     }
   }
 
-  _lighting_hardware["head"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["right_side"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["left_side"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["back"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["all"] = std::make_shared<GazeboLighting>();
-
-
-  // _imu_sensor_hardware["imu"] = std::make_shared<GazeboImuSensor>();
+  _hardware["head"] = std::make_shared<GazeboLighting>();
+  _hardware["right_side"] = std::make_shared<GazeboLighting>();
+  _hardware["left_side"] = std::make_shared<GazeboLighting>();
+  _hardware["back"] = std::make_shared<GazeboLighting>();
+  _hardware["all"] = std::make_shared<GazeboLighting>();
 }
 
 } // end namespace simulation

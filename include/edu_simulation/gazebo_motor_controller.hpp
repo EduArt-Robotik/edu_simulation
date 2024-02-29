@@ -10,15 +10,14 @@
 namespace eduart {
 namespace simulation {
 
-class GazeboMotorController : public robot::MotorController::ComponentInterface
-                            , public robot::MotorController::SensorInterface
+class GazeboMotorController : public robot::MotorController::HardwareInterface
 {
 public:
-  GazeboMotorController();
+  GazeboMotorController(const std::string& name);
   ~GazeboMotorController() override;
 
-  void processSetValue(const robot::Rpm& rpm) override;
-  void initialize(const robot::MotorController::Parameter& parameter) override;
+  void processSetValue(const std::vector<robot::Rpm>& rpm) override;
+  void initialize(const robot::Motor::Parameter& parameter) override;
 };
 
 } // end namespace simulation

@@ -5,7 +5,6 @@
  */
 #pragma once
 
-#include <edu_robot/hardware_component_interface.hpp>
 #include <edu_robot/lighting.hpp>
 
 namespace eduart {

@@ -26,7 +26,7 @@ GazeboRangeSensor::~GazeboRangeSensor()
 
 }
 
-void GazeboRangeSensor::initialize(const robot::RangeSensor::Parameter &parameter)
+void GazeboRangeSensor::initialize(const robot::SensorRange::Parameter &parameter)
 {
   (void)parameter;
 }

@@ -24,7 +24,7 @@ GazeboImuSensor::~GazeboImuSensor()
 
 }
 
-void GazeboImuSensor::initialize(const robot::ImuSensor::Parameter &parameter)
+void GazeboImuSensor::initialize(const robot::SensorImu::Parameter &parameter)
 {
   (void)parameter;
 }

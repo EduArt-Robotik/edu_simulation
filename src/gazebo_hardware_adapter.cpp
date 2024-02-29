@@ -28,5 +28,10 @@ robot::RobotStatusReport GazeboHardwareAdapter::getStatusReport()
   return { };
 }
 
+robot::diagnostic::Diagnostic GazeboHardwareAdapter::processDiagnosticsImpl()
+{
+  return { };
+}
+
 } // end namespace simulation
 } // end namespace eduart

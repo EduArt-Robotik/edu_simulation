@@ -5,14 +5,14 @@
  */
 #pragma once
 
-#include <edu_robot/robot_hardware_interface.hpp>
+#include <edu_robot/hardware_robot_interface.hpp>
 
 #include <gazebo/gazebo.hh>
 
 namespace eduart {
 namespace simulation {
 
-class GazeboHardwareAdapter : public robot::RobotHardwareInterface
+class GazeboHardwareAdapter : public robot::HardwareRobotInterface
 {
 public:
   GazeboHardwareAdapter(sdf::ElementPtr sdf);
@@ -21,6 +21,9 @@ public:
   void enable() override;
   void disable() override;
   robot::RobotStatusReport getStatusReport() override;
+
+private:
+  robot::diagnostic::Diagnostic processDiagnosticsImpl() override;
 };
 
 } // end namespace simulation
