@@ -43,7 +43,7 @@ void EduardGazeboBot::OnUpdate()
   const Eigen::Vector2f linear_velocity = rot * Eigen::Vector2f(velocity_measured.x(), velocity_measured.y());
 
   _parent->SetLinearVel(ignition::math::Vector3d(linear_velocity.x(), linear_velocity.y(), 0.0));
-  _parent->SetAngularVel(ignition::math::Vector3d(0.0, 0.0, velocity_measured.z()));
+  _parent->SetAngularVel(ignition::math::Vector3d(0.0, 0.0, velocity_measured.z() * M_PI * 2.0)); // HACK!
 }
 
 } // end namespace simulation

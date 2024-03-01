@@ -64,6 +64,8 @@ void GazeboMotorController::initialize(const robot::Motor::Parameter &parameter)
     _controller.AddJoint(_joint);
     _controller.SetVelocityPID(_joint->GetScopedName(), pid);
     _joint->SetVelocityLimit(0, robot::Rpm(parameter.max_rpm).radps());
+    // torque 0.9 Nm
+    // 62 rpm
   }
   else {
     // motors should run free

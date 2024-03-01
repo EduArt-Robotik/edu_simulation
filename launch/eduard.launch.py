@@ -6,7 +6,7 @@ from launch.actions import ExecuteProcess, DeclareLaunchArgument
 from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
 from launch.actions import SetEnvironmentVariable
-from launch.substitutions import EnvironmentVariable
+from launch.substitutions import EnvironmentVariable, PathJoinSubstitution
 
 def generate_launch_description():
     robot_name = 'edu_simulation'
@@ -32,6 +32,34 @@ def generate_launch_description():
     # this is argument format for spwan_entity service 
     # spwan_args = '{name: \"eduard\", xml: \"'  +  xml + '\" }'
     
+    tf_laser_eduard_blue = Node(
+      package='tf2_ros',
+      executable='static_transform_publisher',
+      arguments=[
+        '0.11', '0.0', '0.125', '3.141592654', '0', '0',
+        'eduard/blue/base_link',
+        'eduard/blue/laser'
+      ]
+    )
+    tf_laser_eduard_green = Node(
+      package='tf2_ros',
+      executable='static_transform_publisher',
+      arguments=[
+        '0.11', '0.0', '0.125', '3.141592654', '0', '0',
+        'eduard/green/base_link',
+        'eduard/green/laser'
+      ]
+    )
+    tf_laser_eduard_red = Node(
+      package='tf2_ros',
+      executable='static_transform_publisher',
+      arguments=[
+        '0.11', '0.0', '0.125', '3.141592654', '0', '0',
+        'eduard/red/base_link',
+        'eduard/red/laser'
+      ]
+    )
+
     # create and return launch description object
     return LaunchDescription([
         # SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[EnvironmentVariable('GAZEBO_MODEL_PATH'), ':' + model_path]),
@@ -40,4 +68,7 @@ def generate_launch_description():
         # start gazebo, notice we are using libgazebo_ros_factory.so instead of libgazebo_ros_init.so
         # That is because only libgazebo_ros_factory.so contains the service call to /spawn_entity
         ExecuteProcess(cmd=['gazebo', '--verbose', world ], output='screen'),
+        tf_laser_eduard_blue,
+        tf_laser_eduard_green,
+        tf_laser_eduard_red
     ])
