@@ -20,6 +20,17 @@ static std::string get_full_name(sdf::ElementPtr sdf)
   return name;
 }
 
+static std::string get_joint_name(sdf::ElementPtr sdf, const std::string& motor_name)
+{
+  for (auto joint = sdf->GetElement("joint"); joint != nullptr; joint = joint->GetNextElement("joint")) {
+    if (joint->GetElement("child")->GetValue()->GetAsString() == motor_name) {
+      return joint->GetAttribute("name")->GetAsString();
+    }
+  }
+
+  throw std::invalid_argument("Not joint found with child tag that matches given motor name.");
+}
+
 EduardHardwareComponentFactory::EduardHardwareComponentFactory(
   gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, rclcpp::Node& ros_node)
 {
@@ -28,7 +39,14 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
 
     // Motor Controller
     if (link_name.find("motor") != std::string::npos) {
-      auto motor_controller_hardware = std::make_shared<GazeboMotorController>(link_name);
+      const auto joint_name = get_joint_name(sdf, link_name);
+      const auto model_name = parent->GetName();
+      const bool is_mecanum = model_name.find("mecanum") != std::string::npos;
+
+      auto motor_joint = parent->GetJoint(joint_name);
+      auto motor_controller_hardware = std::make_shared<GazeboMotorController>(
+        link_name, parent, motor_joint, is_mecanum
+      );
 
       _motor_controller_hardware.push_back(motor_controller_hardware);
     }

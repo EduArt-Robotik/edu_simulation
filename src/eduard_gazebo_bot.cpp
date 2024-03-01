@@ -13,6 +13,8 @@ EduardGazeboBot::EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementP
     )
   , _parent(parent)
 {
+  const auto model_name = parent->GetName();
+  _is_mecanum = model_name.find("mecanum") != std::string::npos;
   EduardHardwareComponentFactory factory(parent, sdf, *this);
 
   initialize(factory);
@@ -25,6 +27,11 @@ EduardGazeboBot::~EduardGazeboBot()
 
 void EduardGazeboBot::OnUpdate()
 {
+  if (_is_mecanum == false) {
+    // do nothing, velocity is applied on motors
+    return;
+  }
+
   Eigen::VectorXf radps_measured(_motor_controllers.size());
 
   for (std::size_t i = 0; i < _motor_controllers.size(); ++i) {

@@ -9,8 +9,6 @@ namespace simulation {
 
 EduardModelPlugin::EduardModelPlugin()
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
-
   if (rclcpp::ok() == false) {
     rclcpp::init(0, 0);
   }

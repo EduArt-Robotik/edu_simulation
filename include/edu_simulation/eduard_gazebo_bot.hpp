@@ -22,6 +22,7 @@ public:
 
 private:
   gazebo::physics::ModelPtr _parent;
+  bool _is_mecanum = true;
 };
 
 } // end namespace simulation

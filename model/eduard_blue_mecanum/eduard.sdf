@@ -10,12 +10,12 @@
           <pose>0 0 0 0 0 0</pose>
           <mass>5.0</mass>
           <inertia>
-            <ixx>9.885e-1</ixx>
-            <iyy>2.099e0</iyy>
-            <izz>1.317e0</izz>
-            <ixy>-7.521e-4</ixy>
-            <ixz>1.126e-3</ixz>
-            <iyz>6.915e-3</iyz>
+            <ixx>0.00276</ixx>
+            <iyy>0.00882</iyy>
+            <izz>0.01119</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
           </inertia>
         </inertial>
         <visual name="visual">
@@ -66,15 +66,15 @@
               <length>0.055</length>
             </cylinder>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>2</max_contacts>
           <surface>
             <friction>
               <torsional>
                 <coefficient>0.9</coefficient>
-                <surface_radius>0.0865</surface_radius>
-                <use_patch_radius>false</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
                 <ode>
-                  <slip>0.02</slip>
+                  <slip>0.2</slip>
                 </ode>
               </torsional>
               <!-- <ode>
@@ -124,15 +124,15 @@
               <length>0.055</length>
             </cylinder>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>2</max_contacts>
           <surface>
             <friction>
               <torsional>
                 <coefficient>0.9</coefficient>
-                <surface_radius>0.0865</surface_radius>
-                <use_patch_radius>false</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
                 <ode>
-                  <slip>0.02</slip>
+                  <slip>0.2</slip>
                 </ode>
               </torsional>
               <!-- <ode>
@@ -182,15 +182,15 @@
               <length>0.055</length>
             </cylinder>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>2</max_contacts>
           <surface>
             <friction>
               <torsional>
                 <coefficient>0.9</coefficient>
-                <surface_radius>0.0865</surface_radius>
-                <use_patch_radius>false</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
                 <ode>
-                  <slip>0.02</slip>
+                  <slip>0.2</slip>
                 </ode>
               </torsional>
               <!-- <ode>
@@ -240,15 +240,15 @@
               <length>0.055</length>
             </cylinder>
           </geometry>
-          <max_contacts>10</max_contacts>
+          <max_contacts>2</max_contacts>
           <surface>
             <friction>
               <torsional>
                 <coefficient>0.9</coefficient>
-                <surface_radius>0.0865</surface_radius>
-                <use_patch_radius>false</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
                 <ode>
-                  <slip>0.02</slip>
+                  <slip>0.2</slip>
                 </ode>
               </torsional>
               <!-- <ode>
@@ -450,6 +450,8 @@
           </inertia>
         </inertial>        
         <sensor name="imu" type="imu">
+          <update_rate>10</update_rate>
+          <visualize>true</visualize>
           <!-- <imu>
             <orientation_reference_frame>
               <localization>GRAV_DOWN</localization>
