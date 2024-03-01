@@ -26,14 +26,22 @@
             </mesh>
           </geometry>
         </visual>
-        <collision name="collision">
-          <pose>0 0 0.06 0 0 0</pose>
+        <collision name="collision_bottom">
+          <pose>0 0 0.01 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.34 0.22 0.12</size>
+              <size>0.38 0.22 0.02</size>
             </box>
           </geometry>
         </collision>
+        <collision name="collision_top">
+          <pose>0 0 0.1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.38 0.22 0.02</size>
+            </box>
+          </geometry>
+        </collision>   
       </link>
 
       <!-- wheel rear right -->
