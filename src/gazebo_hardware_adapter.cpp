@@ -1,4 +1,5 @@
 #include "edu_simulation/gazebo_hardware_adapter.hpp"
+#include "edu_simulation/gazebo_motor_controller.hpp"
 
 namespace eduart {
 namespace simulation {
@@ -15,21 +16,27 @@ GazeboHardwareAdapter::~GazeboHardwareAdapter()
   
 void GazeboHardwareAdapter::enable()
 {
-  // \todo a implementation would be nice here
+  for (auto& motor_controller : _motor_controller) {
+    motor_controller->enable();
+  }
 }
 
 void GazeboHardwareAdapter::disable()
 {
-  // \todo a implementation would be nice here
+  for (auto& motor_controller : _motor_controller) {
+    motor_controller->disable();
+  }
 }
   
 robot::RobotStatusReport GazeboHardwareAdapter::getStatusReport()
 {
+  // \todo implement me!
   return { };
 }
 
 robot::diagnostic::Diagnostic GazeboHardwareAdapter::processDiagnosticsImpl()
 {
+  // \todo implement me!  
   return { };
 }
 

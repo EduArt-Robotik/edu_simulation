@@ -35,16 +35,19 @@ void GazeboMotorController::processSetValue(const std::vector<robot::Rpm>& rpm)
     throw std::invalid_argument("GazeboMotorController::processSetValue(): given rpm vector must have size 1.");
   }
 
+  // if motor controller is not enabled set set point to zero
+  const robot::Rpm set_point = _is_enabled ? rpm[0] : robot::Rpm(0.0);
+
   if (_is_mecanum) {
-    _measured_rpm[0] = _low_pass_filter(rpm[0]);
-    _callback_process_measurement(_measured_rpm, true);
+    _measured_rpm[0] = _low_pass_filter(set_point);
+    _callback_process_measurement(_measured_rpm, _is_enabled);
   }
   else {
-    _controller.SetVelocityTarget(_joint->GetScopedName(), rpm[0].radps());
+    _controller.SetVelocityTarget(_joint->GetScopedName(), set_point.radps());
 
     // _joint->SetVelocity(0, _low_pass_filter(rpm[0].radps()));
     _measured_rpm[0] = robot::Rpm::fromRadps(_joint->GetVelocity(0));
-    _callback_process_measurement(_measured_rpm, true);
+    _callback_process_measurement(_measured_rpm, _is_enabled);
   }
 }
 

@@ -36,7 +36,7 @@ def generate_launch_description():
       package='tf2_ros',
       executable='static_transform_publisher',
       arguments=[
-        '0.11', '0.0', '0.125', '3.141592654', '0', '0',
+        '0.11', '0.0', '0.125', '0', '0', '0',
         'eduard/blue/base_link',
         'eduard/blue/laser'
       ]
@@ -45,7 +45,7 @@ def generate_launch_description():
       package='tf2_ros',
       executable='static_transform_publisher',
       arguments=[
-        '0.11', '0.0', '0.125', '3.141592654', '0', '0',
+        '0.11', '0.0', '0.125', '0', '0', '0',
         'eduard/green/base_link',
         'eduard/green/laser'
       ]
@@ -54,7 +54,7 @@ def generate_launch_description():
       package='tf2_ros',
       executable='static_transform_publisher',
       arguments=[
-        '0.11', '0.0', '0.125', '3.141592654', '0', '0',
+        '0.11', '0.0', '0.125', '0', '0', '0',
         'eduard/red/base_link',
         'eduard/red/laser'
       ]
@@ -67,7 +67,7 @@ def generate_launch_description():
         SetEnvironmentVariable(name='GAZEBO_PLUGIN_PATH', value=plugin_path),
         # start gazebo, notice we are using libgazebo_ros_factory.so instead of libgazebo_ros_init.so
         # That is because only libgazebo_ros_factory.so contains the service call to /spawn_entity
-        ExecuteProcess(cmd=['gazebo', '--verbose', world ], output='screen'),
+        ExecuteProcess(cmd=['gazebo', '-s', 'libgazebo_ros_init.so', '--verbose', world ], output='screen'),
         tf_laser_eduard_blue,
         tf_laser_eduard_green,
         tf_laser_eduard_red

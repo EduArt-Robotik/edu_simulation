@@ -25,6 +25,7 @@ void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr s
   }
 
   auto bot = std::make_shared<EduardGazeboBot>(parent, model_element, ns);
+  bot->set_parameter(rclcpp::Parameter("use_sim_time", true));
   _robot_ros_node = bot;
   _ros_executer->add_node(bot);
   _model = parent;

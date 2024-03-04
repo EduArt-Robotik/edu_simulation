@@ -12,10 +12,14 @@
 namespace eduart {
 namespace simulation {
 
+class GazeboHardwareAdapter;
+
 class EduardHardwareComponentFactory : public robot::HardwareComponentFactory
 {
 public:
-  EduardHardwareComponentFactory(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, rclcpp::Node& ros_node);
+  EduardHardwareComponentFactory(
+    std::shared_ptr<GazeboHardwareAdapter> hardware_adapter, gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf,
+    rclcpp::Node& ros_node);
 };
 
 } // end namespace simulation

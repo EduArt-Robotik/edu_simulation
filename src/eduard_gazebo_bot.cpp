@@ -13,9 +13,10 @@ EduardGazeboBot::EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementP
     )
   , _parent(parent)
 {
+  auto hardware_adapter = std::dynamic_pointer_cast<GazeboHardwareAdapter>(_hardware_interface);
   const auto model_name = parent->GetName();
   _is_mecanum = model_name.find("mecanum") != std::string::npos;
-  EduardHardwareComponentFactory factory(parent, sdf, *this);
+  EduardHardwareComponentFactory factory(hardware_adapter, parent, sdf, *this);
 
   initialize(factory);
 }

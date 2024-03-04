@@ -3,6 +3,7 @@
 #include "edu_simulation/gazebo_lighting.hpp"
 #include "edu_simulation/gazebo_range_sensor.hpp"
 #include "edu_simulation/gazebo_imu_sensor.hpp"
+#include "edu_simulation/gazebo_hardware_adapter.hpp"
 
 #include <gazebo/sensors/sensors.hh>
 
@@ -32,7 +33,8 @@ static std::string get_joint_name(sdf::ElementPtr sdf, const std::string& motor_
 }
 
 EduardHardwareComponentFactory::EduardHardwareComponentFactory(
-  gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, rclcpp::Node& ros_node)
+  std::shared_ptr<GazeboHardwareAdapter> hardware_adapter, gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf,
+  rclcpp::Node& ros_node)
 {
   for (auto link = sdf->GetElement("link"); link != nullptr; link = link->GetNextElement("link")) {
     const auto& link_name = link->GetAttribute("name")->GetAsString();
@@ -49,6 +51,7 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
       );
 
       _motor_controller_hardware.push_back(motor_controller_hardware);
+      hardware_adapter->registerMotorController(motor_controller_hardware);
     }
     // Range Sensor
     else if (link_name.find("range") != std::string::npos) {
