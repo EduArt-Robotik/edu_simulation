@@ -19,6 +19,8 @@ EduardGazeboBot::EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementP
   EduardHardwareComponentFactory factory(hardware_adapter, parent, sdf, *this);
 
   initialize(factory);
+  _mode_state_machine.switchToMode(eduart::robot::RobotMode::INACTIVE);
+  _mode_state_machine.setDriveKinematic(eduart::robot::DriveKinematic::MECANUM_DRIVE);
 }
 
 EduardGazeboBot::~EduardGazeboBot()
