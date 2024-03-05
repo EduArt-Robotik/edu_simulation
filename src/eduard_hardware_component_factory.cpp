@@ -3,6 +3,7 @@
 #include "edu_simulation/gazebo_lighting.hpp"
 #include "edu_simulation/gazebo_range_sensor.hpp"
 #include "edu_simulation/gazebo_imu_sensor.hpp"
+#include "edu_simulation/gazebo_hardware_adapter.hpp"
 
 #include <gazebo/sensors/sensors.hh>
 
@@ -20,18 +21,37 @@ static std::string get_full_name(sdf::ElementPtr sdf)
   return name;
 }
 
+static std::string get_joint_name(sdf::ElementPtr sdf, const std::string& motor_name)
+{
+  for (auto joint = sdf->GetElement("joint"); joint != nullptr; joint = joint->GetNextElement("joint")) {
+    if (joint->GetElement("child")->GetValue()->GetAsString() == motor_name) {
+      return joint->GetAttribute("name")->GetAsString();
+    }
+  }
+
+  throw std::invalid_argument("Not joint found with child tag that matches given motor name.");
+}
+
 EduardHardwareComponentFactory::EduardHardwareComponentFactory(
-  gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, rclcpp::Node& ros_node)
+  std::shared_ptr<GazeboHardwareAdapter> hardware_adapter, gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf,
+  rclcpp::Node& ros_node)
 {
   for (auto link = sdf->GetElement("link"); link != nullptr; link = link->GetNextElement("link")) {
     const auto& link_name = link->GetAttribute("name")->GetAsString();
 
     // Motor Controller
     if (link_name.find("motor") != std::string::npos) {
-      auto motor_controller_hardware = std::make_shared<GazeboMotorController>();
+      const auto joint_name = get_joint_name(sdf, link_name);
+      const auto model_name = parent->GetName();
+      const bool is_mecanum = model_name.find("mecanum") != std::string::npos;
 
-      _motor_controller_hardware[link_name] = motor_controller_hardware;
-      _motor_sensor_hardware[link_name] = motor_controller_hardware;
+      auto motor_joint = parent->GetJoint(joint_name);
+      auto motor_controller_hardware = std::make_shared<GazeboMotorController>(
+        link_name, parent, motor_joint, is_mecanum
+      );
+
+      _motor_controller_hardware.push_back(motor_controller_hardware);
+      hardware_adapter->registerMotorController(motor_controller_hardware);
     }
     // Range Sensor
     else if (link_name.find("range") != std::string::npos) {
@@ -49,7 +69,7 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
       }
 
       std::cout << "add range sensor hardware: " << sensor_name << std::endl;
-      _range_sensor_hardware[sensor_name] = std::make_shared<GazeboRangeSensor>(sensor, ros_node);
+      _hardware[sensor_name] = std::make_shared<GazeboRangeSensor>(sensor, ros_node);
     }
     // IMU Sensor
     else if (link_name.find("imu") != std::string::npos) {
@@ -67,18 +87,15 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
       }
 
       std::cout << "add imu sensor hardware: " << sensor_name << std::endl;
-      _imu_sensor_hardware[sensor_name] = std::make_shared<GazeboImuSensor>(sensor, ros_node);
+      _hardware[sensor_name] = std::make_shared<GazeboImuSensor>(sensor, ros_node);
     }
   }
 
-  _lighting_hardware["head"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["right_side"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["left_side"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["back"] = std::make_shared<GazeboLighting>();
-  _lighting_hardware["all"] = std::make_shared<GazeboLighting>();
-
-
-  // _imu_sensor_hardware["imu"] = std::make_shared<GazeboImuSensor>();
+  _hardware["head"] = std::make_shared<GazeboLighting>();
+  _hardware["right_side"] = std::make_shared<GazeboLighting>();
+  _hardware["left_side"] = std::make_shared<GazeboLighting>();
+  _hardware["back"] = std::make_shared<GazeboLighting>();
+  _hardware["all"] = std::make_shared<GazeboLighting>();
 }
 
 } // end namespace simulation

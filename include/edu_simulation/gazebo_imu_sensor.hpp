@@ -5,21 +5,20 @@
  */
 #pragma once
 
-#include <edu_robot/hardware_component_interface.hpp>
-#include <edu_robot/imu_sensor.hpp>
+#include <edu_robot/sensor_imu.hpp>
 
 #include <gazebo/sensors/SensorTypes.hh>
 
 namespace eduart {
 namespace simulation {
 
-class GazeboImuSensor : public robot::ImuSensor::SensorInterface
+class GazeboImuSensor : public robot::SensorImu::SensorInterface
 {
 public:
   GazeboImuSensor(gazebo::sensors::SensorPtr sensor, rclcpp::Node& ros_node);
   ~GazeboImuSensor() override;
 
-  void initialize(const robot::ImuSensor::Parameter& parameter) override;
+  void initialize(const robot::SensorImu::Parameter& parameter) override;
 
 private:
   void getMeasurement();

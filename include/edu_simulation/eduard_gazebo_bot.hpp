@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include <edu_robot/eduard/eduard.hpp>
+#include <edu_robot/bot/eduard/eduard.hpp>
 
 #include <gazebo/gazebo.hh>
 
@@ -22,6 +22,7 @@ public:
 
 private:
   gazebo::physics::ModelPtr _parent;
+  bool _is_mecanum = true;
 };
 
 } // end namespace simulation

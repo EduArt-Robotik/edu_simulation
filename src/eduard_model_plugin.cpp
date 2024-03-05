@@ -9,8 +9,6 @@ namespace simulation {
 
 EduardModelPlugin::EduardModelPlugin()
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
-
   if (rclcpp::ok() == false) {
     rclcpp::init(0, 0);
   }
@@ -19,7 +17,6 @@ EduardModelPlugin::EduardModelPlugin()
 
 void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf)
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
   auto model_element = sdf->GetParent();
   std::string ns;
 
@@ -28,13 +25,10 @@ void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr s
   }
 
   auto bot = std::make_shared<EduardGazeboBot>(parent, model_element, ns);
+  bot->set_parameter(rclcpp::Parameter("use_sim_time", true));
   _robot_ros_node = bot;
   _ros_executer->add_node(bot);
   _model = parent;
-
-  std::cout << "sdf pointer = " << sdf << std::endl;
-  std::cout << "element name: " << sdf->GetName() << std::endl;
-  std::cout << "parent : " << sdf->GetParent()->GetName() << std::endl;
 
   _update_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
     std::bind(&EduardModelPlugin::OnUpdate, this)

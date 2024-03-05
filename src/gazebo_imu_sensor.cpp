@@ -24,7 +24,7 @@ GazeboImuSensor::~GazeboImuSensor()
 
 }
 
-void GazeboImuSensor::initialize(const robot::ImuSensor::Parameter &parameter)
+void GazeboImuSensor::initialize(const robot::SensorImu::Parameter &parameter)
 {
   (void)parameter;
 }
@@ -42,9 +42,10 @@ void GazeboImuSensor::getMeasurement()
   const Eigen::Quaterniond orientation(
     sensor_orientation.W(), sensor_orientation.X(), sensor_orientation.Y(), sensor_orientation.Z());
   const auto sensor_acceleration = _sensor->LinearAcceleration();
-  const Eigen::Vector3d linear_acceleration(sensor_acceleration.X(), sensor_acceleration.Y(), sensor_acceleration.Z());
+  // use negative values
+  const Eigen::Vector3d linear_acceleration(-sensor_acceleration.X(), -sensor_acceleration.Y(), -sensor_acceleration.Z());
   const auto sensor_velocity = _sensor->AngularVelocity();
-  const Eigen::Vector3d angular_velocity(sensor_velocity.X(), sensor_velocity.Y(), sensor_velocity.Z());
+  const Eigen::Vector3d angular_velocity(-sensor_velocity.X(), -sensor_velocity.Y(), -sensor_velocity.Z());
 
   _callback_process_measurement(orientation, angular_velocity, linear_acceleration);
 }
