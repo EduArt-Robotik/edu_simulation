@@ -6,7 +6,7 @@ from launch.actions import ExecuteProcess, DeclareLaunchArgument
 from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
 from launch.actions import SetEnvironmentVariable
-from launch.substitutions import EnvironmentVariable
+from launch.substitutions import EnvironmentVariable, PathJoinSubstitution
 
 def generate_launch_description():
     robot_name = 'edu_simulation'
@@ -16,6 +16,8 @@ def generate_launch_description():
     
     # world = os.path.join(get_package_share_directory(robot_name), 'world', world_file_name)
     model_path = os.path.join(get_package_share_directory(robot_name), 'model')
+    plugin_path = os.path.join(get_package_share_directory(robot_name), 'lib')
+    print('plugin path = ', plugin_path)
     world = "worlds/empty.world"
     robot_sdf = os.path.join(model_path, 'eduard/eduard.sdf')
     
@@ -30,18 +32,43 @@ def generate_launch_description():
     # this is argument format for spwan_entity service 
     # spwan_args = '{name: \"eduard\", xml: \"'  +  xml + '\" }'
     
+    tf_laser_eduard_blue = Node(
+      package='tf2_ros',
+      executable='static_transform_publisher',
+      arguments=[
+        '0.11', '0.0', '0.125', '0', '0', '0',
+        'eduard/blue/base_link',
+        'eduard/blue/laser'
+      ]
+    )
+    tf_laser_eduard_green = Node(
+      package='tf2_ros',
+      executable='static_transform_publisher',
+      arguments=[
+        '0.11', '0.0', '0.125', '0', '0', '0',
+        'eduard/green/base_link',
+        'eduard/green/laser'
+      ]
+    )
+    tf_laser_eduard_red = Node(
+      package='tf2_ros',
+      executable='static_transform_publisher',
+      arguments=[
+        '0.11', '0.0', '0.125', '0', '0', '0',
+        'eduard/red/base_link',
+        'eduard/red/laser'
+      ]
+    )
+
     # create and return launch description object
     return LaunchDescription([
-        #SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[EnvironmentVariable('GAZEBO_MODEL_PATH'), ':' + model_path]),
+        # SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[EnvironmentVariable('GAZEBO_MODEL_PATH'), ':' + model_path]),
         SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=model_path),
+        SetEnvironmentVariable(name='GAZEBO_PLUGIN_PATH', value=plugin_path),
         # start gazebo, notice we are using libgazebo_ros_factory.so instead of libgazebo_ros_init.so
         # That is because only libgazebo_ros_factory.so contains the service call to /spawn_entity
-        ExecuteProcess(
-            cmd=['gazebo', '--verbose', world ],#'-s', 'libgazebo_ros_factory.so'],
-            output='screen'),
-
-        # tell gazebo to spwan your robot in the world by calling service
-        # ExecuteProcess(
-        #     cmd=['ros2', 'service', 'call', '/spawn_entity', 'gazebo_msgs/SpawnEntity', spwan_args],
-        #     output='screen'),
+        ExecuteProcess(cmd=['gazebo', '-s', 'libgazebo_ros_init.so', '--verbose', world ], output='screen'),
+        tf_laser_eduard_blue,
+        tf_laser_eduard_green,
+        tf_laser_eduard_red
     ])

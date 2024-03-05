@@ -172,3 +172,13 @@ Diese Arbeit wurde im Wintersemester 2022 / 2023 durchgeführt. Die Teammitglied
 - Katarina Weigel
 - Jakob Richter
 - Daniel Meissner
+
+## Installation
+
+### Native
+
+### Using Docker Container
+
+## Usage
+
+### Robots
