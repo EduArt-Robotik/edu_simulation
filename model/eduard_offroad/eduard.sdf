@@ -81,9 +81,9 @@
                 <coefficient>0.9</coefficient>
                 <surface_radius>0.0865</surface_radius>
                 <use_patch_radius>false</use_patch_radius>
-                <!-- <ode>
-                  <slip>0.02</slip>
-                </ode> -->
+                <ode>
+                  <slip>0.9</slip>
+                </ode>
               </torsional>
               <!-- <ode>
                 <mu>0.45</mu>
@@ -139,9 +139,9 @@
                 <coefficient>0.9</coefficient>
                 <surface_radius>0.0865</surface_radius>
                 <use_patch_radius>false</use_patch_radius>
-                <!-- <ode>
-                  <slip>0.02</slip>
-                </ode> -->
+                <ode>
+                  <slip>0.9</slip>
+                </ode>
               </torsional>
               <!-- <ode>
                 <mu>0.45</mu>
@@ -197,9 +197,9 @@
                 <coefficient>0.9</coefficient>
                 <surface_radius>0.0865</surface_radius>
                 <use_patch_radius>false</use_patch_radius>
-                <!-- <ode>
-                  <slip>0.02</slip>
-                </ode> -->
+                <ode>
+                  <slip>0.9</slip>
+                </ode>
               </torsional>
               <!-- <ode>
                 <mu>0.45</mu>
@@ -255,9 +255,9 @@
                 <coefficient>0.9</coefficient>
                 <surface_radius>0.0865</surface_radius>
                 <use_patch_radius>false</use_patch_radius>
-                <!-- <ode>
-                  <slip>0.02</slip>
-                </ode> -->
+                <ode>
+                  <slip>0.9</slip>
+                </ode>
               </torsional>
               <!-- <ode>
                 <mu>0.45</mu>
@@ -598,9 +598,16 @@
         <child>imu</child>
         <parent>chassis</parent>
       </joint>
-      <joint type="fixed" name="mount_lidar">
+      <joint type="revolute" name="mount_lidar">
         <child>lidar</child>
         <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>        
       </joint>
             
       <!-- plugins to control robot behavior -->
