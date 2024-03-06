@@ -44,6 +44,7 @@ void GazeboMotorController::processSetValue(const std::vector<robot::Rpm>& rpm)
   }
   else {
     _controller.SetVelocityTarget(_joint->GetScopedName(), set_point.radps());
+    // _joint->SetParam("fmax", 0, 100.0);    
 
     // _joint->SetVelocity(0, _low_pass_filter(rpm[0].radps()));
     _measured_rpm[0] = robot::Rpm::fromRadps(_joint->GetVelocity(0));
