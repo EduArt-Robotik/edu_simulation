@@ -134,4 +134,13 @@ This folder contains the TER2 track. To create the TER2 track model, the TER0 ba
 
 ### TER3
 This folder contains the TER3 track. To create the TER3 track model, the TER0 basin track was filled with eight smaller ramps per section according to the [Robocub Assembly Guide](https://rrl.robocup.org/wp-content/uploads/2022/05/RoboCup2022_AssemblyGuide_Final.pdf) page 18.
+
 ![TER3](https://github.com/EduArt-Robotik/edu_simulation/blob/feature/sand_gravel_ramp/model/TER3/blender/TER3.png)
+
+## Problems
+
+### Texture error in the Gazebo Simulator
+The textures added in the Blender software cause the [TER0_texture](README.md#TER0_texture) track to not work correctly in the Gazebo simuator causing it to crash upon inserting the track model into the world. 
+During testing, the same track model without the textures added worked fine and as expected like all other track models exported from the Blender software and imported into the Gazebo simulator.
+However the error causing the Gazebo software to crash could not be determined. Since the textures do not provide any functional benefit to the simulation per se, but only a visual improvement, the bug fix was placed lower in the prioritization of tasks.
+
