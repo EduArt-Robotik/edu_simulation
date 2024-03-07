@@ -5,6 +5,10 @@ Contains Gazebo simulation models for all EduArt's robots.
 
 ### Native
 If you want to run the simulation on your computer follow these steps.
+=======
+
+### Native
+If you want to run the simulation on your computer follow these steps.
 
 The simulation environment used for this package is gazebo
 
@@ -63,8 +67,29 @@ ros2 launch edu_simulation eduard.launch.py
 
 [link](documentation/models.md)
 
-## World
+## Launching Simulator
 
+After the package was built Gazebo it will be launched using a provided ROS launch file. This launch file adds all content coming with this package.
+
+Source your ROS2 environment if not already done;
+
+```bash
+source ~/<your ros2 workspace>/install/setup.bash
+```
+
+Now you can launch Gazebo using following launch file:
+
+```bash
+ros2 launch edu_simulation eduard.launch.py
+```
+
+>**Note**: The first launch takes the same minutes. The next launches will take much less time.
+
+## Models
+
+[link](documentation/models.md)
+
+## World
 
 ## Usage
 
