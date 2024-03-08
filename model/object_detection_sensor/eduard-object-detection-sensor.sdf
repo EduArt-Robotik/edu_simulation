@@ -1,0 +1,44 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+  <model name="eduard-object-detection-sensor">
+    <static>true</static>
+    <pose>0 0 0 0 0 0</pose>
+    <!-- chassis -->
+    <link name="chassis">
+      <pose>0 0 0 0 0 0</pose>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.10 0.05 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0.06 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <sensor name="object-sensor" type="logical_camera">
+        <logical_camera>
+          <near>0.1</near>
+          <far>3.0</far>
+          <aspect_ratio>1</aspect_ratio>
+          <horizontal_fov>1.4</horizontal_fov>
+        </logical_camera>
+        <plugin name="eduard_object_detection_sensor" filename="libeduard-object-detection-sensor-plugin.so">
+          <ros>
+            <!-- Namespace of the node -->
+            <namespace>/my_ns</namespace>
+          </ros>
+          <filter_string>blue</filter_string>
+          <frame_id>object_sensor</frame_id>
+        </plugin>
+      </sensor>
+    </link>
+
+
+  </model>
+</sdf>
