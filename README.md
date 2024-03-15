@@ -29,8 +29,16 @@ git clone https://github.com/EduArt-Robotik/edu_simulation.git
 
 You need the edu_robot package. Currently you have to use the "develop"-branch. Check out the branch:
 ```bash
+#If not already cloned clone edu_robot
+cd ~/<your ros2 workspace>/src
+git clone https://github.com/EduArt-Robotik/edu_robot.git
+
+#Now change the branch!
 cd <your ros2 workspace>/src/edu_robot
 git checkout develop
+
+#Check if the branch has been changed
+git branch
 ```
 
 Build edu_robot
