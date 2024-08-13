@@ -546,7 +546,7 @@
       </link>
 
       <!-- Oliva Cam -->
-      <link name="olive_camera_link">
+      <link name="olive_camera_link_eduard_green">
         <pose>0.135 0 0.065 0 0 0</pose>   
         <inertial>
           <inertia>
@@ -611,6 +611,7 @@
             </ros>
             <alwaysOn>true</alwaysOn>
             <updateRate>30.0</updateRate>
+            <frameName>eduard/green/olive_cam</frameName>
             <!-- <cameraName>eduard/blue/olive_camera</cameraName>
             <imageTopicName>/eduard/blue/olive_camera/image_raw</imageTopicName>
             <cameraInfoTopicName>/eduard/blue/olive_camera/camera_info</cameraInfoTopicName>
@@ -682,13 +683,13 @@
         <parent>chassis</parent>
       </joint>
       <joint type="fixed" name="mount_olive_cam">
-        <child>olive_camera_link</child>
+        <child>olive_camera_link_eduard_green</child>
         <parent>chassis</parent>
       </joint>
             
       <!-- plugins to control robot behavior -->
-     <plugin name="eduard_robot" filename="libeduard-model-plugin.so">
-       <robot_namespace>/eduard/blue</robot_namespace>
+     <plugin name="eduard_robot_green_olive_cam" filename="libeduard-model-plugin.so">
+       <robot_namespace>/eduard/green</robot_namespace>
      </plugin>
     </model>
 </sdf>
