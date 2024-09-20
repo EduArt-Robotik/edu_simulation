@@ -24,12 +24,24 @@ add_subdirectory(src)
 
 ament_package()
 
-install(TARGETS
-    eduard-object-detection-sensor-plugin eduard-model-plugin
+install(
+  TARGETS
+    eduard-object-detection-sensor-plugin
+    eduard-model-plugin
   LIBRARY DESTINATION share/${PROJECT_NAME}/lib
 )
 
-install(DIRECTORY model
+install(
+  PROGRAMS
+    launch/spawn_eduard.py
+  DESTINATION
+    lib/${PROJECT_NAME}
+)
+
+install(
+  DIRECTORY
+    model
+    world
   DESTINATION share/${PROJECT_NAME}/
 )
 
