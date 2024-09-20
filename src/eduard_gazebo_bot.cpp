@@ -2,13 +2,14 @@
 #include "edu_simulation/gazebo_hardware_adapter.hpp"
 #include "edu_simulation/eduard_hardware_component_factory.hpp"
 
+#include <bot/eduard_v2.hpp>
 #include <gazebo/physics/Model.hh>
 
 namespace eduart {
 namespace simulation {
 
 EduardGazeboBot::EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, const std::string& ns)
-  : robot::eduard::Eduard(
+  : robot::bot::EduardV2(
       "eduard_gazebo_bot", std::make_unique<GazeboHardwareAdapter>(sdf), ns
     )
   , _parent(parent)
