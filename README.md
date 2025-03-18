@@ -93,6 +93,31 @@ ros2 launch edu_simulation eduard.launch.py
 
 >**Note**: The first launch takes the same minutes. The next launches will take much less time.
 
+## After the launch
+After launching the simulator and placing a robot into the envrionment (just drag and drop the desired model from the menu on the left), you may notice that not much is happening in there. But before we can move around we first have to enable the motors:
+```bash
+ros2 service call /eduard/blue/set_mode edu_robot/srv/SetMode
+" mode:
+  mode: 2
+  drive_kinematic: 0
+  feature_mode: 0
+  disable_feature: 0" 
+```
+By default the mode is 0, which tells us the motors are disabled. We set the mode to 2, to enable the motors.  
+Now the time has come to send a little movement command to our robot. For this we use the following command:
+```bash
+ros2 topic pub /eduard/blue/cmd_vel geometry_msgs/msg/Twist
+"linear:
+  x: 0.1
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0" -r 10 -p 100
+```
+We set the linear x velocity to 0.1 and further add -r 10 and -p 100 at the end. The option -r 10 repeats the command 10 times per second and -p 100 just shows us 1 out of every 100 commands sent this way. The reason this is necessary lies in a safety mechanism integrated in the eduard robot, if it receives no movement command for 200ms (even if it tells it to not move at all) it will cease all movement.
+
 ## Models
 
 [link](documentation/models.md)
