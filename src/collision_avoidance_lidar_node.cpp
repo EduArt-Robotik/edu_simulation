@@ -97,7 +97,6 @@ CollisionAvoidanceLidar::CollisionAvoidanceLidar()
 
 void CollisionAvoidanceLidar::callbackLaserScan(std::shared_ptr<const sensor_msgs::msg::LaserScan> msg)
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
   sensor_msgs::msg::PointCloud2 points;
 
   // Transform laser scan into robot frame.
@@ -123,13 +122,6 @@ void CollisionAvoidanceLidar::callbackLaserScan(std::shared_ptr<const sensor_msg
 
 void CollisionAvoidanceLidar::callbackPointCloud(const sensor_msgs::msg::PointCloud2& points)
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
-  // Check if an intersection is present.
-  // for (const auto& field : points.fields) {
-  //   std::cout << "field: "<< field.name << std::endl;
-  //   std::cout << "datatype: " << field.datatype << std::endl;
-  // }
-
   // Prepare processing data and estimate new intersections.
   _processing_data.intersection.fill(false);
   _processing_data.reduce_factor.fill(1.0f);

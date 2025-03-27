@@ -18,7 +18,7 @@ def generate_launch_description():
     model_path = PathJoinSubstitution([package_path, 'model:/opt/ros/humble/share/turtlebot3_gazebo/models/'])
     plugin_path = PathJoinSubstitution([package_path, 'lib'])
     world = PathJoinSubstitution([package_path, 'world', world_name])
-
+  
     # TF transforms of lidar for different robots    
     tf_laser_eduard_blue = Node(
       package='tf2_ros',
@@ -53,23 +53,32 @@ def generate_launch_description():
     )
 
     # Gazebo
-    gazebo_launch_file = PathJoinSubstitution([
+    gazebo_server_launch_file = PathJoinSubstitution([
         FindPackageShare('gazebo_ros'),
         'launch',
-        'gazebo.launch.py'
+        'gzserver.launch.py'
     ])
     gazebo_param_file = PathJoinSubstitution([
         package_path,
         'parameter',
         'gazebo.yaml'
     ])
-    gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(gazebo_launch_file),
+    gazebo_server = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(gazebo_server_launch_file),
         launch_arguments={
             'params_file': gazebo_param_file,
-            'gui': 'True',
-            'server': 'True'
+            'world': world,
+            'extra_gazebo_args': ['--ros-args', '-r', 'cmd_vel:=safety/cmd_vel', '-p', 'hans:=cool']
         }.items()
+    )
+
+    gazebo_client_launch_file = PathJoinSubstitution([
+        FindPackageShare('gazebo_ros'),
+        'launch',
+        'gzclient.launch.py'        
+    ])
+    gazebo_client = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(gazebo_client_launch_file)
     )
 
     # create and return launch description object
@@ -81,7 +90,8 @@ def generate_launch_description():
         # start gazebo, notice we are using libgazebo_ros_factory.so instead of libgazebo_ros_init.so
         # That is because only libgazebo_ros_factory.so contains the service call to /spawn_entity
         # ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '--ros-args', '-p', 'publish_rate:=500.0', '--', world], output='screen'),
-        gazebo,
+        gazebo_server,
+        gazebo_client,
         tf_laser_eduard_blue,
         tf_laser_eduard_green,
         tf_laser_eduard_red

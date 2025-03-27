@@ -129,7 +129,7 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=remappings + [('cmd_vel', 'autonomous/cmd_vel')],
+                remappings=remappings + [('cmd_vel', 'nav2/cmd_vel')],
                 namespace=edu_robot_namespace
             ),
             Node(

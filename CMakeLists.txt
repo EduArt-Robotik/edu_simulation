@@ -27,9 +27,14 @@ ament_package()
 
 install(
   TARGETS
+    collision_avoidance_lidar_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
+  TARGETS
     eduard-object-detection-sensor-plugin
     eduard-model-plugin
-    collision_avoidance_lidar_node
   LIBRARY DESTINATION share/${PROJECT_NAME}/lib
 )
 

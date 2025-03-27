@@ -20,17 +20,56 @@ def generate_launch_description():
 
   # simulation
   simulation_package_path = FindPackageShare('edu_simulation')
-  simulation_launch_file = PathJoinSubstitution([
+  # simulation_launch_file = PathJoinSubstitution([
+  #   simulation_package_path,
+  #   'launch',
+  #   'eduard.launch.py'
+  # ])
+  # simulation = IncludeLaunchDescription(
+  #   PythonLaunchDescriptionSource(simulation_launch_file),
+  #   launch_arguments={
+  #     'world': 'eduard_blue_nav2.world'
+  #   }.items()
+  # )
+
+  # collision avoidance
+  collision_avoidance_parameter_file = PathJoinSubstitution([
     simulation_package_path,
-    'launch',
-    'eduard.launch.py'
+    'parameter',
+    'collision_avoidance_lidar.yaml'
   ])
-  simulation = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource(simulation_launch_file),
-    launch_arguments={
-      'world': 'eduard_blue_nav2.world'
-    }.items()
+  collision_avoidance_autonomous_cmd_vel = Node(
+    package='edu_simulation',
+    executable='collision_avoidance_lidar_node',
+    name='collision_avoidance_autonomous_cmd_vel',
+    namespace='eduard/blue',
+    parameters=[
+      collision_avoidance_parameter_file,
+      {'use_sim_time': True}
+    ],
+    remappings=[
+      ('in/scan', 'scan'),
+      ('in/cmd_vel', 'nav2/cmd_vel'),
+      ('out/cmd_vel', 'autonomous/cmd_vel')
+    ],
+    output='screen'
   )
+  collision_avoidance_joy_cmd_vel = Node(
+    package='edu_simulation',
+    executable='collision_avoidance_lidar_node',
+    name='collision_avoidance_joy_cmd_vel',
+    namespace='eduard/blue',
+    parameters=[
+      collision_avoidance_parameter_file,
+      {'use_sim_time': True}
+    ],
+    remappings=[
+      ('in/scan', 'scan'),
+      ('in/cmd_vel', 'joy/cmd_vel'),
+      ('out/cmd_vel', 'cmd_vel')
+    ],
+    output='screen'
+  )  
 
   # SLAM
   slam_launch_file = PathJoinSubstitution([
@@ -46,11 +85,25 @@ def generate_launch_description():
     }.items()
   )
 
+  # navigation
+  navigation_launch_file = PathJoinSubstitution([
+    simulation_package_path,
+    'launch',
+    'navigation.launch.py'
+  ])
+  navigation = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(navigation_launch_file),
+    launch_arguments={
+      'use_sim_time': 'True',
+      'edu_robot_namespace': 'eduard/blue'
+    }.items()
+  )
+
   # robot control
   robot_control_launch_file = PathJoinSubstitution([
-    FindPackageShare('edu_robot_control'),
+    simulation_package_path,
     'launch',
-    'robot_remote_control_raspberry.launch.py'
+    'robot_remote_control.launch.py'
   ])
   robot_control = IncludeLaunchDescription(
     PythonLaunchDescriptionSource(robot_control_launch_file),
@@ -75,8 +128,11 @@ def generate_launch_description():
 
   return LaunchDescription([
     edu_robot_namespace_arg,
-    simulation,
-    # slam,
+    # simulation,
+    collision_avoidance_autonomous_cmd_vel,
+    collision_avoidance_joy_cmd_vel,
+    slam,
+    navigation,
     robot_control,
-    # rviz
+    rviz
   ])
