@@ -10,7 +10,7 @@ using namespace std::chrono_literals;
 GazeboImuSensor::GazeboImuSensor(gazebo::sensors::SensorPtr sensor, rclcpp::Node& ros_node)
   : _sensor(std::dynamic_pointer_cast<gazebo::sensors::ImuSensor>(sensor))
   , _timer_get_measurement(ros_node.create_wall_timer(
-      100ms, std::bind(&GazeboImuSensor::getMeasurement, this))
+      20ms, std::bind(&GazeboImuSensor::getMeasurement, this))
     )
 {
   if (_sensor == nullptr) {

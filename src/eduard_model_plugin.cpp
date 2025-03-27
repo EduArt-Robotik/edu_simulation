@@ -34,7 +34,7 @@ void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr s
     std::bind(&EduardModelPlugin::OnUpdate, this)
   );
   _update_bot_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
-    std::bind(&EduardGazeboBot::OnUpdate, bot)
+    std::bind(&EduardGazeboBot::OnUpdate, bot, std::placeholders::_1)
   );
 }
 

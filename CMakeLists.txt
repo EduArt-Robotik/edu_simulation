@@ -11,6 +11,7 @@ find_package(sensor_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(laser_geometry REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
@@ -28,6 +29,7 @@ install(
   TARGETS
     eduard-object-detection-sensor-plugin
     eduard-model-plugin
+    collision_avoidance_lidar_node
   LIBRARY DESTINATION share/${PROJECT_NAME}/lib
 )
 
@@ -42,6 +44,7 @@ install(
   DIRECTORY
     model
     world
+    parameter
   DESTINATION share/${PROJECT_NAME}/
 )
 
