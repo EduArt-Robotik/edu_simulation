@@ -9,13 +9,15 @@ services:
     ipc: host
     pid: host
     environment:
-            - EDU_ROBOT_NAMESPACE=${EDU_ROBOT_NAMESPACE}
-            - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION}
+      - DISPLAY=${DISPLAY}
+      - EDU_ROBOT_NAMESPACE=${EDU_ROBOT_NAMESPACE}
+      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION}
 #            - CYCLONEDDS_URI=/home/user/ros/launch_content/cyclone_profile.xml         
     network_mode: "host"
     command: tail -F anything
     volumes:
-        - './launch_content:/home/user/ros/launch_content:r'
-        - '/dev:/dev'
+      # - './launch_content:/home/user/ros/launch_content:r'
+      - '/dev:/dev'
+      - '/tmp/.X11-unix:/tmp/.X11-unix:rw'
     devices:
-        - '/dev:/dev'
+      - '/dev:/dev'
