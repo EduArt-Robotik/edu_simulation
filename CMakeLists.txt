@@ -19,23 +19,14 @@ set(CMAKE_CXX_EXTENSIONS Off)
 
 add_subdirectory(src)
 
-# install(DIRECTORY world  
-#   DESTINATION share/${PROJECT_NAME}
-# )
-
 ament_package()
 
 install(
   TARGETS
     collision_avoidance_lidar_node
-  DESTINATION lib/${PROJECT_NAME}
-)
-
-install(
-  TARGETS
     eduard-object-detection-sensor-plugin
     eduard-model-plugin
-  LIBRARY DESTINATION share/${PROJECT_NAME}/lib
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 install(
