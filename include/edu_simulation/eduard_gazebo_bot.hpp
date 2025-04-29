@@ -18,11 +18,13 @@ public:
   EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, const std::string& ns);
   ~EduardGazeboBot() override;
 
-  void OnUpdate();
+  void OnUpdate(const gazebo::common::UpdateInfo & info);
 
 private:
   gazebo::physics::ModelPtr _parent;
   bool _is_mecanum = true;
+  gazebo::common::Time _stamp_last_update;
+  ignition::math::Pose3d _current_pose;
 };
 
 } // end namespace simulation

@@ -28,25 +28,37 @@ EduardGazeboBot::~EduardGazeboBot()
 
 }
 
-void EduardGazeboBot::OnUpdate()
+void EduardGazeboBot::OnUpdate(const gazebo::common::UpdateInfo & info)
 {
   if (_is_mecanum == false) {
     // do nothing, velocity is applied on motors
     return;
   }
 
+  const double dt = (info.simTime - _stamp_last_update).Double();
   Eigen::VectorXf radps_measured(_motor_controllers.size());
 
   for (std::size_t i = 0; i < _motor_controllers.size(); ++i) {
     radps_measured(i) = _motor_controllers[i]->getMeasuredRpm()[0].radps(); // \todo make index access safety.
   }
 
+  // calculate current velocity vector from wheel rotations
   const Eigen::Vector3f velocity_measured = _inverse_kinematic_matrix * radps_measured;
+
+  // transfrom velocity vector into world coordinate system
   const Eigen::Rotation2Df rot(_parent->WorldPose().Yaw());
   const Eigen::Vector2f linear_velocity = rot * Eigen::Vector2f(velocity_measured.x(), velocity_measured.y());
 
-  _parent->SetLinearVel(ignition::math::Vector3d(linear_velocity.x(), linear_velocity.y(), 0.0));
-  _parent->SetAngularVel(ignition::math::Vector3d(0.0, 0.0, velocity_measured.z() * M_PI * 2.0)); // HACK!
+  // apply velocity to robot model (world coordinate system. note: no idea why its in world coordinate)
+  _current_pose.SetX((linear_velocity * dt).x() + _current_pose.X());
+  _current_pose.SetY((linear_velocity * dt).y() + _current_pose.Y());
+
+  const double yaw = _current_pose.Yaw() + dt * velocity_measured.z();
+  _current_pose.Rot().Euler(0.0, 0.0, yaw);
+
+  _parent->SetWorldPose(_current_pose);
+
+  _stamp_last_update = info.simTime;
 }
 
 } // end namespace simulation

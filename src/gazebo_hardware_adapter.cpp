@@ -30,8 +30,18 @@ void GazeboHardwareAdapter::disable()
   
 robot::RobotStatusReport GazeboHardwareAdapter::getStatusReport()
 {
-  // \todo implement me!
-  return { };
+  // return fake values
+  return {
+    37.0,
+    {
+      19.2,
+      19.2
+    },
+    {
+      0.6,
+      0.6
+    }
+  };
 }
 
 robot::diagnostic::Diagnostic GazeboHardwareAdapter::processDiagnosticsImpl()

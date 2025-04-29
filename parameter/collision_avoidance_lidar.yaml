@@ -1,0 +1,15 @@
+/**:
+  ros__parameters:
+    # Distances to robots outer edge.
+    distance:
+      reduce_velocity: 0.40
+      velocity_zero: 0.05
+
+    # Size of the robot.
+    size:
+      length: 0.40
+      width: 0.42
+
+    # TF frame of the robot.
+    tf_frame_robot: base_link
+

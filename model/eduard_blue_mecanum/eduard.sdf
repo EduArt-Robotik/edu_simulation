@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <sdf version='1.5'>
   <model name="eduard-blue-mecanum">
-    <static>false</static>
+    <static>true</static>
     <pose>0 0 0 0 0 0</pose>
       <!-- chassis -->
       <link name="chassis">
@@ -578,29 +578,71 @@
           <xyz>0 0 1</xyz>
         </axis>
       </joint>
-      <joint type="fixed" name="mount_range_front_left">
+      <joint type="revolute" name="mount_range_front_left">
         <child>range_front_left</child>
         <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>        
       </joint>
-      <joint type="fixed" name="mount_range_front_right">
+      <joint type="revolute" name="mount_range_front_right">
         <child>range_front_right</child>
         <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>
       </joint>
-      <joint type="fixed" name="mount_range_rear_left">
+      <joint type="revolute" name="mount_range_rear_left">
         <child>range_rear_left</child>
         <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>
       </joint>
-      <joint type="fixed" name="mount_range_rear_right">
+      <joint type="revolute" name="mount_range_rear_right">
         <child>range_rear_right</child>
         <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>
       </joint>
-      <joint type="fixed" name="mount_imu">
+      <joint type="revolute" name="mount_imu">
         <child>imu</child>
         <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>
       </joint>
-      <joint type="fixed" name="mount_lidar">
+      <joint type="revolute" name="mount_lidar">
         <child>lidar</child>
         <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>        
       </joint>
             
       <!-- plugins to control robot behavior -->
