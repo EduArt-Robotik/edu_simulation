@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <sdf version='1.5'>
   <model name="eduard-red-mecanum">
-    <static>false</static>
+    <static>true</static>
     <pose>0 0 0 0 0 0</pose>
       <!-- chassis -->
       <link name="chassis">

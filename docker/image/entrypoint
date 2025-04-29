@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Setup ROS 2 environment
+source /opt/ros/humble/setup.bash
+source /home/user/ros/install/setup.bash
+source /usr/share/gazebo/setup.bash
+#export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+exec "$@"

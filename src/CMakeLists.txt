@@ -46,3 +46,20 @@ ament_target_dependencies(eduard-model-plugin
   "tf2_geometry_msgs"
   "nav_msgs"
 )
+
+# Collision Avoidance Lidar
+add_executable(collision_avoidance_lidar_node
+  collision_avoidance_lidar_node.cpp
+)
+target_link_libraries(collision_avoidance_lidar_node
+
+)
+ament_target_dependencies(collision_avoidance_lidar_node
+  "rclcpp"
+  "geometry_msgs"
+  "sensor_msgs"
+  "tf2"
+  "tf2_ros"
+  "tf2_sensor_msgs"
+  "laser_geometry"
+)

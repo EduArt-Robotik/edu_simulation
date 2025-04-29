@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="eduard_blue_nav2">
+    <!-- a global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- a ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- robot -->
+    <include>
+      <uri>model://eduard_blue_mecanum</uri>
+    </include>
+    <model name="turtlebot3_world">
+      <static>1</static>
+      <include>
+        <uri>model://turtlebot3_world</uri>
+        <pose>0.5 0.5 0 0 0 0</pose>
+      </include>
+    </model>
+  </world>
+</sdf>

@@ -11,6 +11,7 @@ find_package(sensor_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(laser_geometry REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
@@ -23,6 +24,12 @@ add_subdirectory(src)
 # )
 
 ament_package()
+
+install(
+  TARGETS
+    collision_avoidance_lidar_node
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 install(
   TARGETS
@@ -42,6 +49,7 @@ install(
   DIRECTORY
     model
     world
+    parameter
   DESTINATION share/${PROJECT_NAME}/
 )
 

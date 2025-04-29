@@ -1,0 +1,23 @@
+version: "3.0"
+
+services:
+  eduard-simulation:
+    image: eduartrobotik/eduart-simulation:1.0.0
+    container_name: eduart-simulation-1.0.0
+    user: user
+    privileged: true
+    ipc: host
+    pid: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - EDU_ROBOT_NAMESPACE=${EDU_ROBOT_NAMESPACE}
+      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION}
+#            - CYCLONEDDS_URI=/home/user/ros/launch_content/cyclone_profile.xml         
+    network_mode: "host"
+    command: tail -F anything
+    volumes:
+      # - './launch_content:/home/user/ros/launch_content:r'
+      - '/dev:/dev'
+      - '/tmp/.X11-unix:/tmp/.X11-unix:rw'
+    devices:
+      - '/dev:/dev'
