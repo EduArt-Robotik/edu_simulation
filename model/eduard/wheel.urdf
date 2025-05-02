@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" xmlns:ignition="http://gazebosim.org/schema">
+
+<xacro:macro name="wheel" params="name type parent_link **pose">
+
+  <xacro:property name="wheel_link_name" value="${name}_wheel"/>
+  <xacro:property name="wheel_joint_name" value="${wheel_link_name}_joint"/>
+
+  <!-- Joint for the wheel connected to the parent link. -->
+  <joint name="${wheel_joint_name}" type="continuous">
+    <parent link="${parent_link}"/>
+    <child link="${wheel_link_name}"/>
+    <xacro:insert_block name="pose"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Mecanum Wheel Type -->
+  <xacro:if value="${type == 'mecanum'}">
+    <!-- Wheel Link -->
+    <link name="${wheel_link_name}">
+      <visual name="visual">
+        <geometry>
+          <mesh filename="package://edu_simulation/model/eduard/mesh/mecanum-wheel-right-eduard.dae"/>
+        </geometry>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder radius="0.05" length="0.055"/>
+        </geometry>          
+      </collision>
+
+      <!-- Wheel Friction -->
+      <gazebo reference="${wheel_link_name}">
+        <collision>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>0.0</mu2>
+                <fdir1 ignition:expressed_in="base_link">1 -1 0</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>        
+      </gazebo>
+    </link>
+  </xacro:if>
+
+  <!-- Offroad Wheel Type -->
+
+  <!-- Motor Controller Plugin for Controlling Wheel Rotation -->
+  <gazebo>
+    
+  </gazebo>
+</xacro:macro>
+</robot>

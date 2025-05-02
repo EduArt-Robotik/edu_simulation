@@ -2,28 +2,52 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import ExecuteProcess, DeclareLaunchArgument
+
 from launch_ros.actions import Node
-from launch.substitutions import LaunchConfiguration
-from launch.actions import SetEnvironmentVariable
-from launch.substitutions import EnvironmentVariable, PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
+
+from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution
+from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription, ExecuteProcess, DeclareLaunchArgument
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
-    package_name = 'edu_simulation'
-    
-    # world = os.path.join(get_package_share_directory(robot_name), 'world', world_file_name)
-    model_path = os.path.join(get_package_share_directory(package_name), 'model')
-    plugin_path = os.path.join(get_package_share_directory(package_name), 'lib')
-    print('plugin path = ', plugin_path)
-    world = "worlds/empty.world"
-    
+  # Launch Arguments
+  world = LaunchConfiguration('world')
+  world_arg = DeclareLaunchArgument('world', default_value='depot.world')
+  
+  # Setting GZ Paths
+  package_name = 'edu_simulation'
+  model_path = os.path.join(get_package_share_directory(package_name), 'model')
+  model_path += ':' + os.path.join(get_package_share_directory(package_name), 'world')
+  plugin_path = os.path.join(get_package_share_directory(package_name), 'lib')
 
-    # create and return launch description object
-    return LaunchDescription([
-        # SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[EnvironmentVariable('GAZEBO_MODEL_PATH'), ':' + model_path]),
-        SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=model_path),
-        SetEnvironmentVariable(name='GAZEBO_PLUGIN_PATH', value=plugin_path),
-        # start gazebo, notice we are using libgazebo_ros_factory.so instead of libgazebo_ros_init.so
-        # That is because only libgazebo_ros_factory.so contains the service call to /spawn_entity
-        ExecuteProcess(cmd=['gazebo', '-s', 'libgazebo_ros_init.so', 'libgazebo_ros_factory.so', '--verbose', world ], output='screen'),
-    ])
+  print('model path: ', model_path)
+
+  # Ignition gazebo
+  gz_sim_launch_file = PathJoinSubstitution([
+    FindPackageShare('ros_gz_sim'),
+    'launch',
+    'gz_sim.launch.py'
+  ])
+
+  gz_sim = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(gz_sim_launch_file),
+    launch_arguments=[(
+      'gz_args', [
+        # '--render-engine ',
+        # 'ogre2 ',
+        world,
+        ' -v 4',
+        ' --gui-config ',
+        PathJoinSubstitution([FindPackageShare(package_name), 'config', 'gazebo.config'])
+      ]
+    )]
+  )
+
+  # create and return launch description object
+  return LaunchDescription([
+    world_arg,
+    SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH', value=model_path),
+    SetEnvironmentVariable(name='GZ_GUI_PLUGIN_PATH', value=plugin_path),
+    gz_sim
+  ])

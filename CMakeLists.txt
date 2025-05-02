@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 project(edu_simulation)
 
 find_package(ament_cmake REQUIRED)
-find_package(gazebo_dev REQUIRED)
-find_package(gazebo_ros REQUIRED)
+# find_package(gazebo_dev REQUIRED)
+# find_package(gazebo_ros REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(edu_robot REQUIRED)
@@ -17,30 +17,24 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 
-add_subdirectory(src)
+# add_subdirectory(src)
 
 ament_package()
 
-install(
-  TARGETS
-    collision_avoidance_lidar_node
-    eduard-object-detection-sensor-plugin
-    eduard-model-plugin
-  DESTINATION lib/${PROJECT_NAME}
-)
-
-install(
-  PROGRAMS
-    launch/spawn_eduard.py
-  DESTINATION
-    lib/${PROJECT_NAME}
-)
+# install(
+#   TARGETS
+#     collision_avoidance_lidar_node
+#     eduard-object-detection-sensor-plugin
+#     eduard-model-plugin
+#   DESTINATION lib/${PROJECT_NAME}
+# )
 
 install(
   DIRECTORY
     model
     world
     parameter
+    config
   DESTINATION share/${PROJECT_NAME}/
 )
 
