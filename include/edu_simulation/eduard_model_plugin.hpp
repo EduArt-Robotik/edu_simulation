@@ -1,34 +1,25 @@
 /**
- * Copyright EduArt Robotik GmbH 2023
+ * Copyright EduArt Robotik GmbH 2025
  *
  * Author: Christian Wendt (christian.wendt@eduart-robotik.com)
  */
 #pragma once
 
-#include <gazebo/gazebo.hh>
-#include <rclcpp/rclcpp.hpp>
-#include <gazebo_ros/executor.hpp>
-
-// #include <
+#include <gz/sim/System.hh>
 
 namespace eduart {
 namespace simulation {
 
-class EduardModelPlugin : public gazebo::ModelPlugin
+class EduardModelPlugin : public gz::sim::System
+                        , public gz::sim::ISystemConfigure
 {
 public:
   EduardModelPlugin();
+  ~EduardModelPlugin() override;
 
-  void Load(gazebo::physics::ModelPtr _parent, sdf::ElementPtr _sdf) override;
-
-private:
-  void OnUpdate();
-
-  gazebo::physics::ModelPtr _model;
-  gazebo::event::ConnectionPtr _update_connection;
-  gazebo::event::ConnectionPtr _update_bot_connection;  
-  std::shared_ptr<gazebo_ros::Executor> _ros_executer;
-  std::shared_ptr<rclcpp::Node> _robot_ros_node;
+  void Configure(
+    const gz::sim::Entity &_entity, const std::shared_ptr<const sdf::Element> &_sdf, 
+    gz::sim::EntityComponentManager &_ecm, gz::sim::EventManager &_eventMgr) override;
 };
 
 } // end namespace simulation

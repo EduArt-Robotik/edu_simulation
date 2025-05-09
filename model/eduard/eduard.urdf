@@ -32,7 +32,7 @@
       <geometry>
         <box size="0.38 0.22 0.02"/>
       </geometry>
-    </collision>        
+    </collision>
   </link>
 
   <!-- Wheels -->
@@ -53,5 +53,11 @@
     <pose>0.125 0.18 0.02 1.570796327 0 0</pose>
   </xacro:wheel> 
 
-  
+
+  <!-- Plugins -->
+  <gazebo>
+    <plugin filename="libeduard-model-plugin.so" name="eduart::simulation::EduardModelPlugin">
+
+    </plugin>
+  </gazebo>    
 </robot>

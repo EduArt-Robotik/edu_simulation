@@ -1,6 +1,6 @@
 import os
 
-from ament_index_python.packages import get_package_share_directory
+from ament_index_python.packages import get_package_share_directory, get_package_prefix
 from launch import LaunchDescription
 
 from launch_ros.actions import Node
@@ -19,9 +19,10 @@ def generate_launch_description():
   package_name = 'edu_simulation'
   model_path = os.path.join(get_package_share_directory(package_name), 'model')
   model_path += ':' + os.path.join(get_package_share_directory(package_name), 'world')
-  plugin_path = os.path.join(get_package_share_directory(package_name), 'lib')
+  plugin_path = os.path.join(get_package_prefix(package_name), 'lib')
 
-  print('model path: ', model_path)
+  # print('model path: ', model_path)
+  # print('plugin path ', plugin_path)
 
   # Ignition gazebo
   gz_sim_launch_file = PathJoinSubstitution([
@@ -34,8 +35,8 @@ def generate_launch_description():
     PythonLaunchDescriptionSource(gz_sim_launch_file),
     launch_arguments=[(
       'gz_args', [
-        # '--render-engine ',
-        # 'ogre2 ',
+        '--render-engine ',
+        'ogre2 ',
         world,
         ' -v 4',
         ' --gui-config ',
@@ -48,6 +49,6 @@ def generate_launch_description():
   return LaunchDescription([
     world_arg,
     SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH', value=model_path),
-    SetEnvironmentVariable(name='GZ_GUI_PLUGIN_PATH', value=plugin_path),
+    SetEnvironmentVariable(name='GZ_SIM_SYSTEM_PLUGIN_PATH', value=plugin_path),
     gz_sim
   ])

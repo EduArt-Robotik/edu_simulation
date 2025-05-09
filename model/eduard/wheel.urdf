@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" xmlns:ignition="http://gazebosim.org/schema">
 
 <xacro:macro name="wheel" params="name type parent_link **pose">
+  <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
 
   <xacro:property name="wheel_link_name" value="${name}_wheel"/>
   <xacro:property name="wheel_joint_name" value="${wheel_link_name}_joint"/>
@@ -20,7 +21,7 @@
     <link name="${wheel_link_name}">
       <visual name="visual">
         <geometry>
-          <mesh filename="package://edu_simulation/model/eduard/mesh/mecanum-wheel-right-eduard.dae"/>
+          <mesh filename="model://eduard/mesh/mecanum-wheel-right-eduard.dae"/>
         </geometry>
       </visual>
       <collision name="collision">
@@ -29,6 +30,7 @@
           <cylinder radius="0.05" length="0.055"/>
         </geometry>          
       </collision>
+      <xacro:inertial_cylinder mass="1.0" radius="0.05" length="0.055"/>
 
       <!-- Wheel Friction -->
       <gazebo reference="${wheel_link_name}">
