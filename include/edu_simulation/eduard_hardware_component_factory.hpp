@@ -7,7 +7,7 @@
 
 #include <edu_robot/hardware_component_factory.hpp>
 
-#include <gazebo/gazebo.hh>
+#include <gz/sim/System.hh>
 
 namespace eduart {
 namespace simulation {
@@ -18,8 +18,8 @@ class EduardHardwareComponentFactory : public robot::HardwareComponentFactory
 {
 public:
   EduardHardwareComponentFactory(
-    std::shared_ptr<GazeboHardwareAdapter> hardware_adapter, gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf,
-    rclcpp::Node& ros_node);
+    std::shared_ptr<GazeboHardwareAdapter> hardware_adapter, const gz::sim::Entity& entity,
+    const std::shared_ptr<const sdf::Element>& sdf, gz::sim::EntityComponentManager& ecm, rclcpp::Node& ros_node);
 };
 
 } // end namespace simulation

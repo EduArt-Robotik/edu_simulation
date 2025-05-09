@@ -18,10 +18,38 @@ EduardModelPlugin::~EduardModelPlugin()
 }
 
 void EduardModelPlugin::Configure(
-  const gz::sim::Entity &_entity, const std::shared_ptr<const sdf::Element> &_sdf, 
-  gz::sim::EntityComponentManager &_ecm, gz::sim::EventManager &_eventMgr)
+  const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
+  gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager)
 {
   std::cout << __PRETTY_FUNCTION__ << std::endl;
+  _robot = std::make_shared<EduardGazeboBot>(entity, sdf, ecm, event_manager);
+}
+
+void EduardModelPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
+{
+  if (_robot == nullptr) {
+    return;
+  }
+
+  _robot->preUpdate(info, ecm);
+}
+
+void EduardModelPlugin::Update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
+{
+  if (_robot == nullptr) {
+    return;
+  }
+
+  _robot->update(info, ecm);
+}
+
+void EduardModelPlugin::PostUpdate(const gz::sim::UpdateInfo& info, const gz::sim::EntityComponentManager& ecm)
+{
+  if (_robot == nullptr) {
+    return;
+  }
+
+  _robot->postUpdate(info, ecm);
 }
 
 } // end namespace simulation
@@ -33,5 +61,8 @@ void EduardModelPlugin::Configure(
 GZ_ADD_PLUGIN(
   eduart::simulation::EduardModelPlugin,
   gz::sim::System,
-  eduart::simulation::EduardModelPlugin::ISystemConfigure
+  eduart::simulation::EduardModelPlugin::ISystemConfigure,
+  eduart::simulation::EduardModelPlugin::ISystemPreUpdate,
+  eduart::simulation::EduardModelPlugin::ISystemUpdate,
+  eduart::simulation::EduardModelPlugin::ISystemPostUpdate
 )

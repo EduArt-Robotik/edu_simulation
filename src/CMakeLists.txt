@@ -18,6 +18,8 @@
 # Eduard Model Plugin
 add_library(eduard-model-plugin SHARED
   eduard_model_plugin.cpp
+  eduard_gazebo_bot.cpp
+  eduard_hardware_component_factory.cpp
 )
 set_property(TARGET eduard-model-plugin PROPERTY CXX_STANDARD 17)
 target_include_directories(eduard-model-plugin
@@ -31,6 +33,7 @@ target_link_libraries(eduard-model-plugin
 )
 ament_target_dependencies(eduard-model-plugin
   "rclcpp"
+  "edu_robot"
 )
 
 # Collision Avoidance Lidar

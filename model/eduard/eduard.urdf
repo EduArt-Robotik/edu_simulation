@@ -9,26 +9,26 @@
 
   <!-- chassis -->
   <link name="base_link">
-    <pose>0 0 0 0 0 0</pose>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <inertial>
-      <pose>0 0 0 0 0 0</pose>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="5.0"/>
       <inertia ixx="0.00276" iyy="0.00882" izz="0.01119" ixy="0" ixz="0" iyz="0"/>
     </inertial>
     <visual name="visual">
-      <pose>0 0 0 0 0 1.570796327</pose>
+      <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
       <geometry>
         <mesh filename="model://eduard/mesh/eduard-blue-chassis.dae"/>
       </geometry>
     </visual>
     <collision name="collision_bottom">
-      <pose>0 0 0.01 0 0 0</pose>
+      <origin xyz="0 0 0.01" rpy="0 0 0"/>
       <geometry>
         <box size="0.38 0.22 0.02"/>
       </geometry>
     </collision>
     <collision name="collision_top">
-      <pose>0 0 0.1 0 0 0</pose>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <geometry>
         <box size="0.38 0.22 0.02"/>
       </geometry>
@@ -38,19 +38,19 @@
   <!-- Wheels -->
   <!-- Rear Right -->
   <xacro:wheel name="motor_a" type="$(arg wheel_type)" parent_link="base_link">
-    <pose>-0.125 -0.18 0.02 -1.570796327 0 0</pose>
+    <origin xyz="-0.125 -0.18 0.02" rpy="-1.570796327 0 0"/>
   </xacro:wheel>
   <!-- Front Right -->
   <xacro:wheel name="motor_b" type="$(arg wheel_type)" parent_link="base_link">
-    <pose>0.125 -0.18 0.02 -1.570796327 0 0</pose>
+    <origin xyz="0.125 -0.18 0.02" rpy="-1.570796327 0 0"/>
   </xacro:wheel>
   <!-- Rear Left -->
   <xacro:wheel name="motor_c" type="$(arg wheel_type)" parent_link="base_link">
-    <pose>-0.125 0.18 0.02 1.570796327 0 0</pose>
+    <origin xyz="-0.125 0.18 0.02" rpy="1.570796327 0 0"/>
   </xacro:wheel>  
   <!-- Front Left -->
   <xacro:wheel name="motor_d" type="$(arg wheel_type)" parent_link="base_link">
-    <pose>0.125 0.18 0.02 1.570796327 0 0</pose>
+    <origin xyz="0.125 0.18 0.02" rpy="1.570796327 0 0"/>
   </xacro:wheel> 
 
 

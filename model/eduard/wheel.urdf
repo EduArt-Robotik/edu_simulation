@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" xmlns:ignition="http://gazebosim.org/schema">
 
-<xacro:macro name="wheel" params="name type parent_link **pose">
+<xacro:macro name="wheel" params="name type parent_link *origin">
   <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
 
   <xacro:property name="wheel_link_name" value="${name}_wheel"/>
@@ -11,8 +11,8 @@
   <joint name="${wheel_joint_name}" type="continuous">
     <parent link="${parent_link}"/>
     <child link="${wheel_link_name}"/>
-    <xacro:insert_block name="pose"/>
     <axis xyz="0 0 1"/>
+    <xacro:insert_block name="origin"/>
   </joint>
 
   <!-- Mecanum Wheel Type -->
@@ -24,8 +24,7 @@
           <mesh filename="model://eduard/mesh/mecanum-wheel-right-eduard.dae"/>
         </geometry>
       </visual>
-      <collision name="collision">
-        <pose>0 0 0 0 0 0</pose>
+      <collision>
         <geometry>
           <cylinder radius="0.05" length="0.055"/>
         </geometry>          
