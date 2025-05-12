@@ -52,7 +52,9 @@
 
   <!-- Motor Controller Plugin for Controlling Wheel Rotation -->
   <gazebo>
-    
+    <plugin filename="libeduard-motor-plugin.so" name="eduart::simulation::GazeboMotorPlugin">
+      <joint_name>${wheel_joint_name}</joint_name>
+    </plugin>
   </gazebo>
 </xacro:macro>
 </robot>

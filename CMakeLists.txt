@@ -31,6 +31,7 @@ install(
     # collision_avoidance_lidar_node
     # eduard-object-detection-sensor-plugin
     eduard-model-plugin
+    eduard-motor-plugin
   DESTINATION lib
 )
 
