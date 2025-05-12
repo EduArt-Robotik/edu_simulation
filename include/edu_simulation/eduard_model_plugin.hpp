@@ -9,6 +9,9 @@
 
 #include <gz/sim/System.hh>
 
+#include <rclcpp/rclcpp.hpp>
+#include <rclcpp/executors.hpp>
+
 namespace eduart {
 namespace simulation {
 
@@ -32,6 +35,8 @@ public:
 
 private:
   std::shared_ptr<EduardGazeboBot> _robot;
+  std::shared_ptr<rclcpp::executors::MultiThreadedExecutor> _ros_executer;
+  std::thread _run_executer;
 };
 
 } // end namespace simulation

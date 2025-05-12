@@ -12,12 +12,12 @@
 namespace eduart {
 namespace simulation {
 
-class EduardGazeboBot// : public robot::bot::EduardV2
+class EduardGazeboBot : public robot::bot::EduardV2
 {
 public:
   EduardGazeboBot(const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
     gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager);
-  // ~EduardGazeboBot() override;
+  ~EduardGazeboBot() override;
 
   void preUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm);
   void update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm);

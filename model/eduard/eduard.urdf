@@ -57,7 +57,10 @@
   <!-- Plugins -->
   <gazebo>
     <plugin filename="libeduard-model-plugin.so" name="eduart::simulation::EduardModelPlugin">
-
+      <motor name="motor_a" joint_name="motor_a_wheel_joint"/>
+      <motor name="motor_b" joint_name="motor_b_wheel_joint"/>
+      <motor name="motor_c" joint_name="motor_c_wheel_joint"/>
+      <motor name="motor_d" joint_name="motor_d_wheel_joint"/>
     </plugin>
   </gazebo>    
 </robot>

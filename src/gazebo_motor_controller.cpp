@@ -1,27 +1,18 @@
 #include "edu_simulation/gazebo_motor_controller.hpp"
 
-#include <gazebo/physics/World.hh>
+#include <gz/msgs.hh>
 
 namespace eduart {
 namespace simulation {
 
-GazeboMotorController::GazeboMotorController(
-  const std::string& name, gazebo::physics::ModelPtr model, gazebo::physics::JointPtr joint, const bool is_mecanum)
+GazeboMotorController::GazeboMotorController(const std::string& name, const std::string& gz_velocity_topic_name)
   : robot::MotorController::HardwareInterface(name, 1)
-  , _is_mecanum(is_mecanum)
+  , _gz_node(std::make_shared<gz::transport::Node>())
   , _low_pass_filter({0.2f})
   , _measured_rpm(1, 0.0)
-  , _joint(joint)
-  , _controller(model)
 {
-  if (_is_mecanum == false) {
-    // _update_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
-    //   std::bind(&gazebo::physics::JointController::Update, &_controller)
-    // );
-    _update_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
-      std::bind(&GazeboMotorController::processController, this)
-    );
-  }
+  std::cout << "gz velocity topic name = " << gz_velocity_topic_name << std::endl;
+  _gz_pub_velocity = _gz_node->Advertise<gz::msgs::Double>(gz_velocity_topic_name);
 }
 
 GazeboMotorController::~GazeboMotorController()
@@ -37,52 +28,20 @@ void GazeboMotorController::processSetValue(const std::vector<robot::Rpm>& rpm)
 
   // if motor controller is not enabled set set point to zero
   const robot::Rpm set_point = _is_enabled ? rpm[0] : robot::Rpm(0.0);
+  gz::msgs::Double velocity_msgs;
 
-  if (_is_mecanum) {
-    _measured_rpm[0] = _low_pass_filter(set_point);
-    _callback_process_measurement(_measured_rpm, _is_enabled);
-  }
-  else {
-    _controller.SetVelocityTarget(_joint->GetScopedName(), set_point.radps());
-    // _joint->SetParam("fmax", 0, 100.0);    
-
-    // _joint->SetVelocity(0, _low_pass_filter(rpm[0].radps()));
-    _measured_rpm[0] = robot::Rpm::fromRadps(_joint->GetVelocity(0));
-    _callback_process_measurement(_measured_rpm, _is_enabled);
-  }
+  velocity_msgs.set_data(_low_pass_filter(set_point.radps()));
+  _gz_pub_velocity.Publish(velocity_msgs);
 }
 
 void GazeboMotorController::initialize(const robot::Motor::Parameter &parameter)
 {
-  if (_is_mecanum == false) {
-    gazebo::common::PID pid(
-       parameter.kp,
-       // only work with p controller
-       0.0, // parameter.ki,
-       0.0, // parameter.kd,
-       0.0,
-       0.0,
-       robot::Rpm(parameter.max_rpm).radps(),
-      -robot::Rpm(parameter.max_rpm).radps()
-    );
-    _controller.AddJoint(_joint);
-    _controller.SetVelocityPID(_joint->GetScopedName(), pid);
-    _joint->SetVelocityLimit(0, robot::Rpm(parameter.max_rpm).radps());
-    // torque 0.9 Nm
-    // 62 rpm
-  }
-  else {
-    // motors should run free
-    _joint->SetEffortLimit(0, 0.0);
-    _joint->SetParam("fmax", 0, 0.0);
-  }
+  _low_pass_filter.clear();
 }
 
 void GazeboMotorController::processController()
 {
-  if ((_joint->GetWorld()->SimTime() - _controller.GetLastUpdateTime()).Double() > 0.01) { // Every 10 ms.
-    _controller.Update();
-  }
+
 }
 
 } // end namespace simulation

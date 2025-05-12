@@ -62,7 +62,7 @@ void GazeboMotorPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::Enti
 
   // std::cout << "set velocity" << std::endl;
   if (ecm.SetComponentData<gz::sim::components::JointVelocityCmd>(_joint_entity, _velocity) == false) {
-    std::cout << "error during setting velocity (" << _velocity[0] << ") to joint" << std::endl;
+    // std::cout << "error during setting velocity (" << _velocity[0] << ") to joint" << std::endl;
   }
 }
 

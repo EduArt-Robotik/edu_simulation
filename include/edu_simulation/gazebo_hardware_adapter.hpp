@@ -7,7 +7,7 @@
 
 #include <edu_robot/hardware_robot_interface.hpp>
 
-#include <gazebo/gazebo.hh>
+#include <sdf/Element.hh>
 
 namespace eduart {
 namespace simulation {
@@ -17,7 +17,7 @@ class GazeboMotorController;
 class GazeboHardwareAdapter : public robot::HardwareRobotInterface
 {
 public:
-  GazeboHardwareAdapter(sdf::ElementPtr sdf);
+  GazeboHardwareAdapter(const sdf::ElementConstPtr sdf);
   ~GazeboHardwareAdapter() override;
 
   void enable() override;

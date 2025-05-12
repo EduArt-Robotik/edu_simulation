@@ -19,7 +19,12 @@
 add_library(eduard-model-plugin SHARED
   eduard_model_plugin.cpp
   eduard_gazebo_bot.cpp
-  # eduard_hardware_component_factory.cpp
+  gazebo_motor_controller.cpp
+  gazebo_imu_sensor.cpp
+  gazebo_range_sensor.cpp
+  gazebo_lighting.cpp
+  gazebo_hardware_adapter.cpp
+  eduard_hardware_component_factory.cpp
 )
 set_property(TARGET eduard-model-plugin PROPERTY CXX_STANDARD 17)
 target_include_directories(eduard-model-plugin

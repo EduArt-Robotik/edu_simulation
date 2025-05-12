@@ -6,10 +6,12 @@ namespace simulation {
 EduardModelPlugin::EduardModelPlugin()
 {
   std::cout << __PRETTY_FUNCTION__ << std::endl;
-  // if (rclcpp::ok() == false) {
-  //   rclcpp::init(0, 0);
-  // }
-  // _ros_executer = std::make_shared<gazebo_ros::Executor>();
+  if (rclcpp::ok() == false) {
+    rclcpp::init(
+      0, 0, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None
+    );
+  }
+  _ros_executer = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
 }
 
 EduardModelPlugin::~EduardModelPlugin()
@@ -23,6 +25,10 @@ void EduardModelPlugin::Configure(
 {
   std::cout << __PRETTY_FUNCTION__ << std::endl;
   _robot = std::make_shared<EduardGazeboBot>(entity, sdf, ecm, event_manager);
+  _ros_executer->add_node(_robot);
+  _run_executer = std::thread([this](){
+    _ros_executer->spin();
+  });
 }
 
 void EduardModelPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
@@ -31,7 +37,7 @@ void EduardModelPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::Enti
     return;
   }
 
-  _robot->preUpdate(info, ecm);
+  // _robot->preUpdate(info, ecm);
 }
 
 void EduardModelPlugin::Update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
@@ -40,7 +46,7 @@ void EduardModelPlugin::Update(const gz::sim::UpdateInfo& info, gz::sim::EntityC
     return;
   }
 
-  _robot->update(info, ecm);
+  // _robot->update(info, ecm);
 }
 
 void EduardModelPlugin::PostUpdate(const gz::sim::UpdateInfo& info, const gz::sim::EntityComponentManager& ecm)
@@ -49,7 +55,7 @@ void EduardModelPlugin::PostUpdate(const gz::sim::UpdateInfo& info, const gz::si
     return;
   }
 
-  _robot->postUpdate(info, ecm);
+  // _robot->postUpdate(info, ecm);
 }
 
 } // end namespace simulation

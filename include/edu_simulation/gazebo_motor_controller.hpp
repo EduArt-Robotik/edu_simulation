@@ -8,14 +8,15 @@
 #include <edu_robot/motor_controller.hpp>
 #include <edu_robot/algorithm/low_pass_filter.hpp>
 
+#include <gz/transport.hh>
+
 namespace eduart {
 namespace simulation {
 
 class GazeboMotorController : public robot::MotorController::HardwareInterface
 {
 public:
-  GazeboMotorController(
-    const std::string& name, gazebo::physics::ModelPtr model, gazebo::physics::JointPtr joint);
+  GazeboMotorController(const std::string& name, const std::string& gz_velocity_topic_name);
   ~GazeboMotorController() override;
 
   void processSetValue(const std::vector<robot::Rpm>& rpm) override;
@@ -29,6 +30,9 @@ public:
 
 private:
   void processController();
+
+  std::shared_ptr<gz::transport::Node> _gz_node;
+  gz::transport::Node::Publisher _gz_pub_velocity;
 
   bool _is_enabled = false;
   robot::algorithm::LowPassFiler<float> _low_pass_filter;
