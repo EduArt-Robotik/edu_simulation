@@ -16,7 +16,8 @@ namespace simulation {
 class GazeboMotorController : public robot::MotorController::HardwareInterface
 {
 public:
-  GazeboMotorController(const std::string& name, const std::string& gz_velocity_topic_name);
+  GazeboMotorController(
+    const std::string& name, const std::string& gz_velocity_topic_name, const std::string& gz_feedback_topic_name);
   ~GazeboMotorController() override;
 
   void processSetValue(const std::vector<robot::Rpm>& rpm) override;
@@ -29,7 +30,7 @@ public:
   }
 
 private:
-  void processController();
+  void processFeedback(const gz::msgs::Double& velocity);
 
   std::shared_ptr<gz::transport::Node> _gz_node;
   gz::transport::Node::Publisher _gz_pub_velocity;

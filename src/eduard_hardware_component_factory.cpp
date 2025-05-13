@@ -52,7 +52,9 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
     std::cout << "joint name = " << joint_name << std::endl;
   
     auto motor_controller_hardware = std::make_shared<GazeboMotorController>(
-      name, model_name + "/" + joint_name + "/" + "set_joint_velocity"
+      name,
+      model_name + "/" + joint_name + "/" + "set_joint_velocity",
+      model_name + "/" + joint_name + "/" + "get_joint_velocity"
     );
 
     _motor_controller_hardware.push_back(motor_controller_hardware);

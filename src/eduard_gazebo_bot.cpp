@@ -26,7 +26,7 @@ EduardGazeboBot::EduardGazeboBot(
   EduardHardwareComponentFactory factory(hardware_adapter, entity, sdf, ecm, *this);
 
   initialize(factory);
-  // _mode_state_machine.switchToMode(eduart::robot::RobotMode::INACTIVE);
+  _mode_state_machine.switchToMode(eduart::robot::RobotMode::INACTIVE);
 
 }
 

@@ -38,9 +38,9 @@ def generate_launch_description():
         '--render-engine ',
         'ogre2 ',
         world,
-        ' -v 4',
-        ' --gui-config ',
-        PathJoinSubstitution([FindPackageShare(package_name), 'config', 'gazebo.config'])
+        # ' -v 4',
+        # ' --gui-config ',
+        # PathJoinSubstitution([FindPackageShare(package_name), 'config', 'gazebo.config'])
       ]
     )]
   )

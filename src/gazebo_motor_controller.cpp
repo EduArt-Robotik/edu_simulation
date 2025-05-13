@@ -5,14 +5,15 @@
 namespace eduart {
 namespace simulation {
 
-GazeboMotorController::GazeboMotorController(const std::string& name, const std::string& gz_velocity_topic_name)
+GazeboMotorController::GazeboMotorController(
+  const std::string& name, const std::string& gz_velocity_topic_name, const std::string& gz_feedback_topic_name)
   : robot::MotorController::HardwareInterface(name, 1)
   , _gz_node(std::make_shared<gz::transport::Node>())
   , _low_pass_filter({0.2f})
   , _measured_rpm(1, 0.0)
 {
-  std::cout << "gz velocity topic name = " << gz_velocity_topic_name << std::endl;
   _gz_pub_velocity = _gz_node->Advertise<gz::msgs::Double>(gz_velocity_topic_name);
+  _gz_node->Subscribe(gz_feedback_topic_name, &GazeboMotorController::processFeedback, this);
 }
 
 GazeboMotorController::~GazeboMotorController()
@@ -39,9 +40,10 @@ void GazeboMotorController::initialize(const robot::Motor::Parameter &parameter)
   _low_pass_filter.clear();
 }
 
-void GazeboMotorController::processController()
+void GazeboMotorController::processFeedback(const gz::msgs::Double& velocity)
 {
-
+  _measured_rpm[0] = robot::Rpm::fromRadps(velocity.data());
+  _callback_process_measurement(_measured_rpm, _is_enabled);
 }
 
 } // end namespace simulation

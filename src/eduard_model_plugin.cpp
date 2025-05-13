@@ -16,7 +16,8 @@ EduardModelPlugin::EduardModelPlugin()
 
 EduardModelPlugin::~EduardModelPlugin()
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
+  // \todo is the thread joinable here always?
+  _run_executer.join();
 }
 
 void EduardModelPlugin::Configure(

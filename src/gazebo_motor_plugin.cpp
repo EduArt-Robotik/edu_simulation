@@ -43,6 +43,11 @@ void GazeboMotorPlugin::Configure(
   }
 
   // Communication to Outer System
+  gz::transport::AdvertiseMessageOptions opts;
+  opts.SetMsgsPerSec(20);
+  _pub_velocity = _node->Advertise<gz::msgs::Double>(
+    model_name + '/' + joint_name + "/get_joint_velocity", opts
+  );
   _node->Subscribe(
     model_name + '/' + joint_name + "/set_joint_velocity",
     &GazeboMotorPlugin::callbackReceiveJointVelocity, this
@@ -69,19 +74,14 @@ void GazeboMotorPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::Enti
 void GazeboMotorPlugin::PostUpdate(const gz::sim::UpdateInfo& info, const gz::sim::EntityComponentManager& ecm)
 {
   const auto velocity = ecm.Component<gz::sim::components::JointVelocity>(_joint_entity)->Data();
-  // std::cout << "read velocity: ";
-  // for (const auto data : velocity) {
-  //   std::cout << data << " ";
-  // }
-  // std::cout << std::endl;
+  gz::msgs::Double velocity_msgs;
+  velocity_msgs.set_data(velocity[0]);
+  _pub_velocity.Publish(velocity_msgs);
 }
 
 void GazeboMotorPlugin::callbackReceiveJointVelocity(const gz::msgs::Double& velocity)
 {
-  std::cout << "received velocity = " << velocity.data() << std::endl;
   _velocity[0] = velocity.data();
-  // _velocity[1] = velocity.data();
-  // _velocity[2] = velocity.data();
 }
 
 } // end namespace simulation
