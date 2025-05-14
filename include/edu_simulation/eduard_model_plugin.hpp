@@ -37,6 +37,7 @@ private:
   std::shared_ptr<EduardGazeboBot> _robot;
   std::shared_ptr<rclcpp::executors::MultiThreadedExecutor> _ros_executer;
   std::thread _run_executer;
+  std::atomic_bool _is_running{false};
 };
 
 } // end namespace simulation

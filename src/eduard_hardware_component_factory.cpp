@@ -48,7 +48,7 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
     const auto& name = motor->GetAttribute("name")->GetAsString();
     const auto& joint_name = motor->GetAttribute("joint_name")->GetAsString();
     
-    std::cout << "motor name = " << model_name << std::endl;
+    std::cout << "motor name = " << name << std::endl;
     std::cout << "joint name = " << joint_name << std::endl;
   
     auto motor_controller_hardware = std::make_shared<GazeboMotorController>(

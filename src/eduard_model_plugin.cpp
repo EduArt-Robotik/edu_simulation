@@ -3,6 +3,8 @@
 namespace eduart {
 namespace simulation {
 
+using namespace std::chrono_literals;
+
 EduardModelPlugin::EduardModelPlugin()
 {
   std::cout << __PRETTY_FUNCTION__ << std::endl;
@@ -16,7 +18,8 @@ EduardModelPlugin::EduardModelPlugin()
 
 EduardModelPlugin::~EduardModelPlugin()
 {
-  // \todo is the thread joinable here always?
+  std::cout << __PRETTY_FUNCTION__ << std::endl;
+  _is_running = false;
   _run_executer.join();
 }
 
@@ -27,8 +30,11 @@ void EduardModelPlugin::Configure(
   std::cout << __PRETTY_FUNCTION__ << std::endl;
   _robot = std::make_shared<EduardGazeboBot>(entity, sdf, ecm, event_manager);
   _ros_executer->add_node(_robot);
+  _is_running = true;
   _run_executer = std::thread([this](){
-    _ros_executer->spin();
+    while (_is_running) {
+      _ros_executer->spin_once(100ms);
+    }
   });
 }
 
