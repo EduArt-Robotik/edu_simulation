@@ -78,31 +78,15 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
     //   std::cout << "add range sensor hardware: " << sensor_name << std::endl;
     //   _hardware[sensor_name] = std::make_shared<GazeboRangeSensor>(sensor, ros_node);
     // }
-    // // IMU Sensor
-    // else if (link_name.find("imu") != std::string::npos) {
-    //   auto sensor_sdf = link->GetElement("sensor");
+    // IMU Sensor
+  _hardware["imu"] = std::make_shared<GazeboImuSensor>(model_name, ros_node);
 
-    //   if (sensor_sdf == nullptr) {
-    //     throw std::invalid_argument("Range sensor requires a sensor tag.");
-    //   }
-
-    //   const auto sensor_name = sensor_sdf->GetAttribute("name")->GetAsString();
-    //   auto sensor = gazebo::sensors::get_sensor(get_full_name(sensor_sdf));
-
-    //   if (sensor == nullptr) {
-    //     throw std::runtime_error("No sensor found in simulation. Actually this should not happen!");
-    //   }
-
-    //   std::cout << "add imu sensor hardware: " << sensor_name << std::endl;
-    //   _hardware[sensor_name] = std::make_shared<GazeboImuSensor>(sensor, ros_node);
-    // }
 
   _hardware["range/front/left"] = std::make_shared<GazeboRangeSensor>(ros_node);
   _hardware["range/front/right"] = std::make_shared<GazeboRangeSensor>(ros_node);
   _hardware["range/rear/left"] = std::make_shared<GazeboRangeSensor>(ros_node);
   _hardware["range/rear/right"] = std::make_shared<GazeboRangeSensor>(ros_node);
 
-  _hardware["imu"] = std::make_shared<GazeboImuSensor>(ros_node);
 
   _hardware["head"] = std::make_shared<GazeboLighting>();
   _hardware["right_side"] = std::make_shared<GazeboLighting>();

@@ -5,10 +5,9 @@ namespace simulation {
 
 using namespace std::chrono_literals;
 
-GazeboImuSensor::GazeboImuSensor(rclcpp::Node& ros_node)
-  : _timer_get_measurement(ros_node.create_wall_timer(
-      20ms, std::bind(&GazeboImuSensor::getMeasurement, this))
-    )
+GazeboImuSensor::GazeboImuSensor(const std::string& model_name, rclcpp::Node& ros_node)
+  : _gz_node(std::make_shared<gz::transport::Node>())
+  , _model_name(model_name)
 {
 
 }
@@ -21,28 +20,26 @@ GazeboImuSensor::~GazeboImuSensor()
 void GazeboImuSensor::initialize(const robot::SensorImu::Parameter &parameter)
 {
   (void)parameter;
+  _gz_node->Subscribe(_model_name + "/imu", &GazeboImuSensor::receiveMeasurement, this);
 }
 
-void GazeboImuSensor::getMeasurement()
+void GazeboImuSensor::receiveMeasurement(const gz::msgs::IMU& measurement)
 {
   if (_callback_process_measurement == nullptr) {
     return;
   }
 
-  // \todo check sim time as measurement time
-  // auto world = gazebo::physics::get_world();
-  // const gazebo::common::Time cur_time = world->SimTime(); 
-  // const auto sensor_orientation = _sensor->Orientation();
-  // const Eigen::Quaterniond orientation(
-  //   sensor_orientation.W(), sensor_orientation.X(), sensor_orientation.Y(), sensor_orientation.Z());
+  const auto sensor_orientation = measurement.orientation();
+  const Eigen::Quaterniond orientation(
+    sensor_orientation.w(), sensor_orientation.x(), sensor_orientation.y(), sensor_orientation.z());
 
-  // const auto sensor_acceleration = _sensor->LinearAcceleration();
-  // const Eigen::Vector3d linear_acceleration(sensor_acceleration.X(), sensor_acceleration.Y(), sensor_acceleration.Z());
+  const auto sensor_acceleration = measurement.linear_acceleration();
+  const Eigen::Vector3d linear_acceleration(sensor_acceleration.x(), sensor_acceleration.y(), sensor_acceleration.z());
   
-  // const auto sensor_velocity = _sensor->AngularVelocity();
-  // const Eigen::Vector3d angular_velocity(sensor_velocity.X(), sensor_velocity.Y(), sensor_velocity.Z());
+  const auto sensor_velocity = measurement.angular_velocity();
+  const Eigen::Vector3d angular_velocity(sensor_velocity.x(), sensor_velocity.y(), sensor_velocity.z());
 
-  // _callback_process_measurement(orientation, angular_velocity, linear_acceleration);
+  _callback_process_measurement(orientation, angular_velocity, linear_acceleration);
 }
 
 } // end namespace simulation

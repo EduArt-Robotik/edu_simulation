@@ -23,8 +23,6 @@ void GazeboMotorPlugin::Configure(
   const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
   gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager)
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
-
   // Communication to Inner System
   if (sdf->HasElement("joint_name") == false) {
     std::cout << "no joint name present in plugin section --> cancel configuring" << std::endl;
@@ -44,7 +42,7 @@ void GazeboMotorPlugin::Configure(
 
   // Communication to Outer System
   gz::transport::AdvertiseMessageOptions opts;
-  opts.SetMsgsPerSec(20);
+  opts.SetMsgsPerSec(20); // limit publishing frequency to 20 Hz
   _pub_velocity = _node->Advertise<gz::msgs::Double>(
     model_name + '/' + joint_name + "/get_joint_velocity", opts
   );
@@ -61,11 +59,6 @@ void GazeboMotorPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::Enti
     return;
   }
 
-  // gz::sim::Joint joint(_joint_entity);
-  // joint.SetVelocity(ecm, _velocity);
-
-
-  // std::cout << "set velocity" << std::endl;
   if (ecm.SetComponentData<gz::sim::components::JointVelocityCmd>(_joint_entity, _velocity) == false) {
     // std::cout << "error during setting velocity (" << _velocity[0] << ") to joint" << std::endl;
   }

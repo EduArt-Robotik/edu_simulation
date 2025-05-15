@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" xmlns:gz="http://gazebosim.org/schema" name="$(arg robot_name)">
   <!-- Includes -->
   <xacro:include filename="$(find edu_simulation)/model/eduard/wheel.urdf"/>
+  <xacro:include filename="$(find edu_simulation)/model/eduard/imu.urdf"/>
 
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
@@ -107,6 +108,11 @@
     </collision>        
   </gazebo>      
 
+  <!-- Sensors -->
+  <xacro:imu name="imu" parent_link="base_link" topic_name="$(arg robot_name)/imu" visualize="false">
+    <origin xyz="0 0 0.025" rpy="0 0 0"/>
+  </xacro:imu>
+
   <!-- Plugins -->
   <gazebo>
     <plugin filename="libeduard-model-plugin.so" name="eduart::simulation::EduardModelPlugin">
@@ -115,5 +121,11 @@
       <motor name="motor_c" joint_name="motor_c_wheel_joint"/>
       <motor name="motor_d" joint_name="motor_d_wheel_joint"/>
     </plugin>
-  </gazebo>    
+  </gazebo>
+
+  <!-- World Plugins needed for Sensors -->
+  <!-- TODO: should it moved to the world tag? Or is it okay here? Maybe its loaded multiple times here... -->
+  <gazebo>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+  </gazebo>
 </robot>
