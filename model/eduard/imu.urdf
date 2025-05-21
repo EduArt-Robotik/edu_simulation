@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="imu" params="name parent_link topic_name *origin visualize:=false">
+  <xacro:macro name="imu" params="name parent_link topic_name visualize:=false *origin">
     <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
 
     <xacro:property name="size" value="0.05"/>
 
     <link name="${name}_link">
-      <xacro:insert_block name="origin"/>
-      <pose>0 0 0.025 0 0 0</pose>
       <visual>
         <geometry>
           <box size="${size} ${size} ${size}"/>
@@ -23,6 +21,7 @@
     </link>
 
     <joint name="${name}_joint" type="continuous">
+      <xacro:insert_block name="origin"/>
       <parent link="${parent_link}"/>
       <child link="${name}_link"/>
     </joint>
@@ -33,7 +32,6 @@
         <update_rate>10</update_rate>
         <always_on>true</always_on>
         <visualize>${visualize}</visualize>
-        <!-- <gz_frame_id>${name}_link</gz_frame_id> -->
       </sensor>
     </gazebo>
 

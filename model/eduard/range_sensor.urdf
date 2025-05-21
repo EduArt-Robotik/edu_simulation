@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="range_sensor" params="name parent_link topic_name visualize:=false *origin">
+    <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
+
+    <xacro:property name="size" value="0.01"/>
+
+    <link name="${name}_link">
+      <visual>
+        <geometry>
+          <box size="${size} ${size} ${size}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="${size} ${size} ${size}"/>
+        </geometry>
+      </collision>
+      <xacro:inertial_block mass="0.1" width="${size}" length="${size}" height="${size}"/>
+    </link>
+
+    <joint name="${name}_joint" type="continuous">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent_link}"/>
+      <child link="${name}_link"/>
+    </joint>
+
+    <gazebo reference="${name}_link">
+      <sensor name="${name}_sensor" type="gpu_ray">
+        <topic>${topic_name}</topic>
+        <update_rate>10</update_rate>
+        <always_on>true</always_on>
+        <visualize>${visualize}</visualize>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>8</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.392699093</min_angle>
+              <max_angle>0.392699093</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>8</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.392699093</min_angle>
+              <max_angle>0.392699093</max_angle>
+            </vertical>          
+          </scan>
+          <range>
+            <min>0.01</min>
+            <max>2.00</max>
+          </range>
+        </ray>
+      </sensor>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

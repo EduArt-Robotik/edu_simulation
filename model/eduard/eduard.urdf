@@ -3,6 +3,7 @@
   <!-- Includes -->
   <xacro:include filename="$(find edu_simulation)/model/eduard/wheel.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/imu.urdf"/>
+  <xacro:include filename="$(find edu_simulation)/model/eduard/range_sensor.urdf"/>
 
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
@@ -113,6 +114,19 @@
     <origin xyz="0 0 0.025" rpy="0 0 0"/>
   </xacro:imu>
 
+  <xacro:range_sensor name="range_front_left" parent_link="base_link" topic_name="$(arg robot_name)/range/front/left" visualize="true">
+    <origin xyz="0.17 0.063 0.045" rpy="0 0 0"/>
+  </xacro:range_sensor>
+  <xacro:range_sensor name="range_front_right" parent_link="base_link" topic_name="$(arg robot_name)/range/front/right" visualize="true">
+    <origin xyz="0.17 -0.063 0.045" rpy="0 0 0"/>
+  </xacro:range_sensor>
+  <xacro:range_sensor name="range_rear_left" parent_link="base_link" topic_name="$(arg robot_name)/range/rear/left" visualize="true">
+    <origin xyz="-0.17 0.063 0.05" rpy="0 0 3.141592654"/>
+  </xacro:range_sensor>
+  <xacro:range_sensor name="range_rear_right" parent_link="base_link" topic_name="$(arg robot_name)/range/rear/right" visualize="true">
+    <origin xyz="-0.17 -0.063 0.05" rpy="0 0 3.141592654"/>
+  </xacro:range_sensor>
+
   <!-- Plugins -->
   <gazebo>
     <plugin filename="libeduard-model-plugin.so" name="eduart::simulation::EduardModelPlugin">
@@ -127,5 +141,6 @@
   <!-- TODO: should it moved to the world tag? Or is it okay here? Maybe its loaded multiple times here... -->
   <gazebo>
     <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors"/>
   </gazebo>
 </robot>
