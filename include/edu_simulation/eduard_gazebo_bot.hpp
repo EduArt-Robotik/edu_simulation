@@ -5,14 +5,14 @@
  */
 #pragma once
 
-#include <edu_robot/bot/eduard_v2.hpp>
+#include <edu_robot/bot/eduard_v3.hpp>
 
 #include <gz/sim/System.hh>
 
 namespace eduart {
 namespace simulation {
 
-class EduardGazeboBot : public robot::bot::EduardV2
+class EduardGazeboBot : public robot::bot::EduardV3
 {
 public:
   EduardGazeboBot(const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
