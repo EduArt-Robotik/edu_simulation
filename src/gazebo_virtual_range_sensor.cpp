@@ -56,7 +56,7 @@ void SensorVirtualRange::processPointCloudMeasurement(sensor_msgs::msg::PointClo
       continue;      
     }
     //else: valid distance measurement
-    distances.push_back(p.z());
+    distances.push_back(p.x());
   }
 
   // sort distances and pick second closest one

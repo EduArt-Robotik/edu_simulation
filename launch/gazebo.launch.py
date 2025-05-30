@@ -21,9 +21,6 @@ def generate_launch_description():
   model_path += ':' + os.path.join(get_package_share_directory(package_name), 'world')
   plugin_path = os.path.join(get_package_prefix(package_name), 'lib')
 
-  # print('model path: ', model_path)
-  # print('plugin path ', plugin_path)
-
   # Ignition gazebo
   gz_sim_launch_file = PathJoinSubstitution([
     FindPackageShare('ros_gz_sim'),

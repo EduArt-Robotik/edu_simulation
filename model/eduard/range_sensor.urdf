@@ -51,6 +51,11 @@
             <min>0.01</min>
             <max>2.00</max>
           </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
         </ray>
       </sensor>
     </gazebo>
