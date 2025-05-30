@@ -3,73 +3,35 @@ Contains Gazebo simulation models for all EduArt's robots.
 
 ## Installation
 
-### Native
-If you want to run the simulation on your computer follow these steps.
-=======
+### Preparation
 
-### Native
-If you want to run the simulation on your computer follow these steps.
-
-The simulation environment used for this package is gazebo
+Before compiling and installing the simulation it is required to clone this repository and also to clone EduArt dependencies into your ROS2 workspace.
 
 ```bash
-sudo apt install ros-humble-gazebo-plugins
-```
-
-For cloning this package you need "git":
-```bash
-sudo apt install git
-```
-
-Clone the package in your src-folder:
-```bash
-cd ~/<your ros2 workspace>/src
-git clone https://github.com/EduArt-Robotik/edu_simulation.git
-```
-
-You need the edu_robot package. Currently you have to use the "develop"-branch. Check out the branch:
-```bash
-#If not already cloned clone edu_robot
 cd ~/<your ros2 workspace>/src
 git clone https://github.com/EduArt-Robotik/edu_robot.git
-
-#Now change the branch!
-cd <your ros2 workspace>/src/edu_robot
-git checkout develop
-
-#Check if the branch has been changed
-git branch
+git clone https://github.com/EduArt-Robotik/edu_robot_control.git
+git clone https://github.com/EduArt-Robotik/edu_simulation.git
+cd ..
 ```
 
-Build edu_robot
-```bash
-cd <your ros2 workspace>
-colcon build --packages-select edu_robot --event-handlers console_direct+ --symlink-install
-```
-
-Build edu_simulation
-```bash
-cd <your ros2 workspace>
-colcon build --packages-select edu_simulation --event-handlers console_direct+ --symlink-install
-```
-
-## Launching Simulator
-
-After the package was built Gazebo it will be launched using a provided ROS launch file. This launch file adds all content coming with this package.
-
-Source your ROS2 environment if not already done;
+To be able to compile the cloned repositories following packages must be installed. It can simple be done be executing:
 
 ```bash
-source ~/<your ros2 workspace>/install/setup.bash
+sudo apt-get install curl
+sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+sudo apt-get update
+sudo apt-get install gz-harmonic
+
+sudo apt install 
+ros-jazzy-hardware-interface
+ros-jazzy-laser-geometry
+ros-jazzy-gz-sim-vendor
+ros-jazzy-ros-gz-bridge
+ros-jazzy-ros-gz-sim
+
 ```
-
-Now you can launch Gazebo using following launch file:
-
-```bash
-ros2 launch edu_simulation eduard.launch.py
-```
-
->**Note**: The first launch takes the same minutes. The next launches will take much less time.
 
 ## Models
 
