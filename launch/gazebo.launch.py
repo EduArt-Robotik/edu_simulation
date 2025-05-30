@@ -10,6 +10,8 @@ from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJ
 from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription, ExecuteProcess, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
+from ros_gz_bridge.actions import RosGzBridge
+
 def generate_launch_description():
   # Launch Arguments
   world = LaunchConfiguration('world')
@@ -21,7 +23,7 @@ def generate_launch_description():
   model_path += ':' + os.path.join(get_package_share_directory(package_name), 'world')
   plugin_path = os.path.join(get_package_prefix(package_name), 'lib')
 
-  # Ignition gazebo
+  # Gazebo Harmonic
   gz_sim_launch_file = PathJoinSubstitution([
     FindPackageShare('ros_gz_sim'),
     'launch',
@@ -42,10 +44,23 @@ def generate_launch_description():
     )]
   )
 
+  # Gazebo ROS2 Bridge
+  bridge_parameter_file = PathJoinSubstitution([
+    FindPackageShare('edu_simulation'),
+    'parameter',
+    'gz_ros_bridge.yaml'
+  ])
+
+  bridge = RosGzBridge(
+    bridge_name='gz_ros_bridge',
+    config_file=bridge_parameter_file
+  )
+
   # create and return launch description object
   return LaunchDescription([
     world_arg,
     SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH', value=model_path),
     SetEnvironmentVariable(name='GZ_SIM_SYSTEM_PLUGIN_PATH', value=plugin_path),
-    gz_sim
+    gz_sim,
+    bridge
   ])

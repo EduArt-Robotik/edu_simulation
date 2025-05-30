@@ -9,8 +9,16 @@ EduardModelPlugin::EduardModelPlugin()
 {
   std::cout << __PRETTY_FUNCTION__ << std::endl;
   if (rclcpp::ok() == false) {
+    constexpr const char* argv[] = {
+      "eduard_model_plugin",
+      "--ros-args",
+      "-p",
+      "use_sim_time:=True"
+    };
+    constexpr int argc = sizeof(argv) / sizeof(char*);
+
     rclcpp::init(
-      0, 0, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None
+      argc, argv, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None
     );
   }
   _ros_executer = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
