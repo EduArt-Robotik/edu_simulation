@@ -29,7 +29,7 @@
     <gazebo reference="${name}_link">
       <sensor name="${name}_sensor" type="imu">
         <topic>${topic_name}</topic>
-        <update_rate>10</update_rate>
+        <update_rate>50</update_rate>
         <always_on>true</always_on>
         <visualize>${visualize}</visualize>
       </sensor>

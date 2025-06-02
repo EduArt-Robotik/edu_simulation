@@ -2,3 +2,7 @@
   ros_type_name: 'rosgraph_msgs/msg/Clock'
   gz_topic_name: '/world/depot/clock'
   gz_type_name: 'gz.msgs.Clock'
+- ros_topic_name: '/eduard/blue/scan'
+  ros_type_name: 'sensor_msgs/msg/Scan'
+  gz_topic_name: '/eduard/blue/scan'
+  gz_type_name: 'gz.msgs.Scan'

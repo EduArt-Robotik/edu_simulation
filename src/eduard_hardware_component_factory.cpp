@@ -46,6 +46,7 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
     _motor_controller_hardware.push_back(motor_controller_hardware);
     hardware_adapter->registerMotorController(motor_controller_hardware);
   }
+
   // Tof and Range Sensor
   const std::vector<std::string> tof_sensors_left  = {"front", "rear"};
   const std::vector<std::string> tof_sensors_right = {"front", "rear"};
@@ -93,14 +94,7 @@ EduardHardwareComponentFactory::EduardHardwareComponentFactory(
   _hardware.insert(right_ring->virtualRangeSensor().begin(), right_ring->virtualRangeSensor().end());
 
   // IMU Sensor
-  _hardware["imu"] = std::make_shared<GazeboImuSensor>(model_name, ros_node);
-
-
-  // _hardware["range/front/left"] = std::make_shared<GazeboRangeSensor>(ros_node);
-  // _hardware["range/front/right"] = std::make_shared<GazeboRangeSensor>(ros_node);
-  // _hardware["range/rear/left"] = std::make_shared<GazeboRangeSensor>(ros_node);
-  // _hardware["range/rear/right"] = std::make_shared<GazeboRangeSensor>(ros_node);
-
+  _hardware["imu"] = std::make_shared<GazeboImuSensor>(model_name + "/imu", model_name + "/imu");
 
   _hardware["head"] = std::make_shared<GazeboLighting>();
   _hardware["right_side"] = std::make_shared<GazeboLighting>();

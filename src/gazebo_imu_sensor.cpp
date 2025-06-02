@@ -5,11 +5,11 @@ namespace simulation {
 
 using namespace std::chrono_literals;
 
-GazeboImuSensor::GazeboImuSensor(const std::string& model_name, rclcpp::Node& ros_node)
+GazeboImuSensor::GazeboImuSensor(const std::string& name, const std::string& gz_topic_name)
   : _gz_node(std::make_shared<gz::transport::Node>())
-  , _model_name(model_name)
 {
-
+  (void)name;
+  _gz_node->Subscribe(gz_topic_name, &GazeboImuSensor::receiveMeasurement, this);
 }
 
 GazeboImuSensor::~GazeboImuSensor()
@@ -20,7 +20,6 @@ GazeboImuSensor::~GazeboImuSensor()
 void GazeboImuSensor::initialize(const robot::SensorImu::Parameter &parameter)
 {
   (void)parameter;
-  _gz_node->Subscribe(_model_name + "/imu", &GazeboImuSensor::receiveMeasurement, this);
 }
 
 void GazeboImuSensor::receiveMeasurement(const gz::msgs::IMU& measurement)

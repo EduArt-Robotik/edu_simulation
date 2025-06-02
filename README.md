@@ -75,7 +75,7 @@ ros2 launch edu_simulation spawn_eduard.launch.py wheel_type:=mecanum pos_x:=0.0
 All sensor measurements and other stats can be observed using RViz:
 
 ```bash
-ros2 launch edu_robot_control robot_remote_control_raspberry.launch.py edu_robot_namespace:=eduard/blue
+ros2 launch edu_simulation eduard_monitor.launch.py edu_robot_namespace:=eduard/blue
 ```
 
 >**Note**: The simulator could need some time for launching.

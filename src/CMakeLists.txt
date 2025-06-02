@@ -21,7 +21,6 @@ add_library(eduard-model-plugin SHARED
   eduard_gazebo_bot.cpp
   gazebo_motor_controller.cpp
   gazebo_imu_sensor.cpp
-  gazebo_range_sensor.cpp
   gazebo_tof_sensor.cpp
   gazebo_tof_ring_sensor.cpp
   gazebo_virtual_range_sensor.cpp
