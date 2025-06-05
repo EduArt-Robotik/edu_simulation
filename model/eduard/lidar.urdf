@@ -38,10 +38,9 @@
       <xacro:inertial_cylinder mass="0.3" radius="0.025" length="0.08"/>
     </link>
 
-    <joint name="${name}_joint" type="continuous">
+    <joint name="${name}_joint" type="fixed">
       <parent link="${parent_link}"/>
       <child link="${name}_link"/>
-      <axis xyz="0 0 1"/>
       <xacro:insert_block name="origin"/>
     </joint>
 
@@ -67,7 +66,7 @@
           <noise>
             <type>gaussian</type>
             <mean>0.0</mean>
-            <stddev>0.04</stddev>
+            <stddev>0.01</stddev>
           </noise>   
           <frame_id>${prefix}/laser</frame_id>       
         </lidar>

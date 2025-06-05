@@ -19,9 +19,6 @@ public:
     gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager);
   ~EduardGazeboBot() override;
 
-  void preUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm);
-  void update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm);
-  void postUpdate(const gz::sim::UpdateInfo& info, const gz::sim::EntityComponentManager& ecm);
 };
 
 } // end namespace simulation

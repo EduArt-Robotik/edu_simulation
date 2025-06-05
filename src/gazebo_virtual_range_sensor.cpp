@@ -64,7 +64,7 @@ void SensorVirtualRange::processPointCloudMeasurement(sensor_msgs::msg::PointClo
 
   if (_callback_process_measurement != nullptr) {
     // pick second closest one --> drop outlier
-    _callback_process_measurement(distances[1]);
+    _callback_process_measurement(std::min(distances[1], 2.0f));
   }  
 }
 

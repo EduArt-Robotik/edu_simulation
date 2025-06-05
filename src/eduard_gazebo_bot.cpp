@@ -38,20 +38,5 @@ EduardGazeboBot::~EduardGazeboBot()
 
 }
 
-void EduardGazeboBot::preUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
-{
-
-}
-
-void EduardGazeboBot::update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
-{
-
-}
-
-void EduardGazeboBot::postUpdate(const gz::sim::UpdateInfo& info, const gz::sim::EntityComponentManager& ecm)
-{
-
-}
-
 } // end namespace simulation
 } // end namespace eduart

@@ -33,6 +33,9 @@ def generate_launch_description():
       arguments=['-d', rviz_config],
       parameters=[
         {'use_sim_time': True}
+      ],
+      remappings=[
+        ('/goal_pose', 'goal_pose')
       ]
     )
 
