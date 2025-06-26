@@ -42,7 +42,7 @@ Eigen::MatrixXf EduardGazeboBot::getKinematicMatrix(const robot::DriveKinematic 
 {
   Eigen::MatrixXf kinematic_matrix;
 
-  if (kinematic == robot::DriveKinematic::MECANUM_DRIVE) {
+  // if (kinematic == robot::DriveKinematic::MECANUM_DRIVE) {
     const float l_x = _parameter.mecanum.length.x;
     const float l_y = _parameter.mecanum.length.y;
     const float wheel_radius = _parameter.mecanum.wheel_diameter * 0.5f;
@@ -53,10 +53,10 @@ Eigen::MatrixXf EduardGazeboBot::getKinematicMatrix(const robot::DriveKinematic 
                         -1.0f, -1.0f, (l_x + l_y) * 0.5f * 0.9f, // reduce rotation by 10%, because model requires it.
                         -1.0f,  1.0f, (l_x + l_y) * 0.5f * 0.9f; // reduce rotation by 10%, because model requires it.
     kinematic_matrix *= 1.0f / wheel_radius;    
-  }
-  else {
-    throw std::invalid_argument("Eduard: given kinematic is not supported.");
-  }
+  // }
+  // else {
+  //   throw std::invalid_argument("Eduard: given kinematic is not supported.");
+  // }
 
   return kinematic_matrix;
 }
