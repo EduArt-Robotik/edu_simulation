@@ -19,6 +19,8 @@ public:
     gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager);
   ~EduardGazeboBot() override;
 
+private:
+  virtual Eigen::MatrixXf getKinematicMatrix(const robot::DriveKinematic kinematic) const override;  
 };
 
 } // end namespace simulation

@@ -7,8 +7,9 @@ using namespace std::chrono_literals;
 
 EduardModelPlugin::EduardModelPlugin()
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
   if (rclcpp::ok() == false) {
+    RCLCPP_INFO(rclcpp::get_logger("EduardModelPlugin"), "initializing ros...");
+
     constexpr const char* argv[] = {
       "eduard_model_plugin",
       "--ros-args",
@@ -21,12 +22,16 @@ EduardModelPlugin::EduardModelPlugin()
       argc, argv, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None
     );
   }
+  else {
+    RCLCPP_WARN(rclcpp::get_logger("EduardModelPlugin"), "ros is already initialized.");
+  }
+
   _ros_executer = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
 }
 
 EduardModelPlugin::~EduardModelPlugin()
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
+  RCLCPP_INFO(rclcpp::get_logger("EduardModelPlugin"), "shuting down...");
   _is_running = false;
   _run_executer.join();
 }
