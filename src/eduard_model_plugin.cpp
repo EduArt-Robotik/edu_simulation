@@ -21,25 +21,27 @@ void EduardModelPlugin::Configure(
   const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
   gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager)
 {
+  robot::DriveKinematic kinematic = robot::DriveKinematic::MECANUM_DRIVE;
+
   if (rclcpp::ok() == false) {
-    std::string kinematic_string = "kinematic:=";
+    // std::string kinematic_string = "kinematic:=";
 
-    if (const auto element = sdf->FindElement("kinematic"); element != nullptr) {
-      const auto kinematic = element->GetAttribute("value")->GetAsString();
-      kinematic_string += kinematic;
-    }
-    else {
-      // default
-      kinematic_string += "mecanum";
-    }
+    // if (const auto element = sdf->FindElement("kinematic"); element != nullptr) {
+    //   const auto kinematic = element->GetAttribute("value")->GetAsString();
+    //   kinematic_string += kinematic;
+    // }
+    // else {
+    //   // default
+    //   kinematic_string += "mecanum";
+    // }
 
-    char const* const argv[] = {
+    constexpr const char* argv[] = {
       "eduard_model_plugin",
       "--ros-args",
       "-p",
-      "use_sim_time:=True",
-      "-p",
-      kinematic_string.data()
+      "use_sim_time:=True"
+      // "-p",
+      // kinematic_string.data()
     };
     constexpr int argc = sizeof(argv) / sizeof(char*);
 
@@ -48,8 +50,17 @@ void EduardModelPlugin::Configure(
     );
   }
 
+  if (const auto element = sdf->FindElement("kinematic"); element != nullptr) {
+    if (element->GetAttribute("value")->GetAsString() == "mecanum") {
+      kinematic = robot::DriveKinematic::MECANUM_DRIVE;
+    }
+    else {
+      kinematic = robot::DriveKinematic::SKID_DRIVE;
+    }
+  }
+
   _ros_executer = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
-  _robot = std::make_shared<EduardGazeboBot>(entity, sdf, ecm, event_manager);
+  _robot = std::make_shared<EduardGazeboBot>(entity, sdf, ecm, event_manager, kinematic);
   _ros_executer->add_node(_robot);
   _is_running = true;
 

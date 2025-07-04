@@ -16,12 +16,12 @@ class EduardGazeboBot : public robot::bot::EduardV3
 {
 public:
   EduardGazeboBot(const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
-    gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager);
+    gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager, robot::DriveKinematic kinematic);
   ~EduardGazeboBot() override;
 
 private:
   virtual Eigen::MatrixXf getKinematicMatrix(const robot::DriveKinematic kinematic) const override; 
-  
+
   bool _mecanum_kinematic = true;
 };
 

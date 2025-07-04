@@ -69,8 +69,10 @@ ros2 launch edu_simulation gazebo.launch.py
 After the Gazebo is launched a Eduard robot can be placed by using following launch file:
 
 ```bash
-ros2 launch edu_simulation spawn_eduard.launch.py wheel_type:=mecanum pos_x:=0.0 pos_y:=0.0 pos_z:=0.04 yaw:=0.0 edu_robot_namespace:=eduard/blue
+ros2 launch edu_simulation eduard.launch.py wheel_type:=mecanum pos_x:=0.0 pos_y:=0.0 pos_z:=0.04 yaw:=0.0 edu_robot_namespace:=eduard/blue
 ```
+Alternative wheel type is **offroad**. Note: the kinematic is automatically selected by the argument wheel_type and can't be changed by user later.
+
 Press the Play button on the bottom left of the simulation window.
 All sensor measurements and other stats can be observed using RViz:
 
