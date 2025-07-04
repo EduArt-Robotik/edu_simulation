@@ -7,7 +7,8 @@
 
 #include <edu_robot/sensor_imu.hpp>
 
-#include <gazebo/sensors/SensorTypes.hh>
+#include <gz/transport.hh>
+#include <gz/msgs.hh>
 
 namespace eduart {
 namespace simulation {
@@ -15,16 +16,15 @@ namespace simulation {
 class GazeboImuSensor : public robot::SensorImu::SensorInterface
 {
 public:
-  GazeboImuSensor(gazebo::sensors::SensorPtr sensor, rclcpp::Node& ros_node);
+  GazeboImuSensor(const std::string& name, const std::string& gz_topic_name);
   ~GazeboImuSensor() override;
 
   void initialize(const robot::SensorImu::Parameter& parameter) override;
 
 private:
-  void getMeasurement();
+  void receiveMeasurement(const gz::msgs::IMU& measurement);
 
-  gazebo::sensors::ImuSensorPtr _sensor;
-  std::shared_ptr<rclcpp::TimerBase> _timer_get_measurement;
+  std::shared_ptr<gz::transport::Node> _gz_node;
 };
 
 } // end namespace simulation

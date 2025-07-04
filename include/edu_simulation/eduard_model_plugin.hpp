@@ -1,34 +1,36 @@
 /**
- * Copyright EduArt Robotik GmbH 2023
+ * Copyright EduArt Robotik GmbH 2025
  *
  * Author: Christian Wendt (christian.wendt@eduart-robotik.com)
  */
 #pragma once
 
-#include <gazebo/gazebo.hh>
-#include <rclcpp/rclcpp.hpp>
-#include <gazebo_ros/executor.hpp>
+#include "edu_simulation/eduard_gazebo_bot.hpp"
 
-// #include <
+#include <gz/sim/System.hh>
+
+#include <rclcpp/rclcpp.hpp>
+#include <rclcpp/executors.hpp>
 
 namespace eduart {
 namespace simulation {
 
-class EduardModelPlugin : public gazebo::ModelPlugin
+class EduardModelPlugin : public gz::sim::System
+                        , public gz::sim::ISystemConfigure
 {
 public:
   EduardModelPlugin();
+  ~EduardModelPlugin() override;
 
-  void Load(gazebo::physics::ModelPtr _parent, sdf::ElementPtr _sdf) override;
+  void Configure(
+    const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
+    gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager) override;
 
 private:
-  void OnUpdate();
-
-  gazebo::physics::ModelPtr _model;
-  gazebo::event::ConnectionPtr _update_connection;
-  gazebo::event::ConnectionPtr _update_bot_connection;  
-  std::shared_ptr<gazebo_ros::Executor> _ros_executer;
-  std::shared_ptr<rclcpp::Node> _robot_ros_node;
+  std::shared_ptr<EduardGazeboBot> _robot;
+  std::shared_ptr<rclcpp::executors::MultiThreadedExecutor> _ros_executer;
+  std::thread _run_executer;
+  std::atomic_bool _is_running{false};
 };
 
 } // end namespace simulation

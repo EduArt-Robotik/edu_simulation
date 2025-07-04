@@ -4,7 +4,7 @@
 namespace eduart {
 namespace simulation {
 
-GazeboHardwareAdapter::GazeboHardwareAdapter(sdf::ElementPtr sdf)
+GazeboHardwareAdapter::GazeboHardwareAdapter(const sdf::ElementConstPtr sdf)
 {
   (void)sdf;
 }
@@ -16,6 +16,7 @@ GazeboHardwareAdapter::~GazeboHardwareAdapter()
   
 void GazeboHardwareAdapter::enable()
 {
+  std::cout << "enable" << std::endl;
   for (auto& motor_controller : _motor_controller) {
     motor_controller->enable();
   }
