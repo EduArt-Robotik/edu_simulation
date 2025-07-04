@@ -20,7 +20,9 @@ public:
   ~EduardGazeboBot() override;
 
 private:
-  virtual Eigen::MatrixXf getKinematicMatrix(const robot::DriveKinematic kinematic) const override;  
+  virtual Eigen::MatrixXf getKinematicMatrix(const robot::DriveKinematic kinematic) const override; 
+  
+  bool _mecanum_kinematic = true;
 };
 
 } // end namespace simulation

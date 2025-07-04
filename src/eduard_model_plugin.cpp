@@ -7,26 +7,7 @@ using namespace std::chrono_literals;
 
 EduardModelPlugin::EduardModelPlugin()
 {
-  if (rclcpp::ok() == false) {
-    RCLCPP_INFO(rclcpp::get_logger("EduardModelPlugin"), "initializing ros...");
 
-    constexpr const char* argv[] = {
-      "eduard_model_plugin",
-      "--ros-args",
-      "-p",
-      "use_sim_time:=True"
-    };
-    constexpr int argc = sizeof(argv) / sizeof(char*);
-
-    rclcpp::init(
-      argc, argv, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None
-    );
-  }
-  else {
-    RCLCPP_WARN(rclcpp::get_logger("EduardModelPlugin"), "ros is already initialized.");
-  }
-
-  _ros_executer = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
 }
 
 EduardModelPlugin::~EduardModelPlugin()
@@ -40,42 +21,44 @@ void EduardModelPlugin::Configure(
   const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
   gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager)
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
+  if (rclcpp::ok() == false) {
+    std::string kinematic_string = "kinematic:=";
+
+    if (const auto element = sdf->FindElement("kinematic"); element != nullptr) {
+      const auto kinematic = element->GetAttribute("value")->GetAsString();
+      kinematic_string += kinematic;
+    }
+    else {
+      // default
+      kinematic_string += "mecanum";
+    }
+
+    char const* const argv[] = {
+      "eduard_model_plugin",
+      "--ros-args",
+      "-p",
+      "use_sim_time:=True",
+      "-p",
+      kinematic_string.data()
+    };
+    constexpr int argc = sizeof(argv) / sizeof(char*);
+
+    rclcpp::init(
+      argc, argv, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None
+    );
+  }
+
+  _ros_executer = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
   _robot = std::make_shared<EduardGazeboBot>(entity, sdf, ecm, event_manager);
   _ros_executer->add_node(_robot);
   _is_running = true;
+
+  // spin node in separated thread
   _run_executer = std::thread([this](){
     while (_is_running) {
       _ros_executer->spin_once(100ms);
     }
   });
-}
-
-void EduardModelPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
-{
-  if (_robot == nullptr) {
-    return;
-  }
-
-  // _robot->preUpdate(info, ecm);
-}
-
-void EduardModelPlugin::Update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
-{
-  if (_robot == nullptr) {
-    return;
-  }
-
-  // _robot->update(info, ecm);
-}
-
-void EduardModelPlugin::PostUpdate(const gz::sim::UpdateInfo& info, const gz::sim::EntityComponentManager& ecm)
-{
-  if (_robot == nullptr) {
-    return;
-  }
-
-  // _robot->postUpdate(info, ecm);
 }
 
 } // end namespace simulation
@@ -87,8 +70,5 @@ void EduardModelPlugin::PostUpdate(const gz::sim::UpdateInfo& info, const gz::si
 GZ_ADD_PLUGIN(
   eduart::simulation::EduardModelPlugin,
   gz::sim::System,
-  eduart::simulation::EduardModelPlugin::ISystemConfigure,
-  eduart::simulation::EduardModelPlugin::ISystemPreUpdate,
-  eduart::simulation::EduardModelPlugin::ISystemUpdate,
-  eduart::simulation::EduardModelPlugin::ISystemPostUpdate
+  eduart::simulation::EduardModelPlugin::ISystemConfigure
 )

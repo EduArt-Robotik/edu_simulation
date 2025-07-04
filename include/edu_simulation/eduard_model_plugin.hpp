@@ -17,9 +17,6 @@ namespace simulation {
 
 class EduardModelPlugin : public gz::sim::System
                         , public gz::sim::ISystemConfigure
-                        , public gz::sim::ISystemPreUpdate
-                        , public gz::sim::ISystemUpdate
-                        , public gz::sim::ISystemPostUpdate
 {
 public:
   EduardModelPlugin();
@@ -28,10 +25,6 @@ public:
   void Configure(
     const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
     gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager) override;
-
-  void PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm) override;
-  void Update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm) override;
-  void PostUpdate(const gz::sim::UpdateInfo& info, const gz::sim::EntityComponentManager& ecm) override;
 
 private:
   std::shared_ptr<EduardGazeboBot> _robot;

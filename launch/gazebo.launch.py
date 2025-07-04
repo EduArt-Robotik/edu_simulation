@@ -50,10 +50,24 @@ def generate_launch_description():
     'parameter',
     'gz_ros_bridge.yaml'
   ])
+  bridge_launch_file = PathJoinSubstitution([
+    FindPackageShare('ros_gz_bridge'),
+    'launch',
+    'ros_gz_bridge.launch.py'
+  ])
+
+  # bridge = IncludeLaunchDescription(
+  #   PythonLaunchDescriptionSource(bridge_launch_file),
+  #   launch_arguments={
+  #     'config_file': bridge_parameter_file,
+  #     'bridge_name': 'gz_ros_bridge'
+  #   }.items()
+  # )
 
   bridge = RosGzBridge(
-    bridge_name='gz_ros_bridge',
-    config_file=bridge_parameter_file
+    bridge_name='clock_bridge',
+    config_file=bridge_parameter_file,
+    extra_bridge_params=[{'this fixes' : 'issue 774'}]
   )
 
   # create and return launch description object

@@ -17,19 +17,22 @@ EduardGazeboBot::EduardGazeboBot(
 {
   auto hardware_adapter = std::dynamic_pointer_cast<GazeboHardwareAdapter>(_hardware_interface);
 
+  // get parameter
+  declare_parameter<std::string>("kinematic", "mecanum");
+  _mecanum_kinematic = get_parameter("kinematic").as_string() == "mecanum";
+
+  // initialize hardware layer
   const auto model_name = gz::sim::Model(entity).Name(ecm);
   EduardHardwareComponentFactory factory(hardware_adapter, entity, sdf, ecm, *this);
 
   try {
-    for (const auto [key, value] : factory.hardware()) {
-      std::cout << "map entry: " << key << std::endl;
-    }
     initialize(factory);
   }
   catch (std::exception& ex) {
-    std::cout << "what = " << ex.what() << std::endl;
+    RCLCPP_ERROR(get_logger(), "error occurred during initialization. what = %s.", ex.what());
   }
 
+  // set initial mode
   _mode_state_machine.switchToMode(eduart::robot::RobotMode::INACTIVE);
 }
 
