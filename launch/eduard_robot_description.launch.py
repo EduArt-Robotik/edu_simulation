@@ -59,5 +59,5 @@ def generate_launch_description():
     wheel_type_arg,
     visualize_rays_arg,
     robot_state_publisher,
-    joint_state_publisher
+    # joint_state_publisher
   ])

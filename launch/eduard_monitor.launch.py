@@ -10,12 +10,6 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution
 
 def generate_launch_description():
-    # Get Robot Namespace
-    robot_namespace = os.environ['EDU_ROBOT_NAMESPACE']
-    if len(robot_namespace) == 0: robot_namespace = '/eduard/'                          # default value
-    if robot_namespace[0] != '/': robot_namespace = '/' + robot_namespace               # ensure preceding "/"
-    if robot_namespace[len(robot_namespace) - 1] != '/': robot_namespace += '/'         # ensure trailing "/"
-
     # launch file arguments
     # robot namespace
     edu_robot_namespace = LaunchConfiguration('edu_robot_namespace')
@@ -42,17 +36,22 @@ def generate_launch_description():
       ],
       remappings=[
         ('/goal_pose', 'goal_pose'),
-        ('/initialpose', robot_namespace + 'initialpose')
+        ('/initialpose', 'initialpose')
       ]
     )
 
     # Robot Description for Eduard
     robot_description_launch_file = PathJoinSubstitution([
-      package,
+      FindPackageShare('edu_simulation'),
       'launch',
       'eduard_robot_description.launch.py'
     ])
-    robot_description = IncludeLaunchDescription(PythonLaunchDescriptionSource(robot_description_launch_file))
+    robot_description = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource(robot_description_launch_file),
+      launch_arguments={
+        'edu_robot_namespace': edu_robot_namespace
+      }.items()
+    )
 
     return LaunchDescription([
       edu_robot_namespace_arg,
