@@ -18,11 +18,10 @@ def generate_launch_description():
     )
 
     # RViz Config
-    package = FindPackageShare('edu_robot_control')
     rviz_config = PathJoinSubstitution([
-      package,
-      'parameter',
-      'eduard.rviz'
+      FindPackageShare('edu_simulation'),
+      'config',
+      'config.rviz'
     ])
 
     rviz_node = Node(
