@@ -1,30 +1,21 @@
 #include "edu_simulation/eduard_hardware_component_factory.hpp"
 #include "edu_simulation/gazebo_motor_controller.hpp"
 #include "edu_simulation/gazebo_lighting.hpp"
-#include "edu_simulation/gazebo_range_sensor.hpp"
 #include "edu_simulation/gazebo_imu_sensor.hpp"
 #include "edu_simulation/gazebo_hardware_adapter.hpp"
+#include "edu_simulation/gazebo_tof_ring_sensor.hpp"
 
-#include <gazebo/sensors/sensors.hh>
+#include <edu_robot/hardware/can_gateway/sensor_point_cloud_fusion.hpp>
+
+#include <gz/sim/Model.hh>
 
 namespace eduart {
 namespace simulation {
 
-static std::string get_full_name(sdf::ElementPtr sdf)
+static std::string get_joint_name(const sdf::ElementConstPtr sdf, const std::string& motor_name)
 {
-  std::string name = sdf->GetAttribute("name")->GetAsString();
-
-  for (sdf::ElementPtr element = sdf->GetParent(); element != nullptr; element = element->GetParent()) {
-    name = element->GetAttribute("name")->GetAsString() + "::" + name;
-  }
-
-  return name;
-}
-
-static std::string get_joint_name(sdf::ElementPtr sdf, const std::string& motor_name)
-{
-  for (auto joint = sdf->GetElement("joint"); joint != nullptr; joint = joint->GetNextElement("joint")) {
-    if (joint->GetElement("child")->GetValue()->GetAsString() == motor_name) {
+  for (auto joint = sdf->FindElement("joint"); joint != nullptr; joint = joint->GetNextElement("joint")) {
+    if (joint->GetNextElement("child")->GetValue()->GetAsString() == motor_name) {
       return joint->GetAttribute("name")->GetAsString();
     }
   }
@@ -33,63 +24,77 @@ static std::string get_joint_name(sdf::ElementPtr sdf, const std::string& motor_
 }
 
 EduardHardwareComponentFactory::EduardHardwareComponentFactory(
-  std::shared_ptr<GazeboHardwareAdapter> hardware_adapter, gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf,
-  rclcpp::Node& ros_node)
+  std::shared_ptr<GazeboHardwareAdapter> hardware_adapter, const gz::sim::Entity& entity,
+  const std::shared_ptr<const sdf::Element>& sdf, gz::sim::EntityComponentManager& ecm, rclcpp::Node& ros_node)
 {
-  for (auto link = sdf->GetElement("link"); link != nullptr; link = link->GetNextElement("link")) {
-    const auto& link_name = link->GetAttribute("name")->GetAsString();
+  const auto model_name = gz::sim::Model(entity).Name(ecm);
 
-    // Motor Controller
-    if (link_name.find("motor") != std::string::npos) {
-      const auto joint_name = get_joint_name(sdf, link_name);
-      const auto model_name = parent->GetName();
-      const bool is_mecanum = model_name.find("mecanum") != std::string::npos;
+  // Motor Controller
+  for (auto motor = sdf->FindElement("motor"); motor != nullptr; motor = motor->GetNextElement("motor")) {
+    const auto& name = motor->GetAttribute("name")->GetAsString();
+    const auto& joint_name = motor->GetAttribute("joint_name")->GetAsString();
+    
+    std::cout << "motor name = " << name << std::endl;
+    std::cout << "joint name = " << joint_name << std::endl;
+  
+    auto motor_controller_hardware = std::make_shared<GazeboMotorController>(
+      name,
+      model_name + "/" + joint_name + "/" + "set_joint_velocity",
+      model_name + "/" + joint_name + "/" + "get_joint_velocity"
+    );
 
-      auto motor_joint = parent->GetJoint(joint_name);
-      auto motor_controller_hardware = std::make_shared<GazeboMotorController>(
-        link_name, parent, motor_joint, is_mecanum
-      );
-
-      _motor_controller_hardware.push_back(motor_controller_hardware);
-      hardware_adapter->registerMotorController(motor_controller_hardware);
-    }
-    // Range Sensor
-    else if (link_name.find("range") != std::string::npos) {
-      auto sensor_sdf = link->GetElement("sensor");
-
-      if (sensor_sdf == nullptr) {
-        throw std::invalid_argument("Range sensor requires a sensor tag.");
-      }
-
-      const auto sensor_name = sensor_sdf->GetAttribute("name")->GetAsString();
-      auto sensor = gazebo::sensors::get_sensor(get_full_name(sensor_sdf));
-
-      if (sensor == nullptr) {
-        throw std::runtime_error("No sensor found in simulation. Actually this should not happen!");
-      }
-
-      std::cout << "add range sensor hardware: " << sensor_name << std::endl;
-      _hardware[sensor_name] = std::make_shared<GazeboRangeSensor>(sensor, ros_node);
-    }
-    // IMU Sensor
-    else if (link_name.find("imu") != std::string::npos) {
-      auto sensor_sdf = link->GetElement("sensor");
-
-      if (sensor_sdf == nullptr) {
-        throw std::invalid_argument("Range sensor requires a sensor tag.");
-      }
-
-      const auto sensor_name = sensor_sdf->GetAttribute("name")->GetAsString();
-      auto sensor = gazebo::sensors::get_sensor(get_full_name(sensor_sdf));
-
-      if (sensor == nullptr) {
-        throw std::runtime_error("No sensor found in simulation. Actually this should not happen!");
-      }
-
-      std::cout << "add imu sensor hardware: " << sensor_name << std::endl;
-      _hardware[sensor_name] = std::make_shared<GazeboImuSensor>(sensor, ros_node);
-    }
+    _motor_controller_hardware.push_back(motor_controller_hardware);
+    hardware_adapter->registerMotorController(motor_controller_hardware);
   }
+
+  // Tof and Range Sensor
+  const std::vector<std::string> tof_sensors_left  = {"front", "rear"};
+  const std::vector<std::string> tof_sensors_right = {"front", "rear"};
+
+  // Left Ring
+  auto parameter_left = SensorTofRingHardware::get_parameter(
+    "tof_sensor_ring_left", tof_sensors_left, ros_node
+  );
+
+  parameter_left.tof_sensor[0].name = "range.front.left";
+  parameter_left.tof_sensor[0].virtual_range_sensor = true;
+  parameter_left.tof_sensor[0].gz_feedback_topic_name = model_name + "/range/front/left/points";
+  parameter_left.tof_sensor[0].transform.setOrigin({0.17, 0.063, 0.045});
+  parameter_left.tof_sensor[0].transform.setRotation(tf2::Quaternion(0.0, 0.0, 0.0, 1.0));
+
+  parameter_left.tof_sensor[1].name = "range.rear.left";
+  parameter_left.tof_sensor[1].virtual_range_sensor = true;
+  parameter_left.tof_sensor[1].gz_feedback_topic_name = model_name + "/range/rear/left/points";
+  parameter_left.tof_sensor[1].transform.setOrigin({-0.17, 0.063, 0.05});
+  parameter_left.tof_sensor[1].transform.setRotation(tf2::Quaternion(0.0, 0.0, 1.0, 0.0));
+
+  auto left_ring = std::make_shared<SensorTofRingHardware>("tof_sensor_ring_left", parameter_left, ros_node);
+
+  // Right Ring
+  auto parameter_right = SensorTofRingHardware::get_parameter(
+    "tof_sensor_ring_right", tof_sensors_right, ros_node
+  );
+
+  parameter_right.tof_sensor[0].name = "range.front.right";
+  parameter_right.tof_sensor[0].virtual_range_sensor = true;
+  parameter_right.tof_sensor[0].gz_feedback_topic_name = model_name + "/range/front/right/points";
+  parameter_right.tof_sensor[0].transform.setOrigin({0.17, -0.063, 0.045});
+  parameter_right.tof_sensor[0].transform.setRotation(tf2::Quaternion(0.0, 0.0, 0.0, 1.0));
+
+  parameter_right.tof_sensor[1].name = "range.rear.right";
+  parameter_right.tof_sensor[1].virtual_range_sensor = true;
+  parameter_right.tof_sensor[1].gz_feedback_topic_name = model_name + "/range/rear/right/points";
+  parameter_right.tof_sensor[1].transform.setOrigin({-0.17, -0.063, 0.05});
+  parameter_right.tof_sensor[1].transform.setRotation(tf2::Quaternion(0.0, 0.0, 1.0, 0.0));
+
+  auto right_ring = std::make_shared<SensorTofRingHardware>("tof_sensor_ring_right", parameter_right, ros_node);
+  std::vector<std::shared_ptr<robot::SensorPointCloud::SensorInterface>> ring = { left_ring, right_ring };
+  _hardware["tof_sensor_ring"] = std::make_shared<robot::hardware::can_gateway::SensorPointCloudFusion>(ring);
+  _hardware.insert(left_ring->virtualRangeSensor().begin(), left_ring->virtualRangeSensor().end());
+  _hardware.insert(right_ring->virtualRangeSensor().begin(), right_ring->virtualRangeSensor().end());
+
+  // IMU Sensor
+  _hardware["imu"] = std::make_shared<GazeboImuSensor>(model_name + "/imu", model_name + "/imu");
 
   _hardware["head"] = std::make_shared<GazeboLighting>();
   _hardware["right_side"] = std::make_shared<GazeboLighting>();

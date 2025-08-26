@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" xmlns:gz="http://gazebosim.org/schema">
+
+<!-- Defines a wheel used for robot Eduard. The name must be: motor_a, motor_b, motor_c or motor_d! -->
+<xacro:macro name="wheel" params="name type parent_link *origin">
+  <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
+
+  <xacro:property name="wheel_link_name" value="${name}_wheel"/>
+  <xacro:property name="wheel_joint_name" value="${wheel_link_name}_joint"/>
+
+  <!-- Joint for the wheel connected to the parent link. -->
+  <joint name="${wheel_joint_name}" type="continuous">
+    <parent link="${parent_link}"/>
+    <child link="${wheel_link_name}"/>
+    <axis xyz="0 0 1"/>
+    <xacro:insert_block name="origin"/>
+  </joint>
+
+  <!-- Mecanum Wheel Type -->
+  <xacro:if value="${type == 'mecanum'}">
+    <!-- Wheel Link -->
+    <link name="${wheel_link_name}">
+      <visual name="visual">
+        <geometry>
+          <xacro:if value="${name == 'motor_a' or name == 'motor_c'}">
+            <mesh filename="model://eduard/mesh/mecanum-wheel-right-eduard.dae"/>
+          </xacro:if>
+          <xacro:if value="${name == 'motor_b' or name == 'motor_d'}">
+            <mesh filename="model://eduard/mesh/mecanum-wheel-left-eduard.dae"/>
+          </xacro:if>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="0.05" length="0.055"/>
+        </geometry>          
+      </collision>
+      <xacro:inertial_cylinder mass="1.0" radius="0.05" length="0.055"/>
+    </link>
+  </xacro:if>
+  <!-- Offroad Wheel Type -->
+  <xacro:if value="${type == 'offroad'}">
+    <link name="${wheel_link_name}">
+      <visual name="visual">
+        <geometry>
+          <mesh filename="model://eduard/mesh/offroad-wheel-eduard.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="0.085" length="0.08"/>
+        </geometry>          
+      </collision>
+      <xacro:inertial_cylinder mass="1.0" radius="0.085" length="0.08"/>
+    </link>      
+  </xacro:if>
+
+  <!-- Motor Controller Plugin for Controlling Wheel Rotation -->
+  <gazebo>
+    <plugin filename="libeduard-motor-plugin.so" name="eduart::simulation::GazeboMotorPlugin">
+      <joint_name>${wheel_joint_name}</joint_name>
+    </plugin>
+  </gazebo>
+
+  <!-- Friction -->
+  <gazebo reference="motor_a_wheel">
+    <collision>
+      <surface>
+        <friction>
+          <ode>
+            <!-- Mecanum -->
+            <!-- TODO: does not work here. No idea why... -->
+            <!-- <xacro:if value="${type == 'mecanum'}">
+              <mu>1.0</mu>
+              <mu2>0.0</mu2>
+              <xacro:if value="${name == 'motor_a' or name == 'motor_d'}">
+                <fdir1 gz:expressed_in="${parent_link}">1 -1 0</fdir1>
+              </xacro:if>
+              <xacro:if value="${name == 'motor_b' or name == 'motor_c'}">
+                <fdir1 gz:expressed_in="${parent_link}">1 1 0</fdir1>
+              </xacro:if>
+            </xacro:if> -->
+
+            <!-- Offroad -->
+            <xacro:if value="${type == 'offroad'}">
+              <mu>0.9</mu>
+              <mu2>0.0</mu2>
+              <fdir1 gz:expressed_in="${parent_link}">1 0 0</fdir1>
+            </xacro:if>
+          </ode>
+        </friction>
+      </surface>
+    </collision>        
+  </gazebo>
+
+</xacro:macro>
+</robot>

@@ -5,26 +5,24 @@
  */
 #pragma once
 
-#include <edu_robot/bot/eduard_v2.hpp>
+#include <edu_robot/bot/eduard_v3.hpp>
 
-#include <gazebo/gazebo.hh>
+#include <gz/sim/System.hh>
 
 namespace eduart {
 namespace simulation {
 
-class EduardGazeboBot : public robot::bot::EduardV2
+class EduardGazeboBot : public robot::bot::EduardV3
 {
 public:
-  EduardGazeboBot(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf, const std::string& ns);
+  EduardGazeboBot(const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
+    gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager, robot::DriveKinematic kinematic);
   ~EduardGazeboBot() override;
 
-  void OnUpdate(const gazebo::common::UpdateInfo & info);
-
 private:
-  gazebo::physics::ModelPtr _parent;
-  bool _is_mecanum = true;
-  gazebo::common::Time _stamp_last_update;
-  ignition::math::Pose3d _current_pose;
+  virtual Eigen::MatrixXf getKinematicMatrix(const robot::DriveKinematic kinematic) const override; 
+
+  bool _mecanum_kinematic = true;
 };
 
 } // end namespace simulation

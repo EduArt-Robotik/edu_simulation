@@ -1,49 +1,85 @@
 #include "edu_simulation/eduard_model_plugin.hpp"
-#include "edu_simulation/eduard_hardware_component_factory.hpp"
-#include "edu_simulation/eduard_gazebo_bot.hpp"
-
-#include <gazebo/physics/Model.hh>
 
 namespace eduart {
 namespace simulation {
 
+using namespace std::chrono_literals;
+
 EduardModelPlugin::EduardModelPlugin()
 {
+
+}
+
+EduardModelPlugin::~EduardModelPlugin()
+{
+  RCLCPP_INFO(rclcpp::get_logger("EduardModelPlugin"), "shuting down...");
+  _is_running = false;
+  _run_executer.join();
+}
+
+void EduardModelPlugin::Configure(
+  const gz::sim::Entity& entity, const std::shared_ptr<const sdf::Element>& sdf, 
+  gz::sim::EntityComponentManager& ecm, gz::sim::EventManager& event_manager)
+{
+  robot::DriveKinematic kinematic = robot::DriveKinematic::MECANUM_DRIVE;
+
   if (rclcpp::ok() == false) {
-    rclcpp::init(0, 0);
+    // std::string kinematic_string = "kinematic:=";
+
+    // if (const auto element = sdf->FindElement("kinematic"); element != nullptr) {
+    //   const auto kinematic = element->GetAttribute("value")->GetAsString();
+    //   kinematic_string += kinematic;
+    // }
+    // else {
+    //   // default
+    //   kinematic_string += "mecanum";
+    // }
+
+    constexpr const char* argv[] = {
+      "eduard_model_plugin",
+      "--ros-args",
+      "-p",
+      "use_sim_time:=True"
+      // "-p",
+      // kinematic_string.data()
+    };
+    constexpr int argc = sizeof(argv) / sizeof(char*);
+
+    rclcpp::init(
+      argc, argv, rclcpp::InitOptions(), rclcpp::SignalHandlerOptions::None
+    );
   }
-  _ros_executer = std::make_shared<gazebo_ros::Executor>();
-}
 
-void EduardModelPlugin::Load(gazebo::physics::ModelPtr parent, sdf::ElementPtr sdf)
-{
-  auto model_element = sdf->GetParent();
-  std::string ns;
-
-  if (sdf->HasElement("robot_namespace")) {
-    ns = sdf->GetElement("robot_namespace")->GetValue()->GetAsString();
+  if (const auto element = sdf->FindElement("kinematic"); element != nullptr) {
+    if (element->GetAttribute("value")->GetAsString() == "mecanum") {
+      kinematic = robot::DriveKinematic::MECANUM_DRIVE;
+    }
+    else {
+      kinematic = robot::DriveKinematic::SKID_DRIVE;
+    }
   }
 
-  auto bot = std::make_shared<EduardGazeboBot>(parent, model_element, ns);
-  bot->set_parameter(rclcpp::Parameter("use_sim_time", true));
-  _robot_ros_node = bot;
-  _ros_executer->add_node(bot);
-  _model = parent;
+  _ros_executer = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
+  _robot = std::make_shared<EduardGazeboBot>(entity, sdf, ecm, event_manager, kinematic);
+  _ros_executer->add_node(_robot);
+  _is_running = true;
 
-  _update_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
-    std::bind(&EduardModelPlugin::OnUpdate, this)
-  );
-  _update_bot_connection = gazebo::event::Events::ConnectWorldUpdateBegin(
-    std::bind(&EduardGazeboBot::OnUpdate, bot, std::placeholders::_1)
-  );
-}
-
-void EduardModelPlugin::OnUpdate()
-{
-
+  // spin node in separated thread
+  _run_executer = std::thread([this](){
+    while (_is_running) {
+      _ros_executer->spin_once(100ms);
+    }
+  });
 }
 
 } // end namespace simulation
 } // end namespace eduart
 
-GZ_REGISTER_MODEL_PLUGIN(eduart::simulation::EduardModelPlugin)
+#include <gz/plugin/Register.hh>
+ 
+// Include a line in your source file for each interface implemented.
+GZ_ADD_PLUGIN(
+  eduart::simulation::EduardModelPlugin,
+  gz::sim::System,
+  eduart::simulation::EduardModelPlugin::ISystemConfigure
+)
