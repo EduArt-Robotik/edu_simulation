@@ -25,8 +25,8 @@ def generate_launch_description():
   )
 
   # Publishing Robot Description
-  simulation_package = FindPackageShare('edu_simulation')
-  eduard_xacro_file = PathJoinSubstitution([simulation_package, 'model', 'eduard', 'eduard.urdf'])
+  simulation_package = FindPackageShare('edu_robot_control')
+  eduard_xacro_file = PathJoinSubstitution([simulation_package, 'model', 'urdf', 'eduard.urdf'])
 
   robot_state_publisher = Node(
     package='robot_state_publisher',
@@ -59,5 +59,5 @@ def generate_launch_description():
     wheel_type_arg,
     visualize_rays_arg,
     robot_state_publisher,
-    joint_state_publisher
+    # joint_state_publisher
   ])

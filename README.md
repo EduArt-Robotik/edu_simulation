@@ -60,11 +60,18 @@ Source your ROS2 environment if not already done;
 source ~/<your ros2 workspace>/install/setup.bash
 ```
 
-Now you can launch Gazebo using following launch file:
+Now you can launch Gazebo with the warehouse world using following launch file:
 
 ```bash
 ros2 launch edu_simulation gazebo.launch.py
 ```
+
+Alternatively, you can launch Gazebo with the EduArt maze world:
+```bash
+ros2 launch edu_simulation gazebo.launch.py world:=maze.world 
+```
+
+> If you are using a Virtual Machine (Virtual Box, VMWare,...)  and experience the error that the simulation viewport stays gray or black, see this note!
 
 After the Gazebo is launched a Eduard robot can be placed by using following launch file:
 
@@ -122,6 +129,26 @@ angular:
 ```
 
 We set the linear x velocity to 0.1 and further add -r 10 and -p 100 at the end. The option -r 10 repeats the command 10 times per second and -p 100 just shows us 1 out of every 100 commands sent this way. The reason this is necessary lies in a safety mechanism integrated in the eduard robot, if it receives no movement command for 200ms (even if it tells it to not move at all) it will cease all movement.
+
+## Gazebo in Virtual Machines
+When using Gazebo in a Virtual Machine you probably need to set the environment variable `LIBGL_DRI3_DISABLE` to `true`. Either do this when calling the launch-file or inside the launch-description of the launch file. <br>
+
+### Modify Launch File 
+In the `gazebo.launch.py` file:
+```python
+  return LaunchDescription([
+    world_arg,
+    SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH', value=model_path),
+    SetEnvironmentVariable(name='GZ_SIM_SYSTEM_PLUGIN_PATH', value=plugin_path),
+    SetEnvironmentVariable(name='LIBGL_DRI3_DISABLE', value='true'),  # Add this line
+    gz_sim,
+    bridge
+  ])
+```
+### Pass Variable on Launch: 
+```bash
+LIBGL_DRI3_DISABLE=true ros2 launch edu_simulation gazebo.launch.py
+```
 
 ## Models
 
