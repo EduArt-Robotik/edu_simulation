@@ -16,12 +16,6 @@ def generate_launch_description():
   wheel_type = LaunchConfiguration('wheel_type')
   wheel_type_arg = DeclareLaunchArgument('wheel_type', default_value='mecanum')
 
-  chassis_variant = LaunchConfiguration('chassis_variant')
-  chassis_variant_arg = DeclareLaunchArgument('chassis_variant', default_value='blue')
-
-  chassis_mesh = LaunchConfiguration('chassis_mesh')
-  chassis_mesh_arg = DeclareLaunchArgument('chassis_mesh', default_value='')
-  
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
 
@@ -46,8 +40,6 @@ def generate_launch_description():
     launch_arguments={
       'edu_robot_namespace': edu_robot_namespace,
       'wheel_type': wheel_type,
-      'chassis_variant': chassis_variant,
-      'chassis_mesh': chassis_mesh,
       "pos_x": pos_x,
       "pos_y": pos_y,
       "pos_z": pos_z,
@@ -86,8 +78,6 @@ def generate_launch_description():
   return LaunchDescription([
     edu_robot_namespace_arg,
     wheel_type_arg,
-    chassis_variant_arg,
-    chassis_mesh_arg,
     pos_x_arg,
     pos_y_arg,
     pos_z_arg,
