@@ -9,8 +9,10 @@
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
   <xacro:arg name="wheel_type" default="mecanum"/>
+  <xacro:arg name="eduard_color" default="blue"/>
 
   <xacro:property name="wheel_type" value="$(arg wheel_type)"/>
+  <xacro:property name="eduard_color" value="$(arg eduard_color)"/>
 
   <!-- chassis -->
   <link name="base_link">
@@ -23,7 +25,8 @@
     <visual name="visual">
       <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
       <geometry>
-        <mesh filename="model://eduard/mesh/eduard-red-chassis.dae"/>
+      <!-- -->
+        <mesh filename="model://eduard/mesh/eduard-$(arg eduard_color)-chassis.dae"/>
       </geometry>
     </visual>
     <collision name="collision_bottom">

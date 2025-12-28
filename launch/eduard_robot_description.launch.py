@@ -19,6 +19,11 @@ def generate_launch_description():
     'wheel_type', default_value='mecanum'
   )
 
+  eduard_color = LaunchConfiguration('eduard_color')
+  eduard_color_arg = DeclareLaunchArgument(
+    'eduard_color', default_value='blue'
+  )
+
   visualize_rays = LaunchConfiguration('visualize_rays')
   visualize_rays_arg = DeclareLaunchArgument(
     'visualize_rays', default_value='false'
@@ -40,6 +45,7 @@ def generate_launch_description():
         'xacro', ' ', eduard_xacro_file, ' ',
         'visualize_rays:=', visualize_rays, ' ',
         'wheel_type:=', wheel_type, ' ',
+        'eduard_color:=', eduard_color, ' ',
         'robot_name:=', edu_robot_namespace
       ])},
     ],
@@ -57,6 +63,7 @@ def generate_launch_description():
   return LaunchDescription([
     edu_robot_namespace_arg,
     wheel_type_arg,
+    eduard_color_arg,
     visualize_rays_arg,
     robot_state_publisher,
     # joint_state_publisher
