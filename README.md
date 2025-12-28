@@ -159,3 +159,6 @@ LIBGL_DRI3_DISABLE=true ros2 launch edu_simulation gazebo.launch.py
 ## Usage
 
 ### Robots
+
+### ToDo
+- change default to eduard/red
