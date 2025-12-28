@@ -42,13 +42,13 @@
       <xacro:if value="${'blue' in '$(arg robot_name)'}">
         <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
         <geometry>
-          <mesh filename="model://eduard/mesh/eduard-blue-chassis.dae"/>
+          <mesh filename="model://eduard/mesh/eduard-red-chassis.dae"/>
         </geometry>
       </xacro:if>
       <xacro:unless value="${('red' in '$(arg robot_name)') or ('green' in '$(arg robot_name)') or ('yellow' in '$(arg robot_name)') or ('blue' in '$(arg robot_name)')}">
         <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
         <geometry>
-          <mesh filename="model://eduard/mesh/eduard-blue-chassis.dae"/>
+          <mesh filename="model://eduard/mesh/eduard-red-chassis.dae"/>
         </geometry>
       </xacro:unless>
     </visual>
