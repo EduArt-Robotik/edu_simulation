@@ -21,36 +21,10 @@
       <inertia ixx="0.00276" iyy="0.00882" izz="0.01119" ixy="0" ixz="0" iyz="0"/>
     </inertial>
     <visual name="visual">
-      <xacro:if value="${'red' in '$(arg robot_name)'}">
-        <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
-        <geometry>
-          <mesh filename="model://eduard/mesh/eduard-red-chassis.dae"/>
-        </geometry>
-      </xacro:if>
-      <xacro:if value="${'green' in '$(arg robot_name)'}">
-        <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
-        <geometry>
-          <mesh filename="model://eduard/mesh/eduard-green-chassis.dae"/>
-        </geometry>
-      </xacro:if>
-      <xacro:if value="${'yellow' in '$(arg robot_name)'}">
-        <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
-        <geometry>
-          <mesh filename="model://eduard/mesh/eduard-yellow-chassis.dae"/>
-        </geometry>
-      </xacro:if>
-      <xacro:if value="${'blue' in '$(arg robot_name)'}">
-        <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
-        <geometry>
-          <mesh filename="model://eduard/mesh/eduard-red-chassis.dae"/>
-        </geometry>
-      </xacro:if>
-      <xacro:unless value="${('red' in '$(arg robot_name)') or ('green' in '$(arg robot_name)') or ('yellow' in '$(arg robot_name)') or ('blue' in '$(arg robot_name)')}">
-        <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
-        <geometry>
-          <mesh filename="model://eduard/mesh/eduard-red-chassis.dae"/>
-        </geometry>
-      </xacro:unless>
+      <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
+      <geometry>
+        <mesh filename="model://eduard/mesh/eduard-red-chassis.dae"/>
+      </geometry>
     </visual>
     <collision name="collision_bottom">
       <origin xyz="0 0 0.01" rpy="0 0 0"/>
