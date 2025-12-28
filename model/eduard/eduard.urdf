@@ -9,6 +9,7 @@
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
   <xacro:arg name="wheel_type" default="mecanum"/>
+  <xacro:arg name="chassis_mesh" default="model://eduard/mesh/eduard-blue-chassis.dae"/>
 
   <xacro:property name="wheel_type" value="$(arg wheel_type)"/>
 
@@ -23,7 +24,7 @@
     <visual name="visual">
       <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
       <geometry>
-        <mesh filename="model://eduard/mesh/eduard-blue-chassis.dae"/>
+        <mesh filename="$(arg chassis_mesh)"/>
       </geometry>
     </visual>
     <collision name="collision_bottom">

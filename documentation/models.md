@@ -144,3 +144,8 @@ The textures added in the Blender software cause the [TER0_texture](README.md#TE
 During testing, the same track model without the textures added worked fine and as expected like all other track models exported from the Blender software and imported into the Gazebo simulator.
 However the error causing the Gazebo software to crash could not be determined. Since the textures do not provide any functional benefit to the simulation per se, but only a visual improvement, the bug fix was placed lower in the prioritization of tasks.
 
+# Add new Models
+- Export Eduard from Fusion 360 / Marketing / Eduart simplified as USDZ
+- import in Blender
+- Reduce file size with modifier "remesh" and after remeshing with "decimate" 
+- export as dae

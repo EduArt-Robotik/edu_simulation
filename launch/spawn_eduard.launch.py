@@ -18,6 +18,9 @@ def generate_launch_description():
   visualize_rays = LaunchConfiguration('visualize_rays')
   visualize_rays_arg = DeclareLaunchArgument('visualize_rays', default_value='false')
 
+  chassis_mesh = LaunchConfiguration('chassis_mesh')
+  chassis_mesh_arg = DeclareLaunchArgument('chassis_mesh', default_value='model://eduard/mesh/eduard-blue-chassis.dae')
+
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
 
@@ -46,6 +49,7 @@ def generate_launch_description():
       '-string', Command([
         'xacro', ' ', eduard_xacro_file, ' ',
         'visualize_rays:=', visualize_rays, ' ',
+        'chassis_mesh:=', chassis_mesh, ' ',
         'wheel_type:=', wheel_type, ' ',
         'robot_name:=', edu_robot_namespace
       ])
@@ -60,5 +64,6 @@ def generate_launch_description():
     pos_y_arg,
     pos_z_arg,
     yaw_arg,
+    chassis_mesh_arg,
     spawner
   ])
