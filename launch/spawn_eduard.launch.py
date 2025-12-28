@@ -3,7 +3,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, Command, PythonExpression
+from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, Command
 from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription, ExecuteProcess, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -22,12 +22,7 @@ def generate_launch_description():
   chassis_variant_arg = DeclareLaunchArgument('chassis_variant', default_value='blue')
 
   chassis_mesh = LaunchConfiguration('chassis_mesh')
-  chassis_mesh_arg = DeclareLaunchArgument(
-    'chassis_mesh',
-    default_value=PythonExpression([
-      '"model://eduard/mesh/eduard-" + ', chassis_variant, ' + "-chassis.dae"'
-    ])
-  )
+  chassis_mesh_arg = DeclareLaunchArgument('chassis_mesh', default_value='')
 
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
@@ -57,6 +52,7 @@ def generate_launch_description():
       '-string', Command([
         'xacro', ' ', eduard_xacro_file, ' ',
         'visualize_rays:=', visualize_rays, ' ',
+        'chassis_variant:=', chassis_variant, ' ',
         'chassis_mesh:=', chassis_mesh, ' ',
         'wheel_type:=', wheel_type, ' ',
         'robot_name:=', edu_robot_namespace

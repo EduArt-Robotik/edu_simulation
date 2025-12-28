@@ -2,7 +2,7 @@ import os
 
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess, DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
-from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, TextSubstitution, PythonExpression
+from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, TextSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
@@ -20,12 +20,7 @@ def generate_launch_description():
   chassis_variant_arg = DeclareLaunchArgument('chassis_variant', default_value='blue')
 
   chassis_mesh = LaunchConfiguration('chassis_mesh')
-  chassis_mesh_arg = DeclareLaunchArgument(
-    'chassis_mesh',
-    default_value=PythonExpression([
-      '"model://eduard/mesh/eduard-" + ', chassis_variant, ' + "-chassis.dae"'
-    ])
-  )
+  chassis_mesh_arg = DeclareLaunchArgument('chassis_mesh', default_value='')
   
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')

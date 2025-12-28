@@ -9,9 +9,11 @@
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
   <xacro:arg name="wheel_type" default="mecanum"/>
-  <xacro:arg name="chassis_mesh" default="model://eduard/mesh/eduard-blue-chassis.dae"/>
+  <xacro:arg name="chassis_variant" default="blue"/>
+  <xacro:arg name="chassis_mesh" default=""/>
 
   <xacro:property name="wheel_type" value="$(arg wheel_type)"/>
+  <xacro:property name="chassis_mesh_resolved" value="${chassis_mesh if chassis_mesh != '' else 'model://eduard/mesh/eduard-' + chassis_variant + '-chassis.dae'}"/>
 
   <!-- chassis -->
   <link name="base_link">
@@ -24,7 +26,7 @@
     <visual name="visual">
       <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
       <geometry>
-        <mesh filename="$(arg chassis_mesh)"/>
+        <mesh filename="${chassis_mesh_resolved}"/>
       </geometry>
     </visual>
     <collision name="collision_bottom">
