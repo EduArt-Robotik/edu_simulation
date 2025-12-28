@@ -3,7 +3,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, Command
+from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, Command, PythonExpression
 from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription, ExecuteProcess, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -18,8 +18,16 @@ def generate_launch_description():
   visualize_rays = LaunchConfiguration('visualize_rays')
   visualize_rays_arg = DeclareLaunchArgument('visualize_rays', default_value='false')
 
+  chassis_variant = LaunchConfiguration('chassis_variant')
+  chassis_variant_arg = DeclareLaunchArgument('chassis_variant', default_value='blue')
+
   chassis_mesh = LaunchConfiguration('chassis_mesh')
-  chassis_mesh_arg = DeclareLaunchArgument('chassis_mesh', default_value='model://eduard/mesh/eduard-blue-chassis.dae')
+  chassis_mesh_arg = DeclareLaunchArgument(
+    'chassis_mesh',
+    default_value=PythonExpression([
+      '"model://eduard/mesh/eduard-" + ', chassis_variant, ' + "-chassis.dae"'
+    ])
+  )
 
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
@@ -60,6 +68,7 @@ def generate_launch_description():
     edu_robot_namespace_arg,
     wheel_type_arg,
     visualize_rays_arg,
+    chassis_variant_arg,
     pos_x_arg,
     pos_y_arg,
     pos_z_arg,
