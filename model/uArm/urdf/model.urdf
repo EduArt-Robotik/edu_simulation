@@ -8,7 +8,7 @@
     <visual>
       <geometry>
 	     <!--- 0.0 0 -0.04 -->
-       <mesh filename="package://uarm/urdf/daes/base.STL"/>
+       <mesh filename="package://edu_simulation/model/uArm/urdf/daes/base.STL"/>
       </geometry>
     <origin xyz = "0.1 -0.1 0 " rpy = " 1.57 0 3.14159"/>
 	<material name = "white">
@@ -20,7 +20,7 @@
   <link name="base_rot">
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/base_rot.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/base_rot.dae"/>
         <!--- <cylinder length="0.16" radius="0.02"/>  <! 0.16 0.02 --> 
       </geometry>
 	<origin xyz = "0.0 0 0 " rpy = " 0 0 1.57"/>  <!--- 0.0 0 -0.04 -->
@@ -33,7 +33,7 @@
   <link name="link_1">
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/link_1.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/link_1.dae"/>
 <!---
         <cylinder length="0.14" radius="0.01"/>  <! 0.14 0.01 -->
       </geometry>
@@ -47,7 +47,7 @@
   <link name="link_2">
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/link_2.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/link_2.dae"/>
 <!---
         <cylinder length="0.16" radius="0.01"/>  <! 0.16 0.01 -->
       </geometry>
@@ -61,7 +61,7 @@
   <link name="link_3">
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/link_3_2.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/link_3_2.dae"/>
 <!---
         <cylinder length="0.04" radius="0.01"/>  <! 0.04 0.01 -->
       </geometry>
@@ -75,7 +75,7 @@
   <link name="link_end">
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/link_end_2.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/link_end_2.dae"/>
 <!---
         <cylinder length="0.05" radius="0.005"/>  <! 0.05 0.005 -->
       </geometry>
@@ -90,7 +90,7 @@
  <link name="add_1"> <!--- small-pics -->
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/add_1.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/add_1.dae"/>
 <!---
         <cylinder length="0.05" radius="0.005"/>  <! 0.05 0.005 -->
       </geometry>
@@ -105,7 +105,7 @@
  <link name="add_4"> <!--- triangle -->
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/add_4.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/add_4.dae"/>
 <!---
         <cylinder length="0.05" radius="0.005"/>  <! 0.05 0.005 -->
       </geometry>
@@ -120,7 +120,7 @@
  <link name="add_2"> <!--- triangle -->
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/add_2.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/add_2.dae"/>
 <!---
         <cylinder length="0.05" radius="0.005"/>  <! 0.05 0.005 -->
       </geometry>
@@ -134,7 +134,7 @@
  <link name="add_3"> <!--- triangle -->
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/add_3.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/add_3.dae"/>
 <!---
         <cylinder length="0.05" radius="0.005"/>  <! 0.05 0.005 -->
       </geometry>
@@ -148,7 +148,7 @@
  <link name="add_5"> <!--- triangle -->
     <visual>
       <geometry>
-        <mesh filename="package://uarm/urdf/daes/add_5.dae"/>
+        <mesh filename="package://edu_simulation/model/uArm/urdf/daes/add_5.dae"/>
 <!---
         <cylinder length="0.05" radius="0.005"/>  <! 0.05 0.005 -->
       </geometry>
