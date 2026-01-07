@@ -35,7 +35,7 @@ def generate_launch_description():
 
   # Spawn Robot based on URDF File
   simulation_package = FindPackageShare('edu_simulation')
-  eduard_xacro_file = PathJoinSubstitution([simulation_package, 'model', 'uArm', 'eduard_uarm.urdf.xacro'])
+  eduard_xacro_file = PathJoinSubstitution([simulation_package, 'model', 'uArm', 'eduard_uarm_urdf.xacro'])
 
 
   spawner = Node(
