@@ -1,0 +1,70 @@
+from launch import LaunchDescription
+
+from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
+
+from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, Command
+from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription, ExecuteProcess, DeclareLaunchArgument
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
+def generate_launch_description():
+  # Arguments
+  edu_robot_namespace = LaunchConfiguration('edu_robot_namespace')
+  edu_robot_namespace_arg = DeclareLaunchArgument('edu_robot_namespace', default_value='eduard')
+
+  wheel_type = LaunchConfiguration('wheel_type')
+  wheel_type_arg = DeclareLaunchArgument('wheel_type', default_value='mecanum')
+
+  eduard_color = LaunchConfiguration('eduard_color')
+  eduard_color_arg = DeclareLaunchArgument('eduard_color', default_value='blue')
+
+  visualize_rays = LaunchConfiguration('visualize_rays')
+  visualize_rays_arg = DeclareLaunchArgument('visualize_rays', default_value='false')
+
+  pos_x = LaunchConfiguration('pos_x')
+  pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
+
+  pos_y = LaunchConfiguration('pos_y')
+  pos_y_arg = DeclareLaunchArgument('pos_y', default_value='0.0')
+
+  pos_z = LaunchConfiguration('pos_z')
+  pos_z_arg = DeclareLaunchArgument('pos_z', default_value='0.07')
+
+  yaw = LaunchConfiguration('yaw')
+  yaw_arg = DeclareLaunchArgument('yaw', default_value='0.0')
+
+  # Spawn Robot based on URDF File
+  simulation_package = FindPackageShare('edu_simulation')
+  eduard_xacro_file = PathJoinSubstitution([simulation_package, 'model', 'uArm', 'eduard_uarm.urdf.xacro'])
+
+
+  spawner = Node(
+    package='ros_gz_sim',
+    executable='create',
+    arguments=[
+      '-name', edu_robot_namespace,
+      '-x', pos_x,
+      '-y', pos_y,
+      '-z', pos_z,
+      '-Y', yaw,
+      '-string', Command([
+        'xacro', ' ', eduard_xacro_file, ' ',
+        'visualize_rays:=', visualize_rays, ' ',
+        'wheel_type:=', wheel_type, ' ',
+        'eduard_color:=', eduard_color, ' ',
+        'robot_name:=', edu_robot_namespace
+      ])
+    ]
+  )
+
+  return LaunchDescription([
+    edu_robot_namespace_arg,
+    wheel_type_arg,
+    eduard_color_arg,
+    visualize_rays_arg,
+    pos_x_arg,
+    pos_y_arg,
+    pos_z_arg,
+    yaw_arg,
+    spawner
+  ])

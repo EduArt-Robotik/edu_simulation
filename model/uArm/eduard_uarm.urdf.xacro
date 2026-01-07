@@ -2,9 +2,11 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="eduard_uarm">
 
   <!-- Args, die eduard.urdf erwartet -->
-  <xacro:arg name="robot_name" default="eduard"/>
-  <xacro:arg name="wheel_type" default="mecanum"/>
-  <xacro:arg name="eduard_color" default="blue"/>
+<xacro:arg name="robot_name" default="eduard"/>
+<xacro:arg name="wheel_type" default="mecanum"/>
+<xacro:arg name="eduard_color" default="blue"/>
+<xacro:arg name="visualize_rays" default="false"/>
+
 
   <xacro:include filename="$(find edu_simulation)/model/eduard/eduard.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/uArm/urdf/uarm_part.xacro"/>
