@@ -66,8 +66,7 @@ def generate_launch_description():
 
   bridge = RosGzBridge(
     bridge_name='clock_bridge',
-    config_file=bridge_parameter_file,
-    extra_bridge_params=[{'this fixes' : 'issue 774'}]
+    config_file=bridge_parameter_file
   )
 
   # create and return launch description object
