@@ -4,7 +4,7 @@
   <xacro:include filename="$(find edu_simulation)/model/eduard/wheel.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/imu.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/range_sensor.urdf"/>
-  <xacro:include filename="$(find edu_simulation)/model/eduard_atwork/lidar.urdf"/>
+  <xacro:include filename="$(find edu_simulation)/model/eduard/lidar.urdf"/>
 
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
@@ -26,7 +26,7 @@
       <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
       <geometry>
       <!-- -->
-        <mesh filename="model://eduard/mesh/eduard-atwork-chassis.dae"/>
+        <mesh filename="model://eduard/mesh/eduard-$(arg eduard_color)-chassis.dae"/>
       </geometry>
     </visual>
     <collision name="collision_bottom">
