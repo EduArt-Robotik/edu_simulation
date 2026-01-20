@@ -5,13 +5,13 @@
       <author>Blender User</author>
       <authoring_tool>Blender 4.3.2 commit date:2024-12-16, commit time:21:10, hash:32f5fdce0a0a</authoring_tool>
     </contributor>
-    <created>2026-01-20T21:43:09</created>
-    <modified>2026-01-20T21:43:09</modified>
+    <created>2026-01-20T21:59:39</created>
+    <modified>2026-01-20T21:59:39</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
-    <effect id="XID_LiDARkagayakuurutorasoul_229EFE0790794B6EBD2D008D4651281B_P-effect">
+    <effect id="XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-effect">
       <profile_COMMON>
         <technique sid="common">
           <lambert>
@@ -19,27 +19,10 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <color sid="diffuse">0.247059 0.247059 0.247059 1</color>
+              <color sid="diffuse">0.01771066 0.04360107 0.02099449 1</color>
             </diffuse>
             <index_of_refraction>
-              <float sid="ior">1.648828</float>
-            </index_of_refraction>
-          </lambert>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="XID_12FormlabsFuse13D1_CFDF6D5DBBB743EBB98ED4CE25C574AF_Post201-effect">
-      <profile_COMMON>
-        <technique sid="common">
-          <lambert>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <diffuse>
-              <color sid="diffuse">0.247059 0.247059 0.247059 1</color>
-            </diffuse>
-            <index_of_refraction>
-              <float sid="ior">1.576014</float>
+              <float sid="ior">1.329431</float>
             </index_of_refraction>
           </lambert>
         </technique>
@@ -48,11 +31,8 @@
   </library_effects>
   <library_images/>
   <library_materials>
-    <material id="XID_LiDARkagayakuurutorasoul_229EFE0790794B6EBD2D008D4651281B_P-material" name="XID_LiDARkagayakuurutorasoul_229EFE0790794B6EBD2D008D4651281B_P">
-      <instance_effect url="#XID_LiDARkagayakuurutorasoul_229EFE0790794B6EBD2D008D4651281B_P-effect"/>
-    </material>
-    <material id="XID_12FormlabsFuse13D1_CFDF6D5DBBB743EBB98ED4CE25C574AF_Post201-material" name="XID_12FormlabsFuse13D1_CFDF6D5DBBB743EBB98ED4CE25C574AF_Post201">
-      <instance_effect url="#XID_12FormlabsFuse13D1_CFDF6D5DBBB743EBB98ED4CE25C574AF_Post201-effect"/>
+    <material id="XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-material" name="XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos">
+      <instance_effect url="#XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-effect"/>
     </material>
   </library_materials>
   <library_geometries>
@@ -90,7 +70,7 @@
         <vertices id="Körper1_001-mesh-vertices">
           <input semantic="POSITION" source="#Körper1_001-mesh-positions"/>
         </vertices>
-        <triangles material="XID_LiDARkagayakuurutorasoul_229EFE0790794B6EBD2D008D4651281B_P-material" count="1972">
+        <triangles material="XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-material" count="1972">
           <input semantic="VERTEX" source="#Körper1_001-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Körper1_001-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Körper1_001-mesh-map-0" offset="2" set="0"/>
@@ -132,7 +112,7 @@
         <vertices id="Körper1-mesh-vertices">
           <input semantic="POSITION" source="#Körper1-mesh-positions"/>
         </vertices>
-        <triangles material="XID_12FormlabsFuse13D1_CFDF6D5DBBB743EBB98ED4CE25C574AF_Post201-material" count="588">
+        <triangles material="XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-material" count="588">
           <input semantic="VERTEX" source="#Körper1-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Körper1-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Körper1-mesh-map-0" offset="2" set="0"/>
@@ -151,7 +131,7 @@
         <instance_geometry url="#Körper1_001-mesh" name="Körper1.001">
           <bind_material>
             <technique_common>
-              <instance_material symbol="XID_LiDARkagayakuurutorasoul_229EFE0790794B6EBD2D008D4651281B_P-material" target="#XID_LiDARkagayakuurutorasoul_229EFE0790794B6EBD2D008D4651281B_P-material">
+              <instance_material symbol="XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-material" target="#XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-material">
                 <bind_vertex_input semantic="st" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
@@ -163,7 +143,7 @@
         <instance_geometry url="#Körper1-mesh" name="Körper1">
           <bind_material>
             <technique_common>
-              <instance_material symbol="XID_12FormlabsFuse13D1_CFDF6D5DBBB743EBB98ED4CE25C574AF_Post201-material" target="#XID_12FormlabsFuse13D1_CFDF6D5DBBB743EBB98ED4CE25C574AF_Post201-material">
+              <instance_material symbol="XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-material" target="#XID_Opaque1965339_09241000B3AEABEBAFBC9A9BF7B5FFCE_Post2015_Pos-material">
                 <bind_vertex_input semantic="st" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
