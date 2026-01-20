@@ -140,7 +140,7 @@
     topic_name="/scan/front"
     frame_id="ydlidar_front_link"
     prefix="$(arg robot_name)">
-    <origin xyz="0.168 0.0 -0.033" rpy="0.0 0.0 0.0"/>
+    <origin xyz="0.168 0.0 -0.033" rpy="-1.57079632679 0 0"/>
   </xacro:ydlidar>
 
   <xacro:ydlidar
@@ -149,7 +149,7 @@
     topic_name="/scan/back"
     frame_id="ydlidar_back_link"
     prefix="$(arg robot_name)">
-    <origin xyz="-0.172 0.0 -0.033" rpy="3.1415 0.0 0.0"/>
+    <origin xyz="-0.172 0.0 -0.033" rpy="-1.57079632679 0 3.14159265359"/>
   </xacro:ydlidar>
 
 
