@@ -140,8 +140,8 @@
   <xacro:ydlidar
     name="ydlidar_front"
     parent_link="base_link"
-    topic_name="scan/front"
-    frame_id="laser_front"
+    topic_name="/scan/front"
+    frame_id="ydlidar_front_link"
     prefix="$(arg robot_name)">
     <origin xyz="0.168 0.0 -0.033" rpy="0.0 0.0 0.0"/>
   </xacro:ydlidar>
@@ -149,8 +149,8 @@
   <xacro:ydlidar
     name="ydlidar_back"
     parent_link="base_link"
-    topic_name="scan/back"
-    frame_id="laser_back"
+    topic_name="/scan/back"
+    frame_id="ydlidar_back_link"
     prefix="$(arg robot_name)">
     <origin xyz="-0.172 0.0 -0.033" rpy="3.1415 0.0 0.0"/>
   </xacro:ydlidar>
