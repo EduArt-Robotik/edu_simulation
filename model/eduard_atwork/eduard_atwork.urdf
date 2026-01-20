@@ -23,7 +23,7 @@
       <origin xyz="0 0 0" rpy="0 0 1.570796327"/>
       <geometry>
       <!-- -->
-        <mesh filename="model://eduard/mesh/eduard-atwork-chassis.dae"/>
+        <mesh filename="model://eduard_atwork/mesh/eduard-atwork-chassis.dae"/>
       </geometry>
     </visual>
     <collision name="collision_bottom">
