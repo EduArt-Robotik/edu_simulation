@@ -2,8 +2,17 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="$(arg robot_name)">
   <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
 
-  <xacro:macro name="lidar" params="name parent_link topic_name prefix *origin">
-    <!-- Lidar Cassis -->
+  <!--
+    Single lidar macro:
+    - name: link/joint base name (e.g. lidar_front, lidar_back)
+    - parent_link: typically base_link
+    - topic_name: full ROS topic (e.g. scan/front)
+    - frame_id: TF frame for LaserScan (e.g. laser_front)
+    - prefix: optional prefix if you still want it (can be empty)
+  -->
+  <xacro:macro name="ydlidar" params="name parent_link topic_name frame_id prefix *origin">
+
+    <!-- Lidar Chassis -->
     <link name="${name}_link">
       <!-- Visuals -->
       <visual name="bottom">
@@ -14,19 +23,21 @@
           <color rgba="0.33 0.40 0.46 1.0"/>
         </material>
       </visual>
+
       <visual name="top">
         <origin xyz="0 0 0.04" rpy="0 0 0"/>
         <geometry>
           <cylinder radius="0.025" length="0.04"/>
         </geometry>
       </visual>
-  
+
       <!-- Collisions -->
       <collision name="bottom">
         <geometry>
           <box size="0.055 0.055 0.04"/>
         </geometry>
       </collision>
+
       <collision name="top">
         <origin xyz="0 0 0.04" rpy="0 0 0"/>
         <geometry>
@@ -38,41 +49,57 @@
       <xacro:inertial_cylinder mass="0.3" radius="0.025" length="0.08"/>
     </link>
 
+    <!-- Mounting joint -->
     <joint name="${name}_joint" type="fixed">
       <parent link="${parent_link}"/>
       <child link="${name}_link"/>
       <xacro:insert_block name="origin"/>
     </joint>
 
-    <!-- Sensor -->
+    <!-- Sensor (Gazebo) -->
     <gazebo reference="${name}_link">
-      <sensor name="lidar" type="gpu_lidar">
+      <sensor name="${name}_sensor" type="gpu_lidar">
+        <!-- ydlidar: frequency 12 Hz -->
         <update_rate>10</update_rate>
-        <topic>${prefix}/scan</topic>
-        <gz_frame_id>${prefix}/laser</gz_frame_id>
+
+        <!-- Publish exactly like your driver nodes expect -->
+        <!-- If you bridge Gazebo->ROS2/ROS, adapt this topic accordingly -->
+        <topic>${topic_name}</topic>
+
+        <!-- Frame IDs to match your TF frames -->
+        <gz_frame_id>${frame_id}</gz_frame_id>
+
         <lidar>
           <scan>
             <horizontal>
-              <samples>360</samples>
+              <!-- Deine Treiber-Angaben: angle_min=-80°, angle_max=80° -->
+              <!-- 160° FOV => 2.7925268 rad -->
+              <samples>400</samples>
               <resolution>1.0</resolution>
-              <min_angle>-2.35619449</min_angle>
-              <max_angle>2.35619449</max_angle>
+              <min_angle>-3.14159265</min_angle>
+              <max_angle> 3.14159265</max_angle>
             </horizontal>
           </scan>
+
           <range>
-            <min>0.2</min>
-            <max>12.0</max>
+            <!-- Deine Treiber-Angaben -->
+            <min>0.02</min>
+            <max>16.0</max>
           </range>
+
           <noise>
             <type>gaussian</type>
             <mean>0.0</mean>
             <stddev>0.01</stddev>
-          </noise>   
-          <frame_id>${prefix}/laser</frame_id>       
+          </noise>
+
+          <frame_id>${frame_id}</frame_id>
         </lidar>
+
         <always_on>true</always_on>
         <visualize>true</visualize>
       </sensor>
     </gazebo>
+
   </xacro:macro>
 </robot>
