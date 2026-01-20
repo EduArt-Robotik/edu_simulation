@@ -7,7 +7,7 @@
   <xacro:include filename="$(find edu_simulation)/model/eduard_atwork/ydlidar.urdf"/>
 
   <!-- Arguments -->
-  <xacro:arg name="robot_name" default="eduard"/>
+  <xacro:arg name="robot_name" default="eduard_atwork"/>
   <xacro:arg name="wheel_type" default="mecanum"/>
 
 
