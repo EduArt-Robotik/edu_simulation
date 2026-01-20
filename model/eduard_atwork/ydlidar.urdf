@@ -13,12 +13,16 @@
   <xacro:macro name="ydlidar" params="name parent_link topic_name frame_id prefix *origin">
 
     <!-- Lidar Chassis -->
-    <visual>
+    
+    <link name="${name}_link">
+      <!-- Visuals -->
+      <visual>
   <origin xyz="0 0 0" rpy="0 0 0"/>
   <geometry>
     <mesh filename="model://eduard_atwork/mesh/ydlidar.dae" scale="1 1 1"/>
   </geometry>
 </visual>
+
 
       <!-- Collisions -->
       <collision name="bottom">
