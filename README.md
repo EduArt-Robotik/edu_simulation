@@ -4,6 +4,39 @@ Contains Gazebo simulation models for all EduArt's robots. At the moment it work
 
 ## Installation
 
+### Using Docker
+
+#### On MAC
+
+>**Note:** EXPERIMENTAL!!!
+
+On MAC a possible way to run the simulation is using a Docker container with X11 forwarding. The container will be isolated with the provided configuration!
+
+For activating or allowing the X11 forwarding please follow these steps:
+* installing XQuartz and open it.
+* XQuartz -> Preferences -> Security: activate "Allow connections from network clients".
+* Restart XQuartz
+* Allowing connection to Docker container
+  * Open a terminal
+  * type in "xhost + 127.0.0.1"
+
+Now the Docker container can be started by:
+
+```bash
+cd <a place you like for the simulation>
+git clone https://github.com/EduArt-Robotik/edu_simulation.git
+cd edu_simulation/docker/mac
+docker compose up
+```
+
+At this point the container is running and ready to use. For additional commands please open a new terminal and connect to the running container by:
+
+```bash
+docker exec -it eduart-simulation-0.4.0 bash
+```
+
+For launching the simulation please see section [Launching Simulator](#launching-simulator).
+
 ### Preparation
 
 Before compiling and installing the simulation it is required to clone this repository and also to clone EduArt dependencies into your ROS2 workspace.
