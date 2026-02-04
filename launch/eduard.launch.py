@@ -59,6 +59,17 @@ def generate_launch_description():
     ],
     parameters=[{'use_sim_time': True}]
   )
+  tf_livox_eduard = Node(
+    package='tf2_ros',
+    name='tf_publish_laser',
+    executable='static_transform_publisher',
+    arguments=[
+      '0.15', '0.0', '0.15', '0', '0', '0',
+      PathJoinSubstitution([edu_robot_namespace, 'base_link']),
+      PathJoinSubstitution(['livox_mid360', 'laser'])
+    ],
+    parameters=[{'use_sim_time': True}]
+  )  
 
   # Bridging Topics
   gz_ros_bridge = Node(
@@ -68,7 +79,8 @@ def generate_launch_description():
     output='screen',
     namespace=edu_robot_namespace,
     arguments=[
-      ['/', edu_robot_namespace, '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan']
+      ['/', edu_robot_namespace, '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan'],
+      ['/livox_mid360/scan/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked']
     ],
     parameters=[{
       'use_sim_time': True
@@ -84,5 +96,6 @@ def generate_launch_description():
     yaw_arg,    
     eduard,
     tf_laser_eduard,
+    tf_livox_eduard,
     gz_ros_bridge
   ])

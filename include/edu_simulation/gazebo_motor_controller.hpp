@@ -21,7 +21,7 @@ public:
   ~GazeboMotorController() override;
 
   void processSetValue(const std::vector<robot::Rpm>& rpm) override;
-  void initialize(const robot::Motor::Parameter& parameter) override;
+  void initialize(const std::vector<robot::Motor::Parameter>& parameter) override;
   inline void enable() {
     _is_enabled = true;
   }

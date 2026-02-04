@@ -1,0 +1,74 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="$(arg robot_name)">
+  <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
+
+  <xacro:macro name="livox_mid360" params="name parent_link topic_name prefix *origin">
+    <!-- Livox Mid360 Chassis -->
+    <link name="${name}_link">
+      <!-- Visuals -->
+      <visual name="housing">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.065 0.065 0.060"/>
+        </geometry>
+        <material name="livox_black">
+          <color rgba="0.2 0.2 0.2 1.0"/>
+        </material>
+      </visual>
+  
+      <!-- Collisions -->
+      <collision name="housing">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.065 0.065 0.060"/>
+        </geometry>
+      </collision>
+
+      <!-- Inertial -->
+      <xacro:inertial_block mass="0.265" width="0.065" length="0.065" height="0.060"/>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent_link}"/>
+      <child link="${name}_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- Sensor -->
+    <gazebo reference="${name}_link">
+      <sensor name="livox_mid360_lidar" type="gpu_lidar">
+        <update_rate>10</update_rate>
+        <topic>${prefix}/scan</topic>
+        <gz_frame_id>${prefix}/laser</gz_frame_id>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>1600</samples>
+              <resolution>1.0</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>6.28318530718</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>40</samples>
+              <resolution>1.0</resolution>
+              <min_angle>-0.5149078</min_angle>
+              <max_angle>0.5149078</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>40.0</max>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>   
+          <frame_id>${prefix}/laser</frame_id>       
+        </lidar>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+</robot>

@@ -35,8 +35,9 @@ void GazeboMotorController::processSetValue(const std::vector<robot::Rpm>& rpm)
   _gz_pub_velocity.Publish(velocity_msgs);
 }
 
-void GazeboMotorController::initialize(const robot::Motor::Parameter &parameter)
+void GazeboMotorController::initialize(const std::vector<robot::Motor::Parameter>& parameter)
 {
+  (void)parameter;
   _low_pass_filter.clear();
 }
 

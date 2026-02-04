@@ -5,6 +5,7 @@
   <xacro:include filename="$(find edu_simulation)/model/eduard/imu.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/range_sensor.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/lidar.urdf"/>
+  <xacro:include filename="$(find edu_simulation)/model/eduard/livox_mid360.urdf"/>
 
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
@@ -133,9 +134,13 @@
     <origin xyz="-0.17 -0.063 0.05" rpy="0 0 3.141592654"/>
   </xacro:range_sensor>
 
-  <xacro:lidar name="lidar" parent_link="base_link" topic_name="scan" prefix="$(arg robot_name)">
+  <!-- <xacro:lidar name="lidar" parent_link="base_link" topic_name="scan" prefix="$(arg robot_name)">
     <origin xyz="0.115 0 0.07" rpy="0 0 0"/>
-  </xacro:lidar>
+  </xacro:lidar> -->
+
+  <xacro:livox_mid360 name="livox_mid360" parent_link="base_link" topic_name="livox" prefix="livox_mid360">
+    <origin xyz="0.15 0 0.15" rpy="0 0 0"/>
+  </xacro:livox_mid360>
 
   <!-- Plugins -->
   <gazebo>
