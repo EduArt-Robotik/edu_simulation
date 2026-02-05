@@ -77,3 +77,20 @@ ament_target_dependencies(collision_avoidance_lidar_node
   "tf2_sensor_msgs"
   "laser_geometry"
 )
+
+# Export Pose Plugin
+add_library(model-pose-exporter-plugin SHARED
+  gazebo_pose_exporter.cpp
+)
+set_property(TARGET model-pose-exporter-plugin PROPERTY CXX_STANDARD 17)
+target_include_directories(model-pose-exporter-plugin
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+target_link_libraries(model-pose-exporter-plugin
+  gz-sim::gz-sim
+  gz-plugin::register
+)
+ament_target_dependencies(model-pose-exporter-plugin
+)

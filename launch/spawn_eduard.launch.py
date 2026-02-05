@@ -18,6 +18,12 @@ def generate_launch_description():
   visualize_rays = LaunchConfiguration('visualize_rays')
   visualize_rays_arg = DeclareLaunchArgument('visualize_rays', default_value='false')
 
+  export_pose = LaunchConfiguration('export_pose')
+  export_pose_arg = DeclareLaunchArgument('export_pose', default_value='false')
+
+  lidar_type = LaunchConfiguration('lidar_type')
+  lidar_type_arg = DeclareLaunchArgument('lidar_type', default_value='rplidar_a2m12', choices=['rplidar_a2m12', 'livox_mid360'])
+
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
 
@@ -47,7 +53,9 @@ def generate_launch_description():
         'xacro', ' ', eduard_xacro_file, ' ',
         'visualize_rays:=', visualize_rays, ' ',
         'wheel_type:=', wheel_type, ' ',
-        'robot_name:=', edu_robot_namespace
+        'robot_name:=', edu_robot_namespace, ' ',
+        'lidar_type:=', lidar_type, ' ',
+        'export_pose:=', export_pose
       ])
     ]
   )

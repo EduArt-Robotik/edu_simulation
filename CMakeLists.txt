@@ -32,6 +32,7 @@ install(
     # eduard-object-detection-sensor-plugin
     eduard-model-plugin
     eduard-motor-plugin
+    model-pose-exporter-plugin
   DESTINATION lib
 )
 
@@ -50,6 +51,6 @@ install(DIRECTORY launch
 
 ament_export_libraries(
   eduard-model-plugin
+  model-pose-exporter-plugin
 )
-
 ament_package()

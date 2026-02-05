@@ -10,6 +10,8 @@
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
   <xacro:arg name="wheel_type" default="mecanum"/>
+  <xacro:arg name="lidar_type" default="rplidar_a2m12"/>
+  <xacro:arg name="export_pose" default="false"/>
 
   <xacro:property name="wheel_type" value="$(arg wheel_type)"/>
 
@@ -134,13 +136,17 @@
     <origin xyz="-0.17 -0.063 0.05" rpy="0 0 3.141592654"/>
   </xacro:range_sensor>
 
-  <!-- <xacro:lidar name="lidar" parent_link="base_link" topic_name="scan" prefix="$(arg robot_name)">
-    <origin xyz="0.115 0 0.07" rpy="0 0 0"/>
-  </xacro:lidar> -->
-
-  <xacro:livox_mid360 name="livox_mid360" parent_link="base_link" topic_name="livox" prefix="livox_mid360">
-    <origin xyz="0.15 0 0.15" rpy="0 0 0"/>
-  </xacro:livox_mid360>
+  <!-- Lidars, only one is selected -->
+  <xacro:if value="${lidar_type == 'rplidar_a2m12'}">
+    <xacro:lidar name="lidar" parent_link="base_link" topic_name="scan" prefix="$(arg robot_name)">
+      <origin xyz="0.115 0 0.07" rpy="0 0 0"/>
+    </xacro:lidar>
+  </xacro:if>
+  <xacro:if value="${lidar_type == 'livox_mid360'}">
+    <xacro:livox_mid360 name="livox_mid360" parent_link="base_link" topic_name="livox" prefix="livox_mid360">
+      <origin xyz="0.15 0 0.15" rpy="0 0 0"/>
+    </xacro:livox_mid360>
+  </xacro:if>
 
   <!-- Plugins -->
   <gazebo>
@@ -151,6 +157,12 @@
       <motor name="motor_c" joint_name="motor_c_wheel_joint"/>
       <motor name="motor_d" joint_name="motor_d_wheel_joint"/>
     </plugin>
+    <xacro:if value="${export_pose == 'true'}">
+      <plugin filename="libmodel-pose-exporter-plugin.so" name="eduart::simulation::PoseExporter">
+        <export_format type="TUM"/>
+        <file name="/tmp/$(arg robot_name)_pose.txt"/>
+      </plugin>
+    </xacro:if>
   </gazebo>
 
   <!-- World Plugins needed for Sensors -->
