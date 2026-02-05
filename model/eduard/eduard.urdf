@@ -145,7 +145,7 @@
     </xacro:lidar>
   </xacro:if>
   <xacro:if value="${lidar_type == 'livox_mid360'}">
-    <xacro:livox_mid360 name="livox_mid360" parent_link="base_link" topic_name="livox" prefix="livox_mid360">
+    <xacro:livox_mid360 name="livox_mid360" parent_link="base_link" topic_name="livox/scan" prefix="$(arg robot_name)">
       <origin xyz="0.145 0 0.165" rpy="0 0.436332313 0"/>
     </xacro:livox_mid360>
   </xacro:if>

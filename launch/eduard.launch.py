@@ -2,6 +2,7 @@ import os
 
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess, DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, EnvironmentVariable, PathJoinSubstitution, TextSubstitution, PythonExpression
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -15,7 +16,10 @@ def generate_launch_description():
 
   wheel_type = LaunchConfiguration('wheel_type')
   wheel_type_arg = DeclareLaunchArgument('wheel_type', default_value='mecanum')
-  
+
+  lidar_type = LaunchConfiguration('lidar_type')
+  lidar_type_arg = DeclareLaunchArgument('lidar_type', default_value='rplidar_a2m12', choices=['rplidar_a2m12', 'livox_mid360'])
+
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
 
@@ -57,18 +61,20 @@ def generate_launch_description():
       PathJoinSubstitution([edu_robot_namespace, 'base_link']),
       PathJoinSubstitution([edu_robot_namespace, 'laser'])
     ],
-    parameters=[{'use_sim_time': True}]
+    parameters=[{'use_sim_time': True}],
+    condition=IfCondition(PythonExpression(["'", lidar_type, "' == 'rplidar_a2m12'"]))
   )
   tf_livox_eduard = Node(
     package='tf2_ros',
-    name='tf_publish_laser',
+    name='tf_publish_livox',
     executable='static_transform_publisher',
     arguments=[
-      '0.15', '0.0', '0.15', '0', '0', '0',
+      '0.145', '0.0', '0.165', '0', '0.436332313', '0',
       PathJoinSubstitution([edu_robot_namespace, 'base_link']),
-      PathJoinSubstitution(['livox_mid360', 'laser'])
+      PathJoinSubstitution([edu_robot_namespace, 'livox_mid360'])
     ],
-    parameters=[{'use_sim_time': True}]
+    parameters=[{'use_sim_time': True}],
+    condition=IfCondition(PythonExpression(["'", lidar_type, "' == 'livox_mid360'"]))
   )  
 
   # Bridging Topics
@@ -80,7 +86,7 @@ def generate_launch_description():
     namespace=edu_robot_namespace,
     arguments=[
       ['/', edu_robot_namespace, '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan'],
-      ['/livox_mid360/scan/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked']
+      ['/', edu_robot_namespace, '/livox/scan/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked']
     ],
     parameters=[{
       'use_sim_time': True
@@ -90,6 +96,7 @@ def generate_launch_description():
   return LaunchDescription([
     edu_robot_namespace_arg,
     wheel_type_arg,
+    lidar_type_arg,
     pos_x_arg,
     pos_y_arg,
     pos_z_arg,
