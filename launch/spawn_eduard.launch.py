@@ -64,6 +64,8 @@ def generate_launch_description():
     edu_robot_namespace_arg,
     wheel_type_arg,
     visualize_rays_arg,
+    export_pose_arg,
+    lidar_type_arg,
     pos_x_arg,
     pos_y_arg,
     pos_z_arg,
