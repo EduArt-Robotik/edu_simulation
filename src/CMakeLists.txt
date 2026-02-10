@@ -58,7 +58,7 @@ target_link_libraries(eduard-motor-plugin
   gz-plugin::register
 )
 ament_target_dependencies(eduard-motor-plugin
-
+  "edu_robot"
 )
 
 # Collision Avoidance Lidar

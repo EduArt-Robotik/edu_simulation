@@ -29,9 +29,24 @@
     <gazebo reference="${name}_link">
       <sensor name="${name}_sensor" type="imu">
         <topic>${topic_name}</topic>
-        <update_rate>50</update_rate>
+        <gz_frame_id>${name}</gz_frame_id>
+        <update_rate>100</update_rate>
         <always_on>true</always_on>
         <visualize>${visualize}</visualize>
+        <imu>
+          <noise>
+            <type>gaussian</type>
+            <rate>
+              <mean>0.0</mean>
+              <stddev>0.0</stddev>
+            </rate>
+            <accel>
+              <mean>0.0</mean>
+              <stddev>0.0</stddev>
+            </accel>
+          </noise>
+          <orientation_reference_frame>ENU</orientation_reference_frame>
+        </imu>
       </sensor>
     </gazebo>
 

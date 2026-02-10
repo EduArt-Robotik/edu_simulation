@@ -59,6 +59,12 @@
   <gazebo>
     <plugin filename="libeduard-motor-plugin.so" name="eduart::simulation::GazeboMotorPlugin">
       <joint_name>${wheel_joint_name}</joint_name>
+      <max_torque>30.0</max_torque>
+      <pid>
+        <kp>0.1</kp>
+        <ki>5.0</ki>
+        <kd>0.0</kd>
+      </pid>
     </plugin>
   </gazebo>
 

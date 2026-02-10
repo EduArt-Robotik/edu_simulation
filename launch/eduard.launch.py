@@ -32,6 +32,9 @@ def generate_launch_description():
   yaw = LaunchConfiguration('yaw')
   yaw_arg = DeclareLaunchArgument('yaw', default_value='0.0')
 
+  export_pose = LaunchConfiguration('export_pose')
+  export_pose_arg = DeclareLaunchArgument('export_pose', default_value='false')
+
   # Eduard
   eduard_launch_file = PathJoinSubstitution([
     FindPackageShare('edu_simulation'),
@@ -47,7 +50,9 @@ def generate_launch_description():
       "pos_x": pos_x,
       "pos_y": pos_y,
       "pos_z": pos_z,
-      "yaw": yaw
+      "yaw": yaw,
+      'lidar_type': lidar_type,
+      'export_pose': export_pose
     }.items()
   )
 
@@ -100,7 +105,8 @@ def generate_launch_description():
     pos_x_arg,
     pos_y_arg,
     pos_z_arg,
-    yaw_arg,    
+    yaw_arg,
+    export_pose_arg,
     eduard,
     tf_laser_eduard,
     tf_livox_eduard,

@@ -48,6 +48,9 @@ void PoseExporter::Configure(
     }
     else {
       gzlog << "export poses to file: " << file_name << std::endl;
+      if (_export_format == ExportFormat::CSV) {
+        _file << "time,position_x,position_y,position_z,orientation_x,orientation_y,orientation_z,orientation_w" << std::endl;
+      }
     }
   }
 }

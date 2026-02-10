@@ -20,7 +20,7 @@ find_package(gz_plugin_vendor REQUIRED)
 find_package(gz-plugin REQUIRED)
 
 # General Compiler Settings
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 

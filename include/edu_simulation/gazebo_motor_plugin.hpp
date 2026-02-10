@@ -9,6 +9,8 @@
 #include <gz/sim/System.hh>
 #include <gz/msgs.hh>
 
+#include <edu_robot/algorithm/pid_controller.hpp>
+
 namespace eduart {
 namespace simulation {
 
@@ -33,11 +35,15 @@ private:
   // Communication
   std::shared_ptr<gz::transport::Node> _node;
   gz::transport::Node::Publisher _pub_velocity;
-  std::vector<double> _velocity = { 0.0 };
 
   // Physic Access
   gz::sim::Entity _joint_entity = 0;
   std::chrono::steady_clock::time_point _stamp_last_sent_velocity;
+
+  // Control
+  std::shared_ptr<robot::algorithm::Pid> _pid;
+  std::vector<double> _cmd_velocity = { 0.0 };
+  std::vector<double> _effort = { 0.0 };
 };
 
 } // end namespace simulation

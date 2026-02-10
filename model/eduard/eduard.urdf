@@ -6,12 +6,13 @@
   <xacro:include filename="$(find edu_simulation)/model/eduard/range_sensor.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/lidar.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/livox_mid360.urdf"/>
+  <xacro:include filename="$(find edu_simulation)/model/eduard/lighting.urdf"/>
 
   <!-- Arguments -->
   <xacro:arg name="robot_name" default="eduard"/>
   <xacro:arg name="wheel_type" default="mecanum"/>
   <xacro:arg name="lidar_type" default="rplidar_a2m12"/>
-  <xacro:arg name="export_pose" default="false"/>
+  <xacro:arg name="export_pose" default="true"/>
 
   <xacro:property name="wheel_type" value="$(arg wheel_type)"/>
   <xacro:property name="lidar_type" value="$(arg lidar_type)"/>
@@ -119,6 +120,20 @@
       </collision>        
     </gazebo>
   </xacro:if>
+
+  <!-- Lightings -->
+  <xacro:lighting name="light_front_left" parent_link="base_link">
+    <origin xyz="0.17 0.063 0.045" rpy="0 0 0"/>
+  </xacro:lighting>
+  <xacro:lighting name="light_front_right" parent_link="base_link">
+    <origin xyz="0.17 -0.063 0.045" rpy="0 0 0"/>
+  </xacro:lighting>
+  <xacro:lighting name="light_rear_left" parent_link="base_link">
+    <origin xyz="-0.17 0.063 0.05" rpy="0 0 3.141592654"/>
+  </xacro:lighting>
+  <xacro:lighting name="light_rear_right" parent_link="base_link">
+    <origin xyz="-0.17 -0.063 0.05" rpy="0 0 3.141592654"/>
+  </xacro:lighting>
 
   <!-- Sensors -->
   <xacro:imu name="imu" parent_link="base_link" topic_name="$(arg robot_name)/imu" visualize="false">
