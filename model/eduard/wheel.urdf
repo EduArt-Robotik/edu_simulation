@@ -62,7 +62,7 @@
       <max_torque>30.0</max_torque>
       <pid>
         <kp>0.1</kp>
-        <ki>5.0</ki>
+        <ki>1.0</ki>
         <kd>0.0</kd>
       </pid>
     </plugin>

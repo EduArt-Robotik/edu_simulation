@@ -41,6 +41,12 @@
         <visualize>false</visualize>
       </light>
     </gazebo>
+    <gazebo>
+      <!-- Plugin to Control Light Intensity and Color -->
+      <plugin filename="libgazebo-lighting-plugin.so" name="eduart::simulation::GazeboLightingPlugin">
+        <lighting_name>${name}</lighting_name>
+        <visual_name>visual</visual_name>
+      </plugin>
+    </gazebo>
   </xacro:macro>
-
 </robot>

@@ -28,7 +28,6 @@ add_library(eduard-model-plugin SHARED
   gazebo_hardware_adapter.cpp
   eduard_hardware_component_factory.cpp
 )
-set_property(TARGET eduard-model-plugin PROPERTY CXX_STANDARD 17)
 target_include_directories(eduard-model-plugin
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
@@ -47,7 +46,6 @@ ament_target_dependencies(eduard-model-plugin
 add_library(eduard-motor-plugin SHARED
   gazebo_motor_plugin.cpp
 )
-set_property(TARGET eduard-motor-plugin PROPERTY CXX_STANDARD 17)
 target_include_directories(eduard-motor-plugin
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
@@ -82,7 +80,6 @@ ament_target_dependencies(collision_avoidance_lidar_node
 add_library(model-pose-exporter-plugin SHARED
   gazebo_pose_exporter.cpp
 )
-set_property(TARGET model-pose-exporter-plugin PROPERTY CXX_STANDARD 17)
 target_include_directories(model-pose-exporter-plugin
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
@@ -93,4 +90,21 @@ target_link_libraries(model-pose-exporter-plugin
   gz-plugin::register
 )
 ament_target_dependencies(model-pose-exporter-plugin
+)
+
+# Lighting Plugin
+add_library(gazebo-lighting-plugin SHARED
+  gazebo_lighting_plugin.cpp
+)
+target_include_directories(gazebo-lighting-plugin
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+target_link_libraries(gazebo-lighting-plugin
+  gz-sim::gz-sim
+  gz-plugin::register
+)
+ament_target_dependencies(gazebo-lighting-plugin
+  "edu_robot"
 )

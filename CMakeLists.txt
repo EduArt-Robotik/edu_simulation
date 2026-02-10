@@ -33,6 +33,7 @@ install(
     eduard-model-plugin
     eduard-motor-plugin
     model-pose-exporter-plugin
+    gazebo-lighting-plugin
   DESTINATION lib
 )
 
@@ -52,5 +53,6 @@ install(DIRECTORY launch
 ament_export_libraries(
   eduard-model-plugin
   model-pose-exporter-plugin
+  gazebo-lighting-plugin
 )
 ament_package()
