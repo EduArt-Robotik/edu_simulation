@@ -1,17 +1,18 @@
 #include "edu_simulation/gazebo_lighting_plugin.hpp"
 
 #include <gz/sim/components/Light.hh>
+#include <gz/sim/components/LightCmd.hh>
 #include <gz/sim/components/Name.hh>
 #include <gz/sim/components/Visual.hh>
 #include <gz/sim/components/Material.hh>
+
+#include <gz/sim/Conversions.hh>
 
 namespace eduart {
 namespace simulation {
 
 GazeboLightingPlugin::GazeboLightingPlugin()
 {
-  std::cout << __PRETTY_FUNCTION__ << std::endl;
-
   _color = {255, 0, 0};
 }
 
@@ -40,6 +41,12 @@ void GazeboLightingPlugin::Configure(
   const std::string visual_name = sdf->FindElement("visual_name")->Get<std::string>();
 
   if (auto lighting_entity = ecm.EntityByName(lighting_name)) {
+    // if (!ecm.EntityHasComponentType(*lighting_entity, gz::sim::components::LightCmd().TypeId())) {
+    //   if (ecm.CreateComponent(*lighting_entity, gz::sim::components::LightCmd()) == nullptr) {
+    //     gzerr << "failed to create LightCmd component in entity [" << *lighting_entity << "] --> cancel configuring" << std::endl;
+    //     return;
+    //   }
+    // }
     _lighting_entity = *lighting_entity;
   }
   else {
@@ -48,7 +55,10 @@ void GazeboLightingPlugin::Configure(
   }
   if (auto visual_entity = ecm.EntityByName(visual_name)) {
     if (!ecm.EntityHasComponentType(*visual_entity, gz::sim::components::Material().TypeId())) {
-      ecm.CreateComponent(*visual_entity, gz::sim::components::Material());
+      if (ecm.CreateComponent(*visual_entity, gz::sim::components::Material()) == nullptr) {
+        gzerr << "failed to create Material component in entity [" << *visual_entity << "] --> cancel configuring" << std::endl;
+        return;
+      }
     }
     _visual_entity = *visual_entity;
   }
@@ -66,21 +76,35 @@ void GazeboLightingPlugin::Update(const gz::sim::UpdateInfo& info, gz::sim::Enti
   }
 
   auto light = ecm.Component<gz::sim::components::Light>(_lighting_entity);
-  auto material = ecm.Component<gz::sim::components::Material>(_visual_entity);
-
   if (light == nullptr) {
     gzerr << "light component not found in entity [" << _lighting_entity << "] --> cancel updating" << std::endl;
     return;
   }
-  if (material == nullptr) {
+
+  auto material_comp = ecm.Component<gz::sim::components::Material>(_visual_entity);
+  if (material_comp == nullptr) {
     gzerr << "material component not found in entity [" << _visual_entity << "] --> cancel updating" << std::endl;
     return;
   }
 
-  light->Data().SetIntensity(1.0);
-  material->Data().SetEmissive(gz::math::Color(_color.r / 255.0, _color.g / 255.0, _color.b / 255.0));
 
+  // Update LightCmd component
+  // gz::msgs::Light light_cmd = gz::sim::convert(light->Data());
+  gz::msgs::Light light_msg;
+  light_msg.set_type(gz::msgs::Light::SPOT);
+  light_msg.set_range(0.5);
+  light_msg.set_intensity(1.0);
+  
+  if (ecm.SetComponentData<gz::sim::components::LightCmd>(_lighting_entity, light_msg) == false) {
+    gzerr << "failed to set LightCmd component data in entity [" << _lighting_entity << "] --> cancel updating" << std::endl;
+    return;
+  }
+
+  // Update Material emissive color
+  auto& material_data = material_comp->Data();
+  material_data.SetEmissive(gz::math::Color(_color.r / 255.0, _color.g / 255.0, _color.b / 255.0));
 }
+
 
 } // end namespace simulation
 } // end namespace eduart

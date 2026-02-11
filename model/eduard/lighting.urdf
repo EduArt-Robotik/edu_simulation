@@ -33,7 +33,7 @@
           <falloff>1.0</falloff>
         </spot>
         <attenuation>
-          <range>10.0</range>
+          <range>20.0</range>
           <linear>0.01</linear>
           <quadratic>0.001</quadratic>
         </attenuation>
@@ -41,12 +41,12 @@
         <visualize>false</visualize>
       </light>
     </gazebo>
-    <gazebo>
-      <!-- Plugin to Control Light Intensity and Color -->
+
+    <!-- <gazebo>
       <plugin filename="libgazebo-lighting-plugin.so" name="eduart::simulation::GazeboLightingPlugin">
         <lighting_name>${name}</lighting_name>
         <visual_name>visual</visual_name>
       </plugin>
-    </gazebo>
+    </gazebo> -->
   </xacro:macro>
 </robot>
