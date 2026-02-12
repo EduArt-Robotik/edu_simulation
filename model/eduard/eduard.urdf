@@ -12,7 +12,7 @@
   <xacro:arg name="robot_name" default="eduard"/>
   <xacro:arg name="wheel_type" default="mecanum"/>
   <xacro:arg name="lidar_type" default="rplidar_a2m12"/>
-  <xacro:arg name="export_pose" default="true"/>
+  <xacro:arg name="export_pose" default="false"/>
 
   <xacro:property name="wheel_type" value="$(arg wheel_type)"/>
   <xacro:property name="lidar_type" value="$(arg lidar_type)"/>
@@ -177,7 +177,7 @@
     <!-- if enabled ground truth poses will be exported -->
     <xacro:if value="${export_pose == 'true'}">
       <plugin filename="libmodel-pose-exporter-plugin.so" name="eduart::simulation::PoseExporter">
-        <export_format type="TUM"/>
+        <export_format type="CSV"/>
         <file name="/tmp/$(arg robot_name)_pose.txt"/>
       </plugin>
     </xacro:if>
