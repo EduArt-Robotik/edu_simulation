@@ -42,11 +42,11 @@
       </light>
     </gazebo>
 
-    <!-- <gazebo>
+    <gazebo>
       <plugin filename="libgazebo-lighting-plugin.so" name="eduart::simulation::GazeboLightingPlugin">
         <lighting_name>${name}</lighting_name>
         <visual_name>visual</visual_name>
       </plugin>
-    </gazebo> -->
+    </gazebo>
   </xacro:macro>
 </robot>

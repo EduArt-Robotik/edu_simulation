@@ -153,7 +153,7 @@
     <origin xyz="-0.17 -0.063 0.05" rpy="0 0 3.141592654"/>
   </xacro:range_sensor>
 
-  <!-- Lidars, only one is selected -->
+  <!-- Lidars, only one must be selected -->
   <xacro:if value="${lidar_type == 'rplidar_a2m12'}">
     <xacro:lidar name="lidar" parent_link="base_link" topic_name="scan" prefix="$(arg robot_name)">
       <origin xyz="0.115 0 0.07" rpy="0 0 0"/>
@@ -161,7 +161,8 @@
   </xacro:if>
   <xacro:if value="${lidar_type == 'livox_mid360'}">
     <xacro:livox_mid360 name="livox_mid360" parent_link="base_link" topic_name="livox/scan" prefix="$(arg robot_name)">
-      <origin xyz="0.145 0 0.165" rpy="0 0.436332313 0"/>
+      <!-- <origin xyz="0.145 0 0.165" rpy="0 0.436332313 0"/> -->
+      <origin xyz="0.145 0 0.165" rpy="0 0 0"/>
     </xacro:livox_mid360>
   </xacro:if>
 

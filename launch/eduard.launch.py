@@ -74,9 +74,10 @@ def generate_launch_description():
     name='tf_publish_livox',
     executable='static_transform_publisher',
     arguments=[
-      '0.145', '0.0', '0.165', '0', '0.436332313', '0',
+      # '0.145', '0.0', '0.165', '0', '0.436332313', '0',
+      '0.145', '0.0', '0.165', '0', '0', '0',
       PathJoinSubstitution([edu_robot_namespace, 'base_link']),
-      PathJoinSubstitution([edu_robot_namespace, 'livox_mid360'])
+      PathJoinSubstitution([edu_robot_namespace, 'base_link', 'livox_mid360_lidar']) # gazbeo defines it!
     ],
     parameters=[{'use_sim_time': True}],
     condition=IfCondition(PythonExpression(["'", lidar_type, "' == 'livox_mid360'"]))

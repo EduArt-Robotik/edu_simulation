@@ -41,12 +41,12 @@ void GazeboLightingPlugin::Configure(
   const std::string visual_name = sdf->FindElement("visual_name")->Get<std::string>();
 
   if (auto lighting_entity = ecm.EntityByName(lighting_name)) {
-    // if (!ecm.EntityHasComponentType(*lighting_entity, gz::sim::components::LightCmd().TypeId())) {
-    //   if (ecm.CreateComponent(*lighting_entity, gz::sim::components::LightCmd()) == nullptr) {
-    //     gzerr << "failed to create LightCmd component in entity [" << *lighting_entity << "] --> cancel configuring" << std::endl;
-    //     return;
-    //   }
-    // }
+    if (!ecm.EntityHasComponentType(*lighting_entity, gz::sim::components::Light().TypeId())) {
+      if (ecm.CreateComponent(*lighting_entity, gz::sim::components::Light()) == nullptr) {
+        gzerr << "failed to create Light component in entity [" << *lighting_entity << "] --> cancel configuring" << std::endl;
+        return;
+      }
+    }
     _lighting_entity = *lighting_entity;
   }
   else {
@@ -70,6 +70,30 @@ void GazeboLightingPlugin::Configure(
 
 void GazeboLightingPlugin::Update(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
 {
+  return;
+
+
+
+  // Update LightCmd component
+  // gz::msgs::Light light_cmd = gz::sim::convert(light->Data());
+  // gz::msgs::Light light_msg;
+  // light_msg.set_type(gz::msgs::Light::SPOT);
+  // light_msg.set_range(0.5);
+  // light_msg.set_intensity(1.0);
+  
+  // if (ecm.SetComponentData<gz::sim::components::LightCmd>(_lighting_entity, light_msg) == false) {
+  //   gzerr << "failed to set LightCmd component data in entity [" << _lighting_entity << "] --> cancel updating" << std::endl;
+  //   return;
+  // }
+
+  // Update Material emissive color
+  // auto& material_data = material_comp->Data();
+  // material_data.SetEmissive(gz::math::Color(_color.r / 255.0, _color.g / 255.0, _color.b / 255.0));
+}
+
+void GazeboLightingPlugin::PreUpdate(const gz::sim::UpdateInfo& info, gz::sim::EntityComponentManager& ecm)
+{
+  return;
   if (_lighting_entity == gz::sim::kNullEntity || _visual_entity == gz::sim::kNullEntity) {
     // not ready --> return
     return;
@@ -87,24 +111,21 @@ void GazeboLightingPlugin::Update(const gz::sim::UpdateInfo& info, gz::sim::Enti
     return;
   }
 
-
-  // Update LightCmd component
-  // gz::msgs::Light light_cmd = gz::sim::convert(light->Data());
-  gz::msgs::Light light_msg;
-  light_msg.set_type(gz::msgs::Light::SPOT);
-  light_msg.set_range(0.5);
-  light_msg.set_intensity(1.0);
-  
-  if (ecm.SetComponentData<gz::sim::components::LightCmd>(_lighting_entity, light_msg) == false) {
-    gzerr << "failed to set LightCmd component data in entity [" << _lighting_entity << "] --> cancel updating" << std::endl;
-    return;
+  _intensity += 0.001f;
+  if (_intensity > 1.0f) {
+    _intensity = 0.0f;
   }
 
-  // Update Material emissive color
-  auto& material_data = material_comp->Data();
-  material_data.SetEmissive(gz::math::Color(_color.r / 255.0, _color.g / 255.0, _color.b / 255.0));
-}
+  gz::msgs::Light light_msg;
+  light_msg.set_intensity(_intensity);
 
+  auto light_cmd_comp = ecm.Component<gz::sim::components::LightCmd>(_lighting_entity);
+  if (!light_cmd_comp) {
+    ecm.CreateComponent(_lighting_entity, gz::sim::components::LightCmd(light_msg));
+  } else {
+    light_cmd_comp->Data() = light_msg;
+  }
+}
 
 } // end namespace simulation
 } // end namespace eduart
@@ -115,5 +136,6 @@ GZ_ADD_PLUGIN(
   eduart::simulation::GazeboLightingPlugin,
   gz::sim::System,
   eduart::simulation::GazeboLightingPlugin::ISystemConfigure,
-  eduart::simulation::GazeboLightingPlugin::ISystemUpdate
+  eduart::simulation::GazeboLightingPlugin::ISystemUpdate,
+  eduart::simulation::GazeboLightingPlugin::ISystemPreUpdate
 )
