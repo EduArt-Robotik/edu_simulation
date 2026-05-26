@@ -41,6 +41,12 @@ void GazeboMotorController::initialize(const std::vector<robot::Motor::Parameter
   _low_pass_filter.clear();
 }
 
+void GazeboMotorController::disable()
+{
+  _is_enabled = false;
+  processSetValue({ robot::Rpm(0.0) });
+}
+
 void GazeboMotorController::processFeedback(const gz::msgs::Double& velocity)
 {
   _measured_rpm[0] = robot::Rpm::fromRadps(velocity.data());

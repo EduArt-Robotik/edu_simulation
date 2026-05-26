@@ -25,9 +25,7 @@ public:
   inline void enable() {
     _is_enabled = true;
   }
-  inline void disable() {
-    _is_enabled = false;
-  }
+  void disable();
 
 private:
   void processFeedback(const gz::msgs::Double& velocity);
