@@ -1,0 +1,52 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="$(arg robot_name)">
+  <xacro:macro name="lighting" params="name parent_link *origin">
+    <link name="${name}_link">
+      <visual name="visual">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.01 0.01 0.01"/>
+        </geometry>
+        <material name="yellow">
+          <color rgba="1.0 1.0 0.0 1.0"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent_link}"/>
+      <child link="${name}_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- Gazebo Light Source - strahlt in X-Richtung -->
+    <gazebo reference="${name}_link">
+      <light name="${name}" type="spot">
+        <pose>0 0 0 0 0 0</pose>
+        <diffuse>1.0 1.0 1.0 1.0</diffuse>
+        <specular>0.5 0.5 0.5 1.0</specular>
+        <intensity>2.0</intensity>
+        <direction>1 0 0</direction>
+        <spot>
+          <inner_angle>0.6</inner_angle>
+          <outer_angle>1.0</outer_angle>
+          <falloff>1.0</falloff>
+        </spot>
+        <attenuation>
+          <range>20.0</range>
+          <linear>0.01</linear>
+          <quadratic>0.001</quadratic>
+        </attenuation>
+        <cast_shadows>true</cast_shadows>
+        <visualize>false</visualize>
+      </light>
+    </gazebo>
+
+    <gazebo>
+      <plugin filename="libgazebo-lighting-plugin.so" name="eduart::simulation::GazeboLightingPlugin">
+        <lighting_name>${name}</lighting_name>
+        <visual_name>visual</visual_name>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+</robot>

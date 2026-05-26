@@ -20,11 +20,17 @@
           </inertia>
         </inertial>
         <visual name="visual">
+          <cast_shadows>true</cast_shadows>
           <geometry>
             <mesh>
               <uri>model://TER2/mesh/TER2.dae</uri>
             </mesh>
           </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
         </visual>
         <collision name="collision">
           <geometry>

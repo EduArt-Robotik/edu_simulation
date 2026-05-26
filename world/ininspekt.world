@@ -42,5 +42,10 @@
         </visual>
       </link>
     </model>
+    <!-- Include Wind Turbine Model -->
+    <include>
+      <uri>model://wind_turbine</uri>
+      <pose> 0 0 -0.5 0 0 0</pose>
+    </include>
   </world>
 </sdf>

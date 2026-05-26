@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+  <model name="wind-turbine">
+    <static>true</static>
+
+    <link name="body">
+      <pose>1 0 1 0 0 0</pose>
+      <visual name="visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <!-- <uri>model://wind_turbine/mesh/wing.stl</uri> -->
+            <uri>model://wind_turbine/mesh/wind_turbine_wing_30m.stl</uri>
+            <scale>2 2 2</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>        
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <!-- <uri>model://wind_turbine/mesh/wing.stl</uri> -->
+            <uri>model://wind_turbine/mesh/wind_turbine_wing_30m.stl</uri>
+            <scale>2 2 2</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
