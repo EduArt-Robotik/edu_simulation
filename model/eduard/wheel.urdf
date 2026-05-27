@@ -59,11 +59,21 @@
   <gazebo>
     <plugin filename="libeduard-motor-plugin.so" name="eduart::simulation::GazeboMotorPlugin">
       <joint_name>${wheel_joint_name}</joint_name>
+      <max_torque>3.0</max_torque>
+      <pid>
+        <!-- Measured T = 1ms, L = 7ms -->
+        <!-- kp = 0.9 * (T / L) = 0.128571429 -->
+        <!-- ki = (0.3 * T) / (L * L) = 6.12 -->
+        <!-- -->
+        <kp>0.128571429</kp>
+        <ki>6.12244898</ki>
+        <kd>0.0</kd>
+      </pid>
     </plugin>
   </gazebo>
 
-  <!-- Friction -->
-  <gazebo reference="motor_a_wheel">
+  <!-- Friction for all wheels -->
+  <gazebo reference="${wheel_link_name}">
     <collision>
       <surface>
         <friction>
@@ -81,14 +91,22 @@
               </xacro:if>
             </xacro:if> -->
 
-            <!-- Offroad -->
+            <!-- Offroad wheel - no fdir1 to allow automatic contact direction calculation for rolling wheels -->
             <xacro:if value="${type == 'offroad'}">
-              <mu>0.9</mu>
-              <mu2>0.0</mu2>
-              <fdir1 gz:expressed_in="${parent_link}">1 0 0</fdir1>
+              <mu>1.0</mu>
+              <mu2>0.95</mu2>
+              <slip1>0.01</slip1>
+              <slip2>0.01</slip2>
             </xacro:if>
           </ode>
         </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>0.0</threshold>
+        </bounce>
+        <contact>
+          <collide_bitmask>0xffff</collide_bitmask>
+        </contact>
       </surface>
     </collision>        
   </gazebo>

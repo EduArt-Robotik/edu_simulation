@@ -9,7 +9,7 @@ GazeboMotorController::GazeboMotorController(
   const std::string& name, const std::string& gz_velocity_topic_name, const std::string& gz_feedback_topic_name)
   : robot::MotorController::HardwareInterface(name, 1)
   , _gz_node(std::make_shared<gz::transport::Node>())
-  , _low_pass_filter({0.2f})
+  , _low_pass_filter({1.0f}) // disable filtering
   , _measured_rpm(1, 0.0)
 {
   _gz_pub_velocity = _gz_node->Advertise<gz::msgs::Double>(gz_velocity_topic_name);
@@ -35,9 +35,16 @@ void GazeboMotorController::processSetValue(const std::vector<robot::Rpm>& rpm)
   _gz_pub_velocity.Publish(velocity_msgs);
 }
 
-void GazeboMotorController::initialize(const robot::Motor::Parameter &parameter)
+void GazeboMotorController::initialize(const std::vector<robot::Motor::Parameter>& parameter)
 {
+  (void)parameter;
   _low_pass_filter.clear();
+}
+
+void GazeboMotorController::disable()
+{
+  _is_enabled = false;
+  processSetValue({ robot::Rpm(0.0) });
 }
 
 void GazeboMotorController::processFeedback(const gz::msgs::Double& velocity)

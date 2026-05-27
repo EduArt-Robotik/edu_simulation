@@ -25,6 +25,11 @@
               <uri>model://TER3/mesh/TER3.dae</uri>
             </mesh>
           </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
         </visual>
         <collision name="collision">
           <geometry>
@@ -32,6 +37,14 @@
               <uri>model://TER3/mesh/TER3.dae</uri>
             </mesh>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.8</mu2>
+              </ode>
+            </friction>
+          </surface>
         </collision>
       </link>
     

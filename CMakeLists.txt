@@ -20,7 +20,7 @@ find_package(gz_plugin_vendor REQUIRED)
 find_package(gz-plugin REQUIRED)
 
 # General Compiler Settings
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_CXX_EXTENSIONS Off)
 
@@ -28,10 +28,17 @@ add_subdirectory(src)
 
 install(
   TARGETS
-    # collision_avoidance_lidar_node
+    collision_avoidance_lidar_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
+  TARGETS
     # eduard-object-detection-sensor-plugin
     eduard-model-plugin
     eduard-motor-plugin
+    model-pose-exporter-plugin
+    gazebo-lighting-plugin
   DESTINATION lib
 )
 
@@ -50,6 +57,7 @@ install(DIRECTORY launch
 
 ament_export_libraries(
   eduard-model-plugin
+  model-pose-exporter-plugin
+  gazebo-lighting-plugin
 )
-
 ament_package()

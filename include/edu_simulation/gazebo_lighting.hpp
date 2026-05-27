@@ -10,6 +10,11 @@
 namespace eduart {
 namespace simulation {
 
+struct LightingCommand {
+  robot::Color color;
+  robot::Lighting::Mode mode;
+};
+
 class GazeboLighting : public robot::Lighting::ComponentInterface
 {
 public:
