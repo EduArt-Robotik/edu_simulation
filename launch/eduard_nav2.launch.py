@@ -20,17 +20,17 @@ def generate_launch_description():
 
   # simulation
   simulation_package_path = FindPackageShare('edu_simulation')
-  # simulation_launch_file = PathJoinSubstitution([
-  #   simulation_package_path,
-  #   'launch',
-  #   'eduard.launch.py'
-  # ])
-  # simulation = IncludeLaunchDescription(
-  #   PythonLaunchDescriptionSource(simulation_launch_file),
-  #   launch_arguments={
-  #     'world': 'eduard_blue_nav2.world'
-  #   }.items()
-  # )
+  simulation_launch_file = PathJoinSubstitution([
+    simulation_package_path,
+    'launch',
+    'eduard.launch.py'
+  ])
+  simulation = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(simulation_launch_file),
+    # launch_arguments={
+    #   'world': 'eduard_blue_nav2.world'
+    # }.items()
+  )
 
   # collision avoidance
   collision_avoidance_parameter_file = PathJoinSubstitution([
@@ -42,7 +42,7 @@ def generate_launch_description():
     package='edu_simulation',
     executable='collision_avoidance_lidar_node',
     name='collision_avoidance_autonomous_cmd_vel',
-    namespace='eduard/blue',
+    namespace=edu_robot_namespace,
     parameters=[
       collision_avoidance_parameter_file,
       {'use_sim_time': True}
@@ -58,7 +58,7 @@ def generate_launch_description():
     package='edu_simulation',
     executable='collision_avoidance_lidar_node',
     name='collision_avoidance_joy_cmd_vel',
-    namespace='eduard/blue',
+    namespace=edu_robot_namespace,
     parameters=[
       collision_avoidance_parameter_file,
       {'use_sim_time': True}
@@ -81,7 +81,7 @@ def generate_launch_description():
     PythonLaunchDescriptionSource(slam_launch_file),
     launch_arguments={
       'use_sim_time': 'True',
-      'edu_robot_namespace': 'eduard/blue'
+      'edu_robot_namespace': edu_robot_namespace
     }.items()
   )
 
@@ -95,7 +95,7 @@ def generate_launch_description():
     PythonLaunchDescriptionSource(navigation_launch_file),
     launch_arguments={
       'use_sim_time': 'True',
-      'edu_robot_namespace': 'eduard/blue'
+      'edu_robot_namespace': edu_robot_namespace
     }.items()
   )
 
@@ -108,7 +108,7 @@ def generate_launch_description():
   robot_control = IncludeLaunchDescription(
     PythonLaunchDescriptionSource(robot_control_launch_file),
     launch_arguments={
-      'edu_robot_namespace': 'eduard/blue'      
+      'edu_robot_namespace': edu_robot_namespace      
     }.items()
   )
 
@@ -122,13 +122,13 @@ def generate_launch_description():
     PythonLaunchDescriptionSource(rviz_launch_file),
     launch_arguments={
       'use_sim_time': 'True',
-      'edu_robot_namespace': 'eduard/blue'      
+      'edu_robot_namespace': edu_robot_namespace      
     }.items()
   )
 
   return LaunchDescription([
     edu_robot_namespace_arg,
-    # simulation,
+    simulation,
     collision_avoidance_autonomous_cmd_vel,
     collision_avoidance_joy_cmd_vel,
     slam,

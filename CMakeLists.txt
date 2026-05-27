@@ -28,7 +28,12 @@ add_subdirectory(src)
 
 install(
   TARGETS
-    # collision_avoidance_lidar_node
+    collision_avoidance_lidar_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
+  TARGETS
     # eduard-object-detection-sensor-plugin
     eduard-model-plugin
     eduard-motor-plugin

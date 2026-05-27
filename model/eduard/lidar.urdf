@@ -49,6 +49,7 @@
       <sensor name="lidar" type="gpu_lidar">
         <update_rate>10</update_rate>
         <topic>${prefix}/scan</topic>
+        <gz_frame_id>${prefix}/laser</gz_frame_id>
         <lidar>
           <scan>
             <horizontal>
@@ -67,6 +68,7 @@
             <mean>0.0</mean>
             <stddev>0.01</stddev>
           </noise>   
+          <frame_id>${prefix}/laser</frame_id>       
         </lidar>
         <always_on>true</always_on>
         <visualize>true</visualize>
