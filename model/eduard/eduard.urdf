@@ -5,6 +5,7 @@
   <xacro:include filename="$(find edu_simulation)/model/eduard/imu.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/range_sensor.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/lidar.urdf"/>
+  <xacro:include filename="$(find edu_simulation)/model/eduard/pf_R2400.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/livox_mid360.urdf"/>
   <xacro:include filename="$(find edu_simulation)/model/eduard/lighting.urdf"/>
 
@@ -164,6 +165,12 @@
       <!-- <origin xyz="0.145 0 0.165" rpy="0 0.436332313 0"/> -->
       <origin xyz="0.145 0 0.165" rpy="0 0 0"/>
     </xacro:livox_mid360>
+  </xacro:if>
+  <xacro:if value="${lidar_type == 'pf_R2400'}">
+    <xacro:pf_R2400 name="pf_R2400" parent_link="base_link" topic_name="scan" prefix="$(arg robot_name)">
+      <!-- <origin xyz="0.145 0 0.165" rpy="0 0.436332313 0"/> -->
+      <origin xyz="0.115 0 0.165" rpy="0 0 0"/>
+    </xacro:pf_R2400>
   </xacro:if>
 
   <!-- Plugins -->

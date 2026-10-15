@@ -13,7 +13,7 @@ def generate_launch_description():
 
     world_arg = DeclareLaunchArgument("world", default_value="pepperl+fuchs.world", description="Gazebo world to load")
     wheel_type_arg = DeclareLaunchArgument("wheel_type", default_value="mecanum", description="Robot wheel configuration")
-    lidar_type_arg = DeclareLaunchArgument("lidar_type", default_value="livox_mid360", description="LiDAR configuration")
+    lidar_type_arg = DeclareLaunchArgument("lidar_type", default_value="pf_R2400", description="LiDAR configuration")
 
 
     gazebo_launch = IncludeLaunchDescription(

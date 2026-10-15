@@ -18,7 +18,7 @@ def generate_launch_description():
   wheel_type_arg = DeclareLaunchArgument('wheel_type', default_value='mecanum')
 
   lidar_type = LaunchConfiguration('lidar_type')
-  lidar_type_arg = DeclareLaunchArgument('lidar_type', default_value='rplidar_a2m12', choices=['rplidar_a2m12', 'livox_mid360'])
+  lidar_type_arg = DeclareLaunchArgument('lidar_type', default_value='rplidar_a2m12', choices=['rplidar_a2m12', 'livox_mid360', 'pf_R2400'])
 
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')
@@ -81,6 +81,18 @@ def generate_launch_description():
     ],
     parameters=[{'use_sim_time': True}],
     condition=IfCondition(PythonExpression(["'", lidar_type, "' == 'livox_mid360'"]))
+  )
+  tf_pf_R2400_eduard = Node(
+    package='tf2_ros',
+    name='tf_publish_laser',
+    executable='static_transform_publisher',
+    arguments=[
+      '0.115', '0.0', '0.165', '0', '0', '0',
+      PathJoinSubstitution([edu_robot_namespace, 'base_link']),
+      PathJoinSubstitution([edu_robot_namespace, 'laser'])
+    ],
+    parameters=[{'use_sim_time': True}],
+    condition=IfCondition(PythonExpression(["'", lidar_type, "' == 'pf_R2400'"]))
   )  
 
   # Bridging Topics
@@ -111,5 +123,6 @@ def generate_launch_description():
     eduard,
     tf_laser_eduard,
     tf_livox_eduard,
+    tf_pf_R2400_eduard,
     gz_ros_bridge
   ])

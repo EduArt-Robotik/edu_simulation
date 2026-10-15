@@ -22,7 +22,7 @@ def generate_launch_description():
   export_pose_arg = DeclareLaunchArgument('export_pose', default_value='false')
 
   lidar_type = LaunchConfiguration('lidar_type')
-  lidar_type_arg = DeclareLaunchArgument('lidar_type', default_value='rplidar_a2m12', choices=['rplidar_a2m12', 'livox_mid360'])
+  lidar_type_arg = DeclareLaunchArgument('lidar_type', default_value='rplidar_a2m12', choices=['rplidar_a2m12', 'livox_mid360', 'pf_R2400'])
 
   pos_x = LaunchConfiguration('pos_x')
   pos_x_arg = DeclareLaunchArgument('pos_x', default_value='0.0')

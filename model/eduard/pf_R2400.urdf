@@ -1,0 +1,63 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="$(arg robot_name)">
+  <xacro:include filename="$(find edu_simulation)/model/eduard/inertial.urdf"/>
+
+  <xacro:macro name="pf_R2400" params="name parent_link topic_name prefix *origin">
+    <!-- Lidar Cassis -->
+    <link name="${name}_link">
+      <!-- Visuals -->
+      <visual name="visual">
+        <geometry>
+          <mesh filename="model://eduard/mesh/pf_R2400.dae"/>
+        </geometry>
+      </visual>
+  
+      <!-- Collisions -->
+      <collision name="collision">
+        <geometry>
+          <mesh filename="model://eduard/mesh/pf_R2400_collision.stl"/>
+        </geometry>
+      </collision>
+
+      <!-- Inertial -->
+      <xacro:inertial_cylinder mass="0.55" radius="0.040" length="0.08"/>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent_link}"/>
+      <child link="${name}_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- Sensor -->
+    <gazebo reference="${name}_link">
+      <sensor name="lidar" type="gpu_lidar">
+        <update_rate>10</update_rate>
+        <topic>${prefix}/scan</topic>
+        <gz_frame_id>${prefix}/laser</gz_frame_id>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>7200</samples>
+              <resolution>1.0</resolution>
+              <min_angle>-3.1415926595</min_angle>
+              <max_angle>3.1415926595</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>20.0</max>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>   
+          <frame_id>${prefix}/laser</frame_id>       
+        </lidar>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+</robot>
