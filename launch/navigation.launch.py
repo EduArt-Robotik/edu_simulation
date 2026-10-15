@@ -20,29 +20,34 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, GroupAction, SetEnvironmentVariable
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression, EnvironmentVariable, PathJoinSubstitution
-
-from launch_ros.actions import LoadComposableNodes, Node
+from launch_ros.actions import LoadComposableNodes
+from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.descriptions import ComposableNode, ParameterFile
-
 from nav2_common.launch import RewrittenYaml
 
 
 def generate_launch_description():
-    # robot namespace
-    edu_robot_namespace = LaunchConfiguration('edu_robot_namespace')
-    edu_robot_namespace_arg = DeclareLaunchArgument(
-        'edu_robot_namespace', default_value=os.getenv('EDU_ROBOT_NAMESPACE', default='eduard')
-    )
+    # Get Robot Namespace
+    robot_namespace = os.environ.get('EDU_ROBOT_NAMESPACE', 'eduard')
+    if len(robot_namespace) == 0: robot_namespace = '/eduard/'                          # default value
+    if robot_namespace[0] != '/': robot_namespace = '/' + robot_namespace               # ensure preceding "/"
+    if robot_namespace[len(robot_namespace) - 1] != '/': robot_namespace += '/'         # ensure trailing "/"
+    tf_prefix = robot_namespace[1:] if robot_namespace[0] == '/' else robot_namespace   # removes preceding "/" for tf_prefix
 
+    print('use robot namespace = ', robot_namespace)
+    print('use tf prefix = ', tf_prefix)
+
+    namespace = LaunchConfiguration('namespace')
     use_sim_time = LaunchConfiguration('use_sim_time')
     autostart = LaunchConfiguration('autostart')
     params_file = LaunchConfiguration('params_file')
     use_composition = LaunchConfiguration('use_composition')
     container_name = LaunchConfiguration('container_name')
-    container_name_full = (edu_robot_namespace, '/', container_name)
+    container_name_full = (namespace, '/', container_name)
     use_respawn = LaunchConfiguration('use_respawn')
     log_level = LaunchConfiguration('log_level')
+    use_keepout = LaunchConfiguration('use_keepout')
 
     lifecycle_nodes = ['controller_server',
                        'smoother_server',
@@ -61,32 +66,36 @@ def generate_launch_description():
     #              https://github.com/ros2/launch_ros/issues/56
     remappings = [('/tf', '/tf'),
                   ('/tf_static', '/tf_static'),
-                  ('/map', 'map')]
+                  ('/map', robot_namespace + 'map')]
 
     # Create our own temporary YAML files that include substitutions
     param_substitutions = {
         'use_sim_time': use_sim_time,
         'autostart': autostart,
-        'base_frame_id': PathJoinSubstitution([edu_robot_namespace, 'base_footprint']),
-        'global_frame_id': PathJoinSubstitution([edu_robot_namespace, 'map']),
-        'odom_frame_id': PathJoinSubstitution([edu_robot_namespace, 'odom']),
-        'scan_topic': 'scan',
-        'global_frame': PathJoinSubstitution([edu_robot_namespace, 'map']),
-        'robot_base_frame': PathJoinSubstitution([edu_robot_namespace, 'base_link']),
-        'odom_topic': 'odometry',
-        'topic': 'scan'
+        'global_frame': tf_prefix + 'map',
+        'robot_base_frame': tf_prefix + 'base_link',
+        'odom_topic': robot_namespace + 'odometry',
+        'topic': robot_namespace + 'scan',
+        'filter_info_topic': robot_namespace + 'costmap_filter_info',
+        'local_costmap.local_costmap.ros__parameters.keepout_filter.enabled': use_keepout,
+        'global_costmap.global_costmap.ros__parameters.keepout_filter.enabled': use_keepout
     }
 
     configured_params = ParameterFile(
         RewrittenYaml(
             source_file=params_file,
-            root_key=edu_robot_namespace,
+            root_key=namespace,
             param_rewrites=param_substitutions,
             convert_types=True),
         allow_substs=True)
 
     stdout_linebuf_envvar = SetEnvironmentVariable(
         'RCUTILS_LOGGING_BUFFERED_STREAM', '1')
+
+    declare_namespace_cmd = DeclareLaunchArgument(
+        'namespace',
+        default_value=EnvironmentVariable('EDU_ROBOT_NAMESPACE', default_value="eduard"),
+        description='Top-level namespace')
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
         'use_sim_time',
@@ -117,6 +126,10 @@ def generate_launch_description():
     declare_log_level_cmd = DeclareLaunchArgument(
         'log_level', default_value='info',
         description='log level')
+    
+    declare_use_keepout_cmd = DeclareLaunchArgument(
+        'use_keepout', default_value='False',
+        description='use_keepout')
 
     load_nodes = GroupAction(
         condition=IfCondition(PythonExpression(['not ', use_composition])),
@@ -129,8 +142,8 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=remappings + [('cmd_vel', 'nav2/cmd_vel')],
-                namespace=edu_robot_namespace
+                remappings=remappings + [('cmd_vel', robot_namespace + 'autonomous/cmd_vel')],
+                namespace=namespace
             ),
             Node(
                 package='nav2_smoother',
@@ -142,7 +155,7 @@ def generate_launch_description():
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=remappings,
-                namespace=edu_robot_namespace
+                namespace=namespace
             ), 
             Node(
                 package='nav2_planner',
@@ -154,7 +167,7 @@ def generate_launch_description():
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=remappings,
-                namespace=edu_robot_namespace
+                namespace=namespace
             ),              
             Node(
                 package='nav2_behaviors',
@@ -166,7 +179,7 @@ def generate_launch_description():
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=remappings,
-                namespace=edu_robot_namespace
+                namespace=namespace
             ),
             Node(
                 package='nav2_bt_navigator',
@@ -178,7 +191,7 @@ def generate_launch_description():
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=remappings,
-                namespace=edu_robot_namespace
+                namespace=namespace
             ),              
             Node(
                 package='nav2_waypoint_follower',
@@ -190,7 +203,7 @@ def generate_launch_description():
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=remappings,
-                namespace=edu_robot_namespace
+                namespace=namespace
             ),
             Node(
                 package='nav2_velocity_smoother',
@@ -203,7 +216,7 @@ def generate_launch_description():
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=remappings +
                         [('cmd_vel', 'cmd_vel_nav'), ('cmd_vel_smoothed', 'cmd_vel')],
-                namespace=edu_robot_namespace
+                namespace=namespace
             ),            
             Node(
                 package='nav2_lifecycle_manager',
@@ -214,7 +227,7 @@ def generate_launch_description():
                 parameters=[{'use_sim_time': use_sim_time},
                             {'autostart': autostart},
                             {'node_names': lifecycle_nodes}],
-                namespace=edu_robot_namespace
+                namespace=namespace
             ),                               
         ]
     )
@@ -283,7 +296,7 @@ def generate_launch_description():
     ld.add_action(stdout_linebuf_envvar)
 
     # Declare the launch options
-    ld.add_action(edu_robot_namespace_arg)
+    ld.add_action(declare_namespace_cmd)
     ld.add_action(declare_use_sim_time_cmd)
     ld.add_action(declare_params_file_cmd)
     ld.add_action(declare_autostart_cmd)
@@ -291,6 +304,7 @@ def generate_launch_description():
     ld.add_action(declare_container_name_cmd)
     ld.add_action(declare_use_respawn_cmd)
     ld.add_action(declare_log_level_cmd)
+    ld.add_action(declare_use_keepout_cmd)
     # Add the actions to launch all of the navigation nodes
     ld.add_action(load_nodes)
     ld.add_action(load_composable_nodes)

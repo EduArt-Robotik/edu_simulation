@@ -5,43 +5,11 @@
       <author>Blender User</author>
       <authoring_tool>Blender 4.5.14 LTS commit date:2026-09-14, commit time:14:54, hash:62c1db4208e8</authoring_tool>
     </contributor>
-    <created>2026-10-15T09:38:59</created>
-    <modified>2026-10-15T09:38:59</modified>
+    <created>2026-10-15T11:32:11</created>
+    <modified>2026-10-15T11:32:11</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_lights>
-    <light id="Area-light" name="Area">
-      <technique_common>
-        <point>
-          <color sid="color">207.3 207.3 207.3</color>
-          <constant_attenuation>1</constant_attenuation>
-          <linear_attenuation>0</linear_attenuation>
-          <quadratic_attenuation>0</quadratic_attenuation>
-        </point>
-      </technique_common>
-      <extra>
-        <technique profile="blender">
-          <type sid="type" type="int">0</type>
-          <flag sid="flag" type="int">0</flag>
-          <mode sid="mode" type="int">2097153</mode>
-          <red sid="red" type="float">1</red>
-          <green sid="green" type="float">1</green>
-          <blue sid="blue" type="float">1</blue>
-          <energy sid="blender_energy" type="float">207.3</energy>
-          <spotsize sid="spotsize" type="float">45</spotsize>
-          <spotblend sid="spotblend" type="float">0.15</spotblend>
-          <clipsta sid="clipsta" type="float">0.04999995</clipsta>
-          <clipend sid="clipend" type="float">40</clipend>
-          <radius sid="radius" type="float">0</radius>
-          <area_shape sid="area_shape" type="int">0</area_shape>
-          <area_size sid="area_size" type="float">1</area_size>
-          <area_sizey sid="area_sizey" type="float">1</area_sizey>
-          <area_sizez sid="area_sizez" type="float">1</area_sizez>
-        </technique>
-      </extra>
-    </light>
-  </library_lights>
   <library_effects>
     <effect id="Snack_Box-effect">
       <profile_COMMON>
@@ -119,7 +87,7 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <color sid="diffuse">0.5 0.5 0.5 1</color>
+              <color sid="diffuse">0.1109554 0.1109554 0.1109554 1</color>
             </diffuse>
             <index_of_refraction>
               <float sid="ior">1.5</float>
@@ -1176,10 +1144,6 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
-      </node>
-      <node id="Area" name="Area" type="NODE">
-        <matrix sid="transform">2.511917 0 0 0 0 2.511917 0 0 0 0 2.511917 3.750683 0 0 0 1</matrix>
-        <instance_light url="#Area-light"/>
       </node>
       <node id="Arena" name="Arena" type="NODE">
         <matrix sid="transform">0.01 0 0 0 0 7.54979e-10 -0.01 0 0 0.01 7.54979e-10 -0.5800219 0 0 0 1</matrix>

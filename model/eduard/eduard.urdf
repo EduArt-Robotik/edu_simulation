@@ -168,7 +168,6 @@
   </xacro:if>
   <xacro:if value="${lidar_type == 'pf_R2400'}">
     <xacro:pf_R2400 name="pf_R2400" parent_link="base_link" topic_name="scan" prefix="$(arg robot_name)">
-      <!-- <origin xyz="0.145 0 0.165" rpy="0 0.436332313 0"/> -->
       <origin xyz="0.115 0 0.165" rpy="0 0 0"/>
     </xacro:pf_R2400>
   </xacro:if>

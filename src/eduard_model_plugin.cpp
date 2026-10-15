@@ -39,7 +39,9 @@ void EduardModelPlugin::Configure(
       "eduard_model_plugin",
       "--ros-args",
       "-p",
-      "use_sim_time:=True"
+      "use_sim_time:=True",
+      "-p",
+      "imu.publish_tf:=false"
       // "-p",
       // kinematic_string.data()
     };
