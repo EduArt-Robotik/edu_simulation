@@ -1,32 +1,39 @@
-A Collection of Commands to run the fair_demonstration
+# A Collection of Commands to run the fair_demonstration
 
-- **Gazebo**
+## Gazebo
+startet die Simulationsumgebung; nach dem Start unten links auf Play gehen, damit physiksimulation beginnt
 ```bash
 ros2 launch edu_simulation gazebo.launch.py world:=pepperl+fuchs.world
 ```
 
-- **Spawn Robot**
+## Spawn Robot
+platziert den Roboter in die Umgebung
 ```bash
 ros2 launch edu_simulation eduard.launch.py lidar_type:=pf_R2400
 ```
-
-- **Slam**
+## Localization with predefined map
+Startet die Lokalisation, sodass der Roboter anhand der vorher aufgezeichneten karte seine Position findet.  
+evtl muss der Dateipfad vor dem Starten angepasst werden 
 ```bash
-ros2 launch edu_simulation slam.launch.py
+MAP_FILE=/workspaces/edu_ros2/src/edu_simulation/model/pepperl+fuchs/map/map.yaml  ros2 launch edu_simulation slam.launch.py
 ```
 
-- **Localization with predefined map**
-(change filepath if needed)
+## Navigation
+startet den Knoten für das automatische Abfahren des Pfades
 ```bash
-MAP_FILE=/workspaces/eduart/src/edu_simulation/model/pepperl+fuchs/map/map.yaml  ros2 launch edu_simulation slam.launch.py
+ros2 launch edu_simulation path_following.launch.py
 ```
 
-- **Nav2**
-```bash
-ros2 launch edu_simulation navigation.launch.py
-```
-
-- **Rviz2**
+## Rviz2
+startet die Visualisationsumgebung, in der die Karte, der Robo und der Pfad angezeigt werden
 ```bash
 ros2 launch edu_robot_control eduard_monitor_nav2.launch.py
+```
+
+## Virtuel Joystick
+über `docker compose up` im entsprechenden Ordner
+
+## Slam (only for development)
+```bash
+ros2 launch edu_simulation slam.launch.py
 ```

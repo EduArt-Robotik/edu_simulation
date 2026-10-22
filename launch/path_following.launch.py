@@ -135,7 +135,7 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=remappings + [('cmd_vel', robot_namespace + 'autonomous/cmd_vel')],
+                remappings=remappings + [('cmd_vel', robot_namespace + 'autonomous/cmd_vel'), ('odom', robot_namespace + 'odometry')],
                 namespace=namespace
             ),          
             Node(
