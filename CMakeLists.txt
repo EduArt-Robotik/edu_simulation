@@ -19,6 +19,9 @@ find_package(gz-sim REQUIRED)
 find_package(gz_plugin_vendor REQUIRED)
 find_package(gz-plugin REQUIRED)
 
+# path publishing packages
+find_package(nav2_msgs REQUIRED)
+
 # General Compiler Settings
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED On)

@@ -1,0 +1,28 @@
+path_publisher:
+  ros__parameters:
+    use_sim_time: True
+
+    # Nav2 action server
+    action_name: "/eduard/follow_path"
+
+    # Path coordinate frame
+    frame_id: "eduard/map"
+
+    # Maximum spacing between generated poses, in meters
+    point_spacing: 0.1
+
+    # IDs must match your Nav2 controller configuration
+    controller_id: "FollowPath"
+    goal_checker_id: "general_goal_checker"
+    progress_checker_id: "progress_checker"
+
+    # Waypoints in x, y, yaw format.
+    # Yaw is in radians.
+    waypoints:
+      - 0.0
+      - 0.0
+      - 0.0
+
+      - 1.0
+      - 0.0
+      - 0.0

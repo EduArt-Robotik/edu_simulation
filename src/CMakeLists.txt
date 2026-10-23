@@ -108,3 +108,24 @@ target_link_libraries(gazebo-lighting-plugin
 ament_target_dependencies(gazebo-lighting-plugin
   "edu_robot"
 )
+
+
+# Path publisher
+add_executable(path_publisher
+  path_publisher.cpp
+)
+target_compile_features(path_publisher PUBLIC cxx_std_17)
+
+ament_target_dependencies(path_publisher
+  rclcpp
+  rclcpp_action
+  action_msgs
+  geometry_msgs
+  nav_msgs
+  nav2_msgs
+)
+
+install(TARGETS
+  path_publisher
+  DESTINATION lib/${PROJECT_NAME}
+)
