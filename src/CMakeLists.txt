@@ -123,6 +123,7 @@ ament_target_dependencies(path_publisher
   geometry_msgs
   nav_msgs
   nav2_msgs
+  edu_robot
 )
 
 install(TARGETS

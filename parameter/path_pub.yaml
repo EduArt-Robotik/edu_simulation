@@ -1,12 +1,12 @@
-path_publisher:
+/**:
   ros__parameters:
     use_sim_time: True
 
     # Nav2 action server
-    action_name: "/eduard/follow_path"
+    action_name: "/eduard/pf_robot_a/follow_path"
 
     # Path coordinate frame
-    frame_id: "eduard/map"
+    frame_id: "eduard/pf_robot_a/map"
 
     # Maximum spacing between generated poses, in meters
     point_spacing: 0.1
@@ -16,13 +16,27 @@ path_publisher:
     goal_checker_id: "general_goal_checker"
     progress_checker_id: "progress_checker"
 
+    is_parabola: False
+
     # Waypoints in x, y, yaw format.
     # Yaw is in radians.
     waypoints:
-      - 0.0
-      - 0.0
-      - 0.0
+      - 2.293
+      - 0.562
+      - 0.433
 
-      - 1.0
-      - 0.0
-      - 0.0
+      - 3.101
+      - 0.786
+      - 0.354
+
+      - 3.518
+      - 1.280
+      - 0.857
+
+      - 4.098
+      - 2.019
+      - 0.873
+
+      - 4.569
+      - 2.506
+      - 0.733
