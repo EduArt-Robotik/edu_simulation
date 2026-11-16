@@ -20,7 +20,7 @@ def generate_launch_description():
         parameters=[
             config_file
         ],
-        namespace="eduard/pf_robot_a"
+        namespace="snack_bot/pepperl"
     )
 
     return LaunchDescription([

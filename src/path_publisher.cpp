@@ -35,15 +35,8 @@ public:
     // Parameters
     // --------------------------------------------------
 
-    this->declare_parameter<std::string>(
-      "action_name",
-      "follow_path"
-    );
-
-    this->declare_parameter<std::string>(
-      "frame_id",
-      "map"
-    );
+    this->declare_parameter<std::string>("action_name", "follow_path");
+    this->declare_parameter<std::string>("frame_id", "map");
 
     this->declare_parameter<double>(
       "point_spacing",
@@ -77,27 +70,14 @@ public:
 
     // Retrieve parameters.
 
-    action_name_ =
-      this->get_parameter("action_name").as_string();
+    action_name_ = this->get_parameter("action_name").as_string();
+    frame_id_ = this->get_parameter("frame_id").as_string();
+    point_spacing_ = this->get_parameter("point_spacing").as_double();
+    controller_id_ = this->get_parameter("controller_id").as_string();
+    goal_checker_id_ = this->get_parameter("goal_checker_id").as_string();
+    progress_checker_id_ = this->get_parameter("progress_checker_id").as_string();
 
-    frame_id_ =
-      this->get_parameter("frame_id").as_string();
-
-    point_spacing_ =
-      this->get_parameter("point_spacing").as_double();
-
-    controller_id_ =
-      this->get_parameter("controller_id").as_string();
-
-    goal_checker_id_ =
-      this->get_parameter("goal_checker_id").as_string();
-
-    progress_checker_id_ =
-      this->get_parameter("progress_checker_id").as_string();
-
-    const auto raw_waypoints =
-      this->get_parameter("waypoints").as_double_array();
-
+    const auto raw_waypoints = this->get_parameter("waypoints").as_double_array();
     const bool is_parabola_path = this->get_parameter("is_parabola").as_bool();
 
     // Validate parameters.
@@ -133,11 +113,7 @@ public:
     if (is_parabola_path == true) {
       path_ = generate_parabola_path();
     } else {
-      path_ = generate_path(
-        waypoints_,
-        point_spacing_
-      );
-
+      path_ = generate_path(waypoints_, point_spacing_);
       path_reverse_ = reverse_path(path_);
     }
 
@@ -154,7 +130,7 @@ public:
 
     path_publisher_ =
       this->create_publisher<nav_msgs::msg::Path>(
-        "/eduard/plan",
+        "plan",
         10
       );
 
@@ -254,9 +230,7 @@ private:
     );
   }
 
-  static geometry_msgs::msg::Quaternion yaw_to_quaternion(
-    double yaw
-  )
+  static geometry_msgs::msg::Quaternion yaw_to_quaternion(double yaw)
   {
     // Convert planar yaw to a quaternion.
 
@@ -297,9 +271,7 @@ private:
     return path;
   }
 
-  nav_msgs::msg::Path reverse_path(
-    const nav_msgs::msg::Path & original
-  )
+  nav_msgs::msg::Path reverse_path(const nav_msgs::msg::Path & original)
   {
     auto reversed = original;
     std::reverse(reversed.poses.begin(), reversed.poses.end());
